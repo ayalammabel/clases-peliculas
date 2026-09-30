@@ -1,1 +1,170 @@
-
+[
+  {
+    "submomento": "Antes",
+    "tema": "Preparación pedagógica",
+    "lectura": "La experiencia se prepara desde el aula mediante cartillas, talleres, contextualizaciones, tráileres y conversaciones que acercan al grupo a la película y al sentido de la actividad.",
+    "frecuencia": 14,
+    "numeroDocentes": 13,
+    "citaRepresentativa": "Antes de cada sesión, incluyendo la primera, se realizó el trabajo recomendado con las cartillas."
+  },
+  {
+    "submomento": "Antes",
+    "tema": "Expectativas e interés",
+    "lectura": "Antes de asistir aparecen expectativas asociadas con conocer la Cinemateca, acercarse al cine y fortalecer procesos formativos mediante una experiencia distinta a la habitual.",
+    "frecuencia": 9,
+    "numeroDocentes": 8,
+    "citaRepresentativa": "La expectativa que tenía era lograr formación para el grupo en lo audiovisual y acercarlos a la experiencia del cine."
+  },
+  {
+    "submomento": "Antes",
+    "tema": "Acercamiento previo al cine y la Cinemateca",
+    "lectura": "Los puntos de partida son diversos: algunos grupos ya tenían experiencias con cineclubes o lenguaje audiovisual, mientras otros conocían poco la Cinemateca o el proyecto.",
+    "frecuencia": 13,
+    "numeroDocentes": 10,
+    "citaRepresentativa": "Muy poco, yo y algunos estudiantes conocían la Cinemateca, pero no el proyecto articulado con los colegios."
+  },
+  {
+    "submomento": "Antes",
+    "tema": "Logística y acceso",
+    "lectura": "El transporte, los desplazamientos, las fechas y los tiempos institucionales aparecen como condiciones que pueden dificultar la participación.",
+    "frecuencia": 7,
+    "numeroDocentes": 7,
+    "citaRepresentativa": "Fue necesario solicitar apoyo de transporte y establecer planes logísticos."
+  },
+  {
+    "submomento": "Antes",
+    "tema": "Articulación y apoyo institucional",
+    "lectura": "La participación requiere coordinación entre docentes, colegio y proyecto; los permisos, espacios de clase y apoyos institucionales facilitan la preparación y asistencia.",
+    "frecuencia": 12,
+    "numeroDocentes": 10,
+    "citaRepresentativa": "El colegio facilitó la participación."
+  },
+  {
+    "submomento": "Durante",
+    "tema": "Mediación y dinámicas",
+    "lectura": "Las actividades, talleres y recursos utilizados por mediadores ayudan a dinamizar la experiencia, orientar la lectura de las películas y favorecer la participación.",
+    "frecuencia": 13,
+    "numeroDocentes": 11,
+    "citaRepresentativa": "El hecho de que los mediadores fueran dinámicos y utilizaran recursos cercanos a ellos, sin dejar de lado lo académico."
+  },
+  {
+    "submomento": "Durante",
+    "tema": "Emociones e identificación con las historias",
+    "lectura": "Las películas movilizan sorpresa, tristeza, alegría, empatía y reconocimiento de situaciones cercanas a los contextos de los estudiantes.",
+    "frecuencia": 14,
+    "numeroDocentes": 12,
+    "citaRepresentativa": "La mayoría se sintieron identificados con las historias y otros quedaron muy afligidos por lo que sucedía con los personajes."
+  },
+  {
+    "submomento": "Durante",
+    "tema": "Participación, diálogo y reflexión",
+    "lectura": "La experiencia abre espacios para opinar, debatir, hablar en público y expresar puntos de vista que no siempre aparecen en el aula.",
+    "frecuencia": 11,
+    "numeroDocentes": 9,
+    "citaRepresentativa": "Los chicos pudieron comentar, debatir, expresar sus puntos de vista."
+  },
+  {
+    "submomento": "Durante",
+    "tema": "Encuentro con otros y experiencia cultural",
+    "lectura": "La salida a la Cinemateca y la interacción con estudiantes de otros colegios amplían la experiencia más allá de la proyección de la película.",
+    "frecuencia": 8,
+    "numeroDocentes": 8,
+    "citaRepresentativa": "Para los estudiantes fue interesante interactuar con otros colegios y opinar sobre la película."
+  },
+  {
+    "submomento": "Durante",
+    "tema": "Condiciones logísticas",
+    "lectura": "Persisten dificultades relacionadas con transporte, refrigerio y posibilidades de asistencia en horarios diferentes a los habituales.",
+    "frecuencia": 3,
+    "numeroDocentes": 3,
+    "citaRepresentativa": "Complicaciones en términos de transporte y refrigerio."
+  },
+  {
+    "submomento": "Después",
+    "tema": "Conversación y reflexión posterior",
+    "lectura": "Después de las funciones, las películas continúan mediante conversatorios, debates, comentarios y reflexiones sobre las historias y sus vínculos con distintas realidades.",
+    "frecuencia": 15,
+    "numeroDocentes": 12,
+    "citaRepresentativa": "Siempre se genera un conversatorio (reflexión y posturas críticas)."
+  },
+  {
+    "submomento": "Después",
+    "tema": "Actividades y producciones posteriores",
+    "lectura": "Algunos docentes prolongan la experiencia mediante talleres y producciones como materiales audiovisuales, Padlet, murales, afiches y textos.",
+    "frecuencia": 8,
+    "numeroDocentes": 5,
+    "citaRepresentativa": "Se retomó la cartilla, se realizaron conversatorios sobre las temáticas de la película. Se realizaron textos sobre diferentes personajes, se escribieron murales."
+  },
+  {
+    "submomento": "Después",
+    "tema": "Articulación con el aula y áreas",
+    "lectura": "Las películas y sus temáticas se retoman en clases y áreas como español y ciencias sociales, aunque la posibilidad de articulación varía entre docentes y disciplinas.",
+    "frecuencia": 8,
+    "numeroDocentes": 7,
+    "citaRepresentativa": "En algunas clases de sociales se realizaron talleres, actividades y reflexiones de las temáticas."
+  },
+  {
+    "submomento": "Después",
+    "tema": "Continuidad del vínculo con el cine",
+    "lectura": "La experiencia sigue presente en conversaciones, nuevas visualizaciones y referencias posteriores a las películas y a la Cinemateca.",
+    "frecuencia": 14,
+    "numeroDocentes": 9,
+    "citaRepresentativa": "Algunos estudiantes lo buscan y vuelven a ver con sus familias."
+  },
+  {
+    "submomento": "Después",
+    "tema": "Pendientes y límites para la continuidad",
+    "lectura": "No siempre es posible dar continuidad formal a la experiencia; aparecen falta de tiempo, actividades pendientes y deseos de profundizar o desarrollar nuevos proyectos.",
+    "frecuencia": 8,
+    "numeroDocentes": 7,
+    "citaRepresentativa": "Hubiera querido hacer muchos más proyectos con películas adecuadas a su edad."
+  },
+  {
+    "submomento": "Permanece",
+    "tema": "Interés y acceso a otros cines",
+    "lectura": "La experiencia deja interés por el cine colombiano y por acceder a películas, plataformas y espacios que antes eran menos conocidos.",
+    "frecuencia": 11,
+    "numeroDocentes": 6,
+    "citaRepresentativa": "Más interés en otro tipo de películas."
+  },
+  {
+    "submomento": "Permanece",
+    "tema": "Cine como recurso pedagógico",
+    "lectura": "Varios docentes reconocen el cine como una herramienta que puede enriquecer clases, discusiones y prácticas pedagógicas.",
+    "frecuencia": 10,
+    "numeroDocentes": 7,
+    "citaRepresentativa": "El cine como mediador pedagógico."
+  },
+  {
+    "submomento": "Permanece",
+    "tema": "Producción y creación audiovisual",
+    "lectura": "En algunos casos la experiencia se conecta con cineclubes y procesos de creación audiovisual como cortometrajes, filminutos, documentales o producción de textos cinematográficos.",
+    "frecuencia": 5,
+    "numeroDocentes": 5,
+    "citaRepresentativa": "Usamos el cine constantemente porque hacemos cortometrajes, filminutos y documentales."
+  },
+  {
+    "submomento": "Permanece",
+    "tema": "Continuidad de reflexiones y experiencias",
+    "lectura": "Las películas siguen funcionando como referentes para conversaciones, reflexiones y experiencias posteriores dentro y fuera del aula.",
+    "frecuencia": 11,
+    "numeroDocentes": 7,
+    "citaRepresentativa": "Las conversaciones son constantes, en algunos casos se plantean como ejemplos."
+  },
+  {
+    "submomento": "Permanece",
+    "tema": "Apertura a espacios y participación cultural",
+    "lectura": "La experiencia despierta interés por regresar a la Cinemateca, conocer otros espacios de la ciudad y participar en nuevas experiencias culturales.",
+    "frecuencia": 6,
+    "numeroDocentes": 4,
+    "citaRepresentativa": "Motivación en visitar otros espacios de la ciudad y asistir a eventos culturales."
+  },
+  {
+    "submomento": "Permanece",
+    "tema": "Condiciones para fortalecer la continuidad",
+    "lectura": "También permanecen necesidades concretas para sostener la participación, especialmente transporte, alimentación y mejores posibilidades de articulación.",
+    "frecuencia": 3,
+    "numeroDocentes": 2,
+    "citaRepresentativa": "Convenios con el fin de facilitar las condiciones de transporte y alimentación."
+  }
+]
