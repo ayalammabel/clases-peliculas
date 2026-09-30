@@ -1,1 +1,975 @@
 /* Estilos de la visualización Clases de Película */
+/* =========================================================
+   CLASES DE PELÍCULA
+   Visualización de resultados cualitativos
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   1. Variables generales
+   --------------------------------------------------------- */
+
+:root {
+    --color-primary: #56337c;
+    --color-primary-dark: #38204f;
+    --color-primary-soft: #eee8f5;
+    --color-primary-light: #f7f4fa;
+
+    --color-accent: #f1b82d;
+
+    --color-text: #25232a;
+    --color-text-soft: #62606a;
+    --color-muted: #85828d;
+
+    --color-background: #f7f7f9;
+    --color-surface: #ffffff;
+    --color-border: #e6e4e9;
+
+    --shadow-soft: 0 8px 28px rgba(38, 28, 50, 0.07);
+    --shadow-card: 0 5px 18px rgba(38, 28, 50, 0.06);
+
+    --radius-small: 10px;
+    --radius-medium: 16px;
+    --radius-large: 24px;
+
+    --max-width: 1280px;
+    --transition: 180ms ease;
+}
+
+
+/* ---------------------------------------------------------
+   2. Base
+   --------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family:
+        Inter,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+button,
+a {
+    font: inherit;
+}
+
+button {
+    color: inherit;
+}
+
+a {
+    color: inherit;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+
+/* ---------------------------------------------------------
+   3. Contenedores
+   --------------------------------------------------------- */
+
+.content-container,
+.header-container,
+.hero-container {
+    width: min(calc(100% - 48px), var(--max-width));
+    margin-inline: auto;
+}
+
+.content-container.narrow {
+    max-width: 850px;
+}
+
+
+/* ---------------------------------------------------------
+   4. Encabezado
+   --------------------------------------------------------- */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.94);
+    border-bottom: 1px solid var(--color-border);
+    backdrop-filter: blur(14px);
+}
+
+.header-container {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--color-primary-dark);
+}
+
+.brand-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    position: relative;
+    background: var(--color-primary);
+}
+
+.brand-mark::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    background: white;
+    transform: translate(-50%, -50%);
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-link {
+    padding: 9px 15px;
+    border-radius: var(--radius-small);
+    color: var(--color-text-soft);
+    text-decoration: none;
+    font-size: 0.93rem;
+    font-weight: 600;
+    transition:
+        background var(--transition),
+        color var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+}
+
+.nav-link.active {
+    color: var(--color-primary-dark);
+    background: var(--color-primary-soft);
+}
+
+
+/* ---------------------------------------------------------
+   5. Portada
+   --------------------------------------------------------- */
+
+.hero {
+    padding: 54px 0 38px;
+}
+
+.hero-container {
+    min-height: 510px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    overflow: hidden;
+    border-radius: var(--radius-large);
+    background:
+        radial-gradient(
+            circle at 88% 18%,
+            rgba(241, 184, 45, 0.18),
+            transparent 24%
+        ),
+        linear-gradient(
+            135deg,
+            #2f1b43 0%,
+            #4b2a69 48%,
+            #68438a 100%
+        );
+    box-shadow: var(--shadow-soft);
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 70px;
+    color: white;
+}
+
+.eyebrow,
+.section-label,
+.exercise-kicker {
+    margin: 0 0 10px;
+    color: var(--color-primary);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.hero .eyebrow {
+    color: #eadcf6;
+}
+
+.hero h1 {
+    max-width: 650px;
+    margin: 0;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+}
+
+.hero-lead {
+    max-width: 590px;
+    margin: 26px 0 0;
+    color: rgba(255, 255, 255, 0.84);
+    font-size: 1.15rem;
+    line-height: 1.7;
+}
+
+.primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 34px;
+    padding: 13px 20px;
+    border-radius: 999px;
+    background: white;
+    color: var(--color-primary-dark);
+    text-decoration: none;
+    font-weight: 700;
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.primary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+}
+
+
+/* Portada abstracta */
+
+.hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 430px;
+    padding: 55px;
+}
+
+.visual-frame {
+    position: relative;
+    width: min(100%, 470px);
+    aspect-ratio: 1 / 1;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 50%;
+}
+
+.visual-frame::before,
+.visual-frame::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.visual-frame::before {
+    inset: 12%;
+}
+
+.visual-frame::after {
+    inset: 26%;
+}
+
+.film-line {
+    position: absolute;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    transform-origin: left center;
+}
+
+.film-line-1 {
+    width: 54%;
+    top: 28%;
+    left: 17%;
+    transform: rotate(25deg);
+}
+
+.film-line-2 {
+    width: 50%;
+    top: 54%;
+    left: 23%;
+    transform: rotate(-21deg);
+}
+
+.film-line-3 {
+    width: 38%;
+    top: 67%;
+    left: 34%;
+    transform: rotate(17deg);
+}
+
+.visual-message {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: white;
+    text-align: center;
+}
+
+.visual-message span {
+    font-size: clamp(1.1rem, 2vw, 1.55rem);
+    font-weight: 650;
+}
+
+.visual-message span:nth-child(2) {
+    color: #f4c95d;
+}
+
+
+/* ---------------------------------------------------------
+   6. Secciones generales
+   --------------------------------------------------------- */
+
+.intro-section,
+.about-section {
+    padding: 100px 0;
+}
+
+.intro-section h2,
+.about-section h2 {
+    margin: 0 0 22px;
+    color: var(--color-primary-dark);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+}
+
+.intro-section p:not(.section-label),
+.about-section p:not(.section-label) {
+    margin: 0;
+    color: var(--color-text-soft);
+    font-size: 1.08rem;
+}
+
+
+/* ---------------------------------------------------------
+   7. Resultados
+   --------------------------------------------------------- */
+
+.results-section {
+    padding: 96px 0 110px;
+    background: var(--color-surface);
+}
+
+.section-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.7fr);
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 46px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    color: var(--color-primary-dark);
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+}
+
+.section-description {
+    margin: 0;
+    color: var(--color-text-soft);
+}
+
+
+/* ---------------------------------------------------------
+   8. Selector de ejercicios
+   --------------------------------------------------------- */
+
+.exercise-selector {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.exercise-tab {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 22px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+    background: var(--color-surface);
+    text-align: left;
+    cursor: pointer;
+    transition:
+        border var(--transition),
+        background var(--transition),
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.exercise-tab:hover {
+    transform: translateY(-2px);
+    border-color: #d4c7e1;
+    box-shadow: var(--shadow-card);
+}
+
+.exercise-tab.active {
+    border-color: #cbb9dc;
+    background: var(--color-primary-light);
+    box-shadow: var(--shadow-card);
+}
+
+.tab-number {
+    flex: 0 0 auto;
+    min-width: 44px;
+    padding: 7px 10px;
+    border-radius: 9px;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-align: center;
+}
+
+.exercise-tab.active .tab-number {
+    background: var(--color-primary);
+    color: white;
+}
+
+.tab-content {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.tab-content strong {
+    color: var(--color-primary-dark);
+    line-height: 1.35;
+}
+
+.tab-content small {
+    color: var(--color-muted);
+    font-size: 0.82rem;
+}
+
+
+/* ---------------------------------------------------------
+   9. Paneles
+   --------------------------------------------------------- */
+
+.exercise-panel {
+    padding: 38px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-large);
+    background: #fbfafc;
+}
+
+.exercise-panel[hidden] {
+    display: none;
+}
+
+.exercise-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.8fr);
+    gap: 55px;
+    align-items: end;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.exercise-intro h3 {
+    max-width: 700px;
+    margin: 0;
+    color: var(--color-primary-dark);
+    font-size: clamp(1.7rem, 3vw, 2.35rem);
+    line-height: 1.15;
+}
+
+.exercise-intro > p {
+    margin: 0;
+    color: var(--color-text-soft);
+}
+
+
+/* ---------------------------------------------------------
+   10. Recorrido pedagógico
+   --------------------------------------------------------- */
+
+.journey-navigation {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 42px 0 30px;
+}
+
+.journey-navigation::before {
+    content: "";
+    position: absolute;
+    top: 24px;
+    right: 9%;
+    left: 9%;
+    height: 2px;
+    background: var(--color-border);
+}
+
+.journey-step {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.journey-dot {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border: 2px solid #d6cfdd;
+    border-radius: 50%;
+    background: white;
+    color: var(--color-muted);
+    font-size: 0.8rem;
+    font-weight: 800;
+    transition: all var(--transition);
+}
+
+.journey-step:hover .journey-dot,
+.journey-step.active .journey-dot {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 0 0 6px var(--color-primary-soft);
+}
+
+.journey-label {
+    color: var(--color-text-soft);
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.journey-step.active .journey-label {
+    color: var(--color-primary-dark);
+}
+
+
+/* ---------------------------------------------------------
+   11. Contenido de visualización
+   --------------------------------------------------------- */
+
+.visualization-content {
+    min-height: 260px;
+}
+
+.visualization-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    align-items: end;
+    margin-bottom: 20px;
+}
+
+.visualization-header h4 {
+    margin: 0;
+    color: var(--color-primary-dark);
+    font-size: 1.45rem;
+}
+
+.visualization-header p {
+    margin: 5px 0 0;
+    color: var(--color-text-soft);
+}
+
+.findings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.finding-card {
+    padding: 22px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+    background: white;
+    box-shadow: 0 2px 8px rgba(38, 28, 50, 0.025);
+    transition:
+        transform var(--transition),
+        border var(--transition),
+        box-shadow var(--transition);
+}
+
+.finding-card:hover {
+    transform: translateY(-2px);
+    border-color: #d4c7e1;
+    box-shadow: var(--shadow-card);
+}
+
+.finding-card h5 {
+    margin: 0 0 10px;
+    color: var(--color-primary-dark);
+    font-size: 1rem;
+}
+
+.finding-card p {
+    margin: 0;
+    color: var(--color-text-soft);
+    font-size: 0.91rem;
+}
+
+.finding-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 17px;
+}
+
+.meta-pill {
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.finding-quote {
+    margin-top: 17px;
+    padding-top: 15px;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-soft);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+
+/* ---------------------------------------------------------
+   12. Trayectoria
+   --------------------------------------------------------- */
+
+.trajectory-block {
+    padding-top: 44px;
+}
+
+.subsection-heading {
+    max-width: 700px;
+    margin-bottom: 28px;
+}
+
+.subsection-heading h4 {
+    margin: 0;
+    color: var(--color-primary-dark);
+    font-size: 1.7rem;
+}
+
+.subsection-heading > p:last-child {
+    color: var(--color-text-soft);
+}
+
+.trajectory-navigation {
+    display: flex;
+    gap: 8px;
+    padding: 6px;
+    margin-bottom: 28px;
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    background: white;
+}
+
+.trajectory-step {
+    flex: 1 0 auto;
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--color-text-soft);
+    cursor: pointer;
+    font-size: 0.83rem;
+    font-weight: 700;
+    white-space: nowrap;
+    transition:
+        background var(--transition),
+        color var(--transition);
+}
+
+.trajectory-step:hover {
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+}
+
+.trajectory-step.active {
+    color: white;
+    background: var(--color-primary);
+}
+
+
+/* ---------------------------------------------------------
+   13. Proyección
+   --------------------------------------------------------- */
+
+.projection-block {
+    margin-top: 58px;
+    padding-top: 40px;
+    border-top: 1px solid var(--color-border);
+}
+
+.projection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.projection-card {
+    min-height: 230px;
+    padding: 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+    background: white;
+}
+
+.projection-card h5 {
+    margin: 0 0 15px;
+    color: var(--color-primary-dark);
+    font-size: 1.15rem;
+}
+
+.projection-card ul {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--color-text-soft);
+}
+
+.projection-card li + li {
+    margin-top: 8px;
+}
+
+
+/* ---------------------------------------------------------
+   14. Acerca
+   --------------------------------------------------------- */
+
+.about-section {
+    background: var(--color-primary-light);
+}
+
+
+/* ---------------------------------------------------------
+   15. Footer
+   --------------------------------------------------------- */
+
+.site-footer {
+    padding: 38px 0;
+    background: var(--color-primary-dark);
+    color: white;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: center;
+}
+
+.footer-content strong {
+    font-size: 1rem;
+}
+
+.footer-content p {
+    margin: 3px 0 0;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.84rem;
+}
+
+.footer-observatory {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.84rem;
+    text-align: right;
+}
+
+
+/* ---------------------------------------------------------
+   16. Accesibilidad
+   --------------------------------------------------------- */
+
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid rgba(86, 51, 124, 0.28);
+    outline-offset: 3px;
+}
+
+
+/* ---------------------------------------------------------
+   17. Responsive
+   --------------------------------------------------------- */
+
+@media (max-width: 980px) {
+
+    .hero-container {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+        padding: 60px 48px 25px;
+    }
+
+    .hero-visual {
+        min-height: 330px;
+        padding: 25px 55px 55px;
+    }
+
+    .visual-frame {
+        max-width: 320px;
+    }
+
+    .section-heading,
+    .exercise-intro {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .exercise-selector,
+    .findings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projection-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 720px) {
+
+    .content-container,
+    .header-container,
+    .hero-container {
+        width: min(calc(100% - 28px), var(--max-width));
+    }
+
+    .header-container {
+        min-height: 64px;
+    }
+
+    .brand-name {
+        font-size: 0.9rem;
+    }
+
+    .main-nav {
+        gap: 0;
+    }
+
+    .nav-link {
+        padding: 8px 9px;
+        font-size: 0.8rem;
+    }
+
+    .nav-link[href="#acerca"] {
+        display: none;
+    }
+
+    .hero {
+        padding-top: 22px;
+    }
+
+    .hero-container {
+        min-height: auto;
+    }
+
+    .hero-content {
+        padding: 48px 28px 18px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.8rem, 15vw, 4rem);
+    }
+
+    .hero-lead {
+        font-size: 1rem;
+    }
+
+    .hero-visual {
+        min-height: 280px;
+        padding: 20px 35px 42px;
+    }
+
+    .intro-section,
+    .about-section {
+        padding: 70px 0;
+    }
+
+    .results-section {
+        padding: 72px 0;
+    }
+
+    .exercise-panel {
+        padding: 24px 18px;
+    }
+
+    .journey-navigation {
+        gap: 5px;
+    }
+
+    .journey-dot {
+        width: 40px;
+        height: 40px;
+    }
+
+    .journey-label {
+        font-size: 0.72rem;
+        text-align: center;
+    }
+
+    .visualization-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .footer-content {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .footer-observatory {
+        text-align: left;
+    }
+}
