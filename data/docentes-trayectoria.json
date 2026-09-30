@@ -1,1 +1,511 @@
-
+[
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 1,
+    "componente": "Punto de partida",
+    "hallazgo": "Cine como recurso pedagógico y formativo",
+    "frecuenciaGrupos": 4,
+    "grupos": [
+      "G1",
+      "G2",
+      "G3",
+      "G4"
+    ],
+    "ideasAsociadas": [
+      "Apoyo en clase",
+      "formación humana",
+      "relación entre textos y vida cotidiana",
+      "proyectos audiovisuales y cineclubes."
+    ],
+    "lecturaInterpretativa": "Los grupos parten de experiencias en las que el cine ya tiene algún vínculo con la formación, el aula o proyectos escolares, aunque con distintos niveles de desarrollo."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 1,
+    "componente": "Punto de partida",
+    "hallazgo": "Interés y acercamiento al cine colombiano",
+    "frecuenciaGrupos": 3,
+    "grupos": [
+      "G1",
+      "G2",
+      "G3"
+    ],
+    "ideasAsociadas": [
+      "Conocimiento e interés por el cine colombiano",
+      "conocimiento social",
+      "reconocimiento de un conocimiento limitado frente a Cinemateca o RTVC."
+    ],
+    "lecturaInterpretativa": "El cine colombiano aparece como un referente previo, pero el nivel de conocimiento y familiaridad no es homogéneo entre los grupos."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 1,
+    "componente": "Punto de partida",
+    "hallazgo": "Experiencias previas de creación audiovisual",
+    "frecuenciaGrupos": 1,
+    "grupos": [
+      "G4"
+    ],
+    "ideasAsociadas": [
+      "Creación de cortometrajes, productos audiovisuales y clubes de cine."
+    ],
+    "lecturaInterpretativa": "Uno de los grupos reporta una trayectoria previa más directamente vinculada con la creación y organización de experiencias audiovisuales."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 2,
+    "componente": "Descubrimientos",
+    "hallazgo": "Cine como herramienta pedagógica",
+    "frecuenciaGrupos": 3,
+    "grupos": [
+      "G1",
+      "G2",
+      "G4"
+    ],
+    "ideasAsociadas": [
+      "Apoyo para temas complejos",
+      "herramienta pedagógica",
+      "incorporación de contenidos académicos",
+      "desarrollo de habilidades."
+    ],
+    "lecturaInterpretativa": "La experiencia amplía las posibilidades de usar el cine como recurso para abordar contenidos, habilidades y procesos formativos."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 2,
+    "componente": "Descubrimientos",
+    "hallazgo": "Pensamiento crítico, reflexión y comprensión del contexto",
+    "frecuenciaGrupos": 4,
+    "grupos": [
+      "G1",
+      "G2",
+      "G3",
+      "G4"
+    ],
+    "ideasAsociadas": [
+      "Pensamiento crítico",
+      "reflexión",
+      "reconocimiento del contexto",
+      "comprensión de la realidad nacional",
+      "rompimiento de sesgos."
+    ],
+    "lecturaInterpretativa": "En los cuatro grupos el cine se vincula con nuevas formas de leer, cuestionar y comprender las realidades abordadas."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 2,
+    "componente": "Descubrimientos",
+    "hallazgo": "Nuevos aprendizajes sobre cine y audiovisual",
+    "frecuenciaGrupos": 2,
+    "grupos": [
+      "G2",
+      "G3"
+    ],
+    "ideasAsociadas": [
+      "Nuevos conocimientos cinematográficos",
+      "conocimientos técnicos."
+    ],
+    "lecturaInterpretativa": "La experiencia también produce aprendizajes específicos sobre el lenguaje y los aspectos técnicos del cine."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 2,
+    "componente": "Descubrimientos",
+    "hallazgo": "Apertura a experiencias y espacios diferentes",
+    "frecuenciaGrupos": 2,
+    "grupos": [
+      "G2",
+      "G3"
+    ],
+    "ideasAsociadas": [
+      "Experiencia de espacios diferentes al colegio",
+      "posibilidad de compartir, aprender y conectarse con el cine."
+    ],
+    "lecturaInterpretativa": "Salir del espacio escolar habitual aparece como una oportunidad para ampliar experiencias y formas de aprendizaje."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 3,
+    "componente": "Lo que moviliza",
+    "hallazgo": "Emociones, sensibilidad e identificación",
+    "frecuenciaGrupos": 3,
+    "grupos": [
+      "G1",
+      "G2",
+      "G4"
+    ],
+    "ideasAsociadas": [
+      "Entusiasmo",
+      "empatía",
+      "reflexión",
+      "curiosidad",
+      "identificación",
+      "conmover",
+      "sensibilidad."
+    ],
+    "lecturaInterpretativa": "La experiencia moviliza emociones y formas de identificación que favorecen la conexión de docentes y estudiantes con las historias y sus contextos."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 3,
+    "componente": "Lo que moviliza",
+    "hallazgo": "Nuevas experiencias y socialización",
+    "frecuenciaGrupos": 2,
+    "grupos": [
+      "G3",
+      "G4"
+    ],
+    "ideasAsociadas": [
+      "Espacios de socialización",
+      "ruptura con el aula regular",
+      "encuentro con otros colegios",
+      "exploración de nuevos espacios."
+    ],
+    "lecturaInterpretativa": "La salida del entorno cotidiano genera expectativa y abre oportunidades de encuentro, socialización y libre expresión."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 3,
+    "componente": "Lo que moviliza",
+    "hallazgo": "Preguntas sobre la articulación con la escuela",
+    "frecuenciaGrupos": 1,
+    "grupos": [
+      "G2"
+    ],
+    "ideasAsociadas": [
+      "Cómo aprovechar la Cinemateca en la cotidianidad escolar",
+      "cómo usar el cine urbano para contextualizar."
+    ],
+    "lecturaInterpretativa": "La experiencia suscita preguntas sobre cómo trasladar y sostener sus posibilidades dentro de las prácticas escolares."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 4,
+    "componente": "Clases de Película genera en los estudiantes",
+    "hallazgo": "Pensamiento crítico y lectura de la realidad",
+    "frecuenciaGrupos": 2,
+    "grupos": [
+      "G2",
+      "G3"
+    ],
+    "ideasAsociadas": [
+      "Pensamiento crítico",
+      "empatía con la realidad vista",
+      "reconocimiento del territorio."
+    ],
+    "lecturaInterpretativa": "Los grupos identifican efectos relacionados con una lectura más reflexiva de las realidades y del territorio."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 4,
+    "componente": "Clases de Película genera en los estudiantes",
+    "hallazgo": "Apertura e interés por el cine",
+    "frecuenciaGrupos": 2,
+    "grupos": [
+      "G1",
+      "G4"
+    ],
+    "ideasAsociadas": [
+      "Disposición al cine diferente a lo comercial",
+      "pasión por el cine."
+    ],
+    "lecturaInterpretativa": "La experiencia favorece una disposición hacia otras formas de cine y puede fortalecer el interés por lo audiovisual."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 4,
+    "componente": "Clases de Película genera en los estudiantes",
+    "hallazgo": "Vínculos y reconocimiento de procesos",
+    "frecuenciaGrupos": 1,
+    "grupos": [
+      "G4"
+    ],
+    "ideasAsociadas": [
+      "Círculo social y reconocimiento de procesos académicos."
+    ],
+    "lecturaInterpretativa": "Uno de los grupos destaca la dimensión relacional y el reconocimiento de procesos académicos asociados a la experiencia."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 5,
+    "componente": "Lo que transforma",
+    "hallazgo": "Pensamiento crítico, reflexión y diálogo",
+    "frecuenciaGrupos": 3,
+    "grupos": [
+      "G2",
+      "G3",
+      "G4"
+    ],
+    "ideasAsociadas": [
+      "Rompimiento de estereotipos",
+      "mediación y reflexión",
+      "debate",
+      "análisis",
+      "diálogo",
+      "pensamiento crítico."
+    ],
+    "lecturaInterpretativa": "Las transformaciones descritas se relacionan con formas más reflexivas de interpretar, dialogar y cuestionar las experiencias y contenidos."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 5,
+    "componente": "Lo que transforma",
+    "hallazgo": "Cine y audiovisual como práctica pedagógica",
+    "frecuenciaGrupos": 3,
+    "grupos": [
+      "G2",
+      "G3",
+      "G4"
+    ],
+    "ideasAsociadas": [
+      "Técnicas audiovisuales",
+      "semilleros",
+      "cine como herramienta pedagógica",
+      "aprendizaje extracurricular."
+    ],
+    "lecturaInterpretativa": "La experiencia fortalece o abre prácticas educativas que incorporan el cine y lo audiovisual dentro y fuera del aula."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 5,
+    "componente": "Lo que transforma",
+    "hallazgo": "Expresión y habilidades comunicativas",
+    "frecuenciaGrupos": 2,
+    "grupos": [
+      "G1",
+      "G2"
+    ],
+    "ideasAsociadas": [
+      "Libertad de expresión de sentimientos y pensamientos",
+      "mejoras en producción escrita y oral."
+    ],
+    "lecturaInterpretativa": "Se reconocen cambios en las posibilidades de expresión y en habilidades comunicativas de los estudiantes."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 5,
+    "componente": "Lo que transforma",
+    "hallazgo": "Ruptura de la rutina y nuevos espacios de aprendizaje",
+    "frecuenciaGrupos": 2,
+    "grupos": [
+      "G1",
+      "G2"
+    ],
+    "ideasAsociadas": [
+      "Romper con la rutina",
+      "interés en actividades de cine",
+      "nuevos espacios de mediación."
+    ],
+    "lecturaInterpretativa": "El cine introduce experiencias distintas a la rutina escolar y abre otros escenarios para aprender y participar."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 6,
+    "componente": "Lo que permanece",
+    "hallazgo": "Pensamiento crítico y apertura al diálogo",
+    "frecuenciaGrupos": 2,
+    "grupos": [
+      "G2",
+      "G3"
+    ],
+    "ideasAsociadas": [
+      "Pensamiento crítico frente a escenarios vividos",
+      "diálogo sobre las propias realidades."
+    ],
+    "lecturaInterpretativa": "Entre las huellas de la experiencia permanece una disposición a reflexionar y conversar sobre lo vivido y sobre las realidades propias."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 6,
+    "componente": "Lo que permanece",
+    "hallazgo": "Vínculo afectivo y curiosidad por el audiovisual",
+    "frecuenciaGrupos": 2,
+    "grupos": [
+      "G3",
+      "G4"
+    ],
+    "ideasAsociadas": [
+      "Amor por lo audiovisual",
+      "disfrute del cine",
+      "curiosidad por formatos y personajes."
+    ],
+    "lecturaInterpretativa": "La experiencia deja interés, disfrute y curiosidad por el cine y sus formas narrativas."
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 6,
+    "componente": "Lo que permanece",
+    "hallazgo": "Reconocimiento de sí y de capacidades",
+    "frecuenciaGrupos": 2,
+    "grupos": [
+      "G1",
+      "G4"
+    ],
+    "ideasAsociadas": [
+      "Reconocimiento de habilidades de estudiantes",
+      "reconocimiento de sí mismos a través de personajes."
+    ],
+    "lecturaInterpretativa": "La permanencia también se expresa en procesos de reconocimiento: de capacidades por parte de docentes y de identificación personal en estudiantes."
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 7,
+    "componente": "Mantener",
+    "hallazgo": "Continuidad del programa y su articulación",
+    "frecuenciaGrupos": 1,
+    "grupos": [
+      "G1"
+    ],
+    "ideasAsociadas": [
+      "Programa Clases de Película y gestión/articulación alrededor del proceso."
+    ],
+    "lecturaInterpretativa": "Se plantea conservar la continuidad del programa y la articulación que permite desarrollar la experiencia."
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 7,
+    "componente": "Mantener",
+    "hallazgo": "Proyectos y espacios alternos vinculados con la experiencia",
+    "frecuenciaGrupos": 1,
+    "grupos": [
+      "G2"
+    ],
+    "ideasAsociadas": [
+      "Proyectos y espacios alternos."
+    ],
+    "lecturaInterpretativa": "Se valora mantener escenarios y proyectos que prolonguen las posibilidades abiertas por la experiencia."
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 7,
+    "componente": "Mantener",
+    "hallazgo": "Mediación y recursos pedagógicos",
+    "frecuenciaGrupos": 1,
+    "grupos": [
+      "G3"
+    ],
+    "ideasAsociadas": [
+      "Trabajo de mediadores y cartillas."
+    ],
+    "lecturaInterpretativa": "El acompañamiento de mediadores y las cartillas son reconocidos como elementos que conviene preservar."
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 7,
+    "componente": "Mantener",
+    "hallazgo": "Dinámicas de las sesiones",
+    "frecuenciaGrupos": 1,
+    "grupos": [
+      "G4"
+    ],
+    "ideasAsociadas": [
+      "Dinámicas realizadas durante las sesiones."
+    ],
+    "lecturaInterpretativa": "Las dinámicas desarrolladas en las sesiones son señaladas como un componente valioso de la experiencia."
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 8,
+    "componente": "Transformar",
+    "hallazgo": "Fortalecer participación y articulación",
+    "frecuenciaGrupos": 2,
+    "grupos": [
+      "G1",
+      "G2"
+    ],
+    "ideasAsociadas": [
+      "Participación en un festival",
+      "fortalecer participación estudiantil y articulación entre instituciones."
+    ],
+    "lecturaInterpretativa": "Se proponen cambios orientados a ampliar la participación y fortalecer conexiones entre actores e instituciones."
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 8,
+    "componente": "Transformar",
+    "hallazgo": "Ampliar el alcance y la frecuencia de participación",
+    "frecuenciaGrupos": 1,
+    "grupos": [
+      "G3"
+    ],
+    "ideasAsociadas": [
+      "Más cupos por colegio",
+      "participación de grados menores con contenidos ajustados",
+      "mayor número de visitas."
+    ],
+    "lecturaInterpretativa": "Se propone ampliar las oportunidades de acceso mediante más cupos, visitas y adaptación a otros grados."
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 8,
+    "componente": "Transformar",
+    "hallazgo": "Fortalecer condiciones de acceso",
+    "frecuenciaGrupos": 1,
+    "grupos": [
+      "G4"
+    ],
+    "ideasAsociadas": [
+      "Gestionar colaboración para transporte y alimentación."
+    ],
+    "lecturaInterpretativa": "Las condiciones logísticas aparecen como un aspecto por fortalecer para facilitar la participación."
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 9,
+    "componente": "Explorar",
+    "hallazgo": "Visibilización de proyectos de estudiantes",
+    "frecuenciaGrupos": 2,
+    "grupos": [
+      "G1",
+      "G2"
+    ],
+    "ideasAsociadas": [
+      "Exponer proyectos propios",
+      "articular con más colegios al momento de exponer."
+    ],
+    "lecturaInterpretativa": "Se plantea abrir espacios para que las producciones y proyectos estudiantiles circulen y sean compartidos con otros."
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 9,
+    "componente": "Explorar",
+    "hallazgo": "Nuevas estrategias de articulación entre cine y educación",
+    "frecuenciaGrupos": 1,
+    "grupos": [
+      "G2"
+    ],
+    "ideasAsociadas": [
+      "Nuevas estrategias y posibilidades para articular el cine con las prácticas educativas."
+    ],
+    "lecturaInterpretativa": "Se propone explorar nuevas formas de integrar el cine de manera más directa con las prácticas educativas."
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 9,
+    "componente": "Explorar",
+    "hallazgo": "Acercar la Cinemateca al colegio y gestionar transporte",
+    "frecuenciaGrupos": 1,
+    "grupos": [
+      "G3"
+    ],
+    "ideasAsociadas": [
+      "Llevar la Cinemateca al colegio",
+      "diálogo con la SED para transporte."
+    ],
+    "lecturaInterpretativa": "Se plantean alternativas para reducir barreras de acceso y acercar la experiencia cinematográfica al entorno escolar."
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 9,
+    "componente": "Explorar",
+    "hallazgo": "Diversidad de géneros cinematográficos",
+    "frecuenciaGrupos": 1,
+    "grupos": [
+      "G4"
+    ],
+    "ideasAsociadas": [
+      "Posibilidades de diferentes géneros dentro de las películas."
+    ],
+    "lecturaInterpretativa": "Se propone ampliar la exploración de géneros cinematográficos dentro de la experiencia."
+  }
+]
