@@ -1,10 +1,342 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clases de Película</title>
+
+    <meta
+        name="description"
+        content="Visualización de resultados cualitativos de Clases de Película."
+    >
+
+    <title>Clases de Película | Resultados cualitativos</title>
+
+    <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
+
+    <!-- Encabezado -->
+    <header class="site-header">
+        <div class="header-container">
+
+            <a href="#inicio" class="brand" aria-label="Ir al inicio">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-name">Clases de Película</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Navegación principal">
+                <a href="#inicio" class="nav-link active">Inicio</a>
+                <a href="#docentes" class="nav-link">Docentes</a>
+                <a href="#acerca" class="nav-link">Acerca del estudio</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- Portada -->
+        <section id="inicio" class="hero">
+            <div class="hero-container">
+
+                <div class="hero-content">
+                    <p class="eyebrow">Resultados cualitativos</p>
+
+                    <h1>Clases de Película</h1>
+
+                    <p class="hero-lead">
+                        Una lectura de las experiencias, aprendizajes y transformaciones
+                        construidas alrededor del cine.
+                    </p>
+
+                    <a href="#docentes" class="primary-button">
+                        Explorar resultados
+                    </a>
+                </div>
+
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="visual-frame">
+                        <span class="film-line film-line-1"></span>
+                        <span class="film-line film-line-2"></span>
+                        <span class="film-line film-line-3"></span>
+
+                        <div class="visual-message">
+                            <span>Experiencia</span>
+                            <span>Aprendizaje</span>
+                            <span>Transformación</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Introducción -->
+        <section class="intro-section">
+            <div class="content-container narrow">
+
+                <p class="section-label">Una lectura cualitativa</p>
+
+                <h2>
+                    Explorar la experiencia más allá de los resultados numéricos
+                </h2>
+
+                <p>
+                    Esta visualización organiza los hallazgos construidos a partir
+                    de las experiencias compartidas por quienes participan en
+                    Clases de Película. Los resultados se presentan como recorridos,
+                    aprendizajes y transformaciones que permiten aproximarse a los
+                    significados de la experiencia.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- Resultados docentes -->
+        <section id="docentes" class="results-section">
+            <div class="content-container">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="section-label">Docentes</p>
+                        <h2>La experiencia desde la práctica pedagógica</h2>
+                    </div>
+
+                    <p class="section-description">
+                        Los resultados se organizan en dos ejercicios que permiten
+                        recorrer la experiencia desde perspectivas complementarias.
+                    </p>
+                </div>
+
+
+                <!-- Selector de ejercicios -->
+                <div
+                    class="exercise-selector"
+                    role="tablist"
+                    aria-label="Ejercicios de docentes"
+                >
+
+                    <button
+                        class="exercise-tab active"
+                        type="button"
+                        role="tab"
+                        aria-selected="true"
+                        aria-controls="panel-recorrido"
+                        id="tab-recorrido"
+                        data-target="recorrido"
+                    >
+                        <span class="tab-number">01</span>
+
+                        <span class="tab-content">
+                            <strong>Cartografía del recorrido pedagógico</strong>
+                            <small>Antes · Durante · Después · Permanece</small>
+                        </span>
+                    </button>
+
+
+                    <button
+                        class="exercise-tab"
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="panel-trayectoria"
+                        id="tab-trayectoria"
+                        data-target="trayectoria"
+                    >
+                        <span class="tab-number">02</span>
+
+                        <span class="tab-content">
+                            <strong>
+                                Mapa de trayectoria de la experiencia y aprendizajes
+                                que permanecen
+                            </strong>
+                            <small>
+                                Descubrimientos · Transformaciones · Proyecciones
+                            </small>
+                        </span>
+                    </button>
+
+                </div>
+
+
+                <!-- =====================================================
+                     EJERCICIO 01
+                     Cartografía del recorrido pedagógico
+                ====================================================== -->
+
+                <section
+                    id="panel-recorrido"
+                    class="exercise-panel active"
+                    role="tabpanel"
+                    aria-labelledby="tab-recorrido"
+                >
+
+                    <div class="exercise-intro">
+                        <div>
+                            <p class="exercise-kicker">Ejercicio 01</p>
+                            <h3>Cartografía del recorrido pedagógico</h3>
+                        </div>
+
+                        <p>
+                            Reconstruye la experiencia pedagógica desde lo que ocurre
+                            antes de asistir, durante la visita, después de la
+                            experiencia y aquello que permanece posteriormente.
+                        </p>
+                    </div>
+
+
+                    <!-- Navegación del recorrido -->
+                    <div
+                        id="recorrido-navigation"
+                        class="journey-navigation"
+                        aria-label="Momentos del recorrido pedagógico"
+                    >
+                        <!-- Se genera desde app.js -->
+                    </div>
+
+
+                    <!-- Contenido del momento seleccionado -->
+                    <div
+                        id="recorrido-content"
+                        class="visualization-content"
+                        aria-live="polite"
+                    >
+                        <!-- Se genera desde docentes-recorrido.json -->
+                    </div>
+
+                </section>
+
+
+                <!-- =====================================================
+                     EJERCICIO 02
+                     Mapa de trayectoria
+                ====================================================== -->
+
+                <section
+                    id="panel-trayectoria"
+                    class="exercise-panel"
+                    role="tabpanel"
+                    aria-labelledby="tab-trayectoria"
+                    hidden
+                >
+
+                    <div class="exercise-intro">
+                        <div>
+                            <p class="exercise-kicker">Ejercicio 02</p>
+
+                            <h3>
+                                Mapa de trayectoria de la experiencia y aprendizajes
+                                que permanecen
+                            </h3>
+                        </div>
+
+                        <p>
+                            Explora aquello que se descubre, moviliza, transforma
+                            y permanece a partir de la experiencia, así como las
+                            posibilidades que los grupos plantean hacia adelante.
+                        </p>
+                    </div>
+
+
+                    <!-- Trayectoria -->
+                    <div class="trajectory-block">
+
+                        <div class="subsection-heading">
+                            <p class="section-label">Trayectoria</p>
+                            <h4>De dónde se parte y qué deja la experiencia</h4>
+                        </div>
+
+                        <div
+                            id="trayectoria-navigation"
+                            class="trajectory-navigation"
+                            aria-label="Componentes de la trayectoria"
+                        >
+                            <!-- Se genera desde app.js -->
+                        </div>
+
+                        <div
+                            id="trayectoria-content"
+                            class="visualization-content"
+                            aria-live="polite"
+                        >
+                            <!-- Se genera desde docentes-trayectoria.json -->
+                        </div>
+
+                    </div>
+
+
+                    <!-- Proyección -->
+                    <div class="projection-block">
+
+                        <div class="subsection-heading">
+                            <p class="section-label">Proyección</p>
+                            <h4>Lo que se propone hacia adelante</h4>
+
+                            <p>
+                                Una mirada a aquello que los grupos consideran
+                                importante mantener, transformar y explorar.
+                            </p>
+                        </div>
+
+                        <div
+                            id="projection-content"
+                            class="projection-grid"
+                        >
+                            <!-- Se genera desde docentes-trayectoria.json -->
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+        </section>
+
+
+        <!-- Acerca del estudio -->
+        <section id="acerca" class="about-section">
+            <div class="content-container narrow">
+
+                <p class="section-label">Acerca del estudio</p>
+
+                <h2>Cómo leer esta visualización</h2>
+
+                <p>
+                    Los hallazgos sintetizan patrones e ideas identificados en los
+                    ejercicios cualitativos. Las frecuencias se utilizan como una
+                    referencia de recurrencia dentro de la información analizada y
+                    no como una medida estadística de representatividad.
+                </p>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Pie de página -->
+    <footer class="site-footer">
+        <div class="content-container footer-content">
+
+            <div>
+                <strong>Clases de Película</strong>
+                <p>Visualización de resultados cualitativos.</p>
+            </div>
+
+            <div class="footer-observatory">
+                Observatorio y Gestión del Conocimiento Cultural
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="js/app.js" defer></script>
+
 </body>
 </html>
