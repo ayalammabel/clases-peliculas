@@ -2615,3 +2615,21 @@ button:focus-visible {
 
 }
 
+/* Momentos ya recorridos */
+
+.journey-navigation button.completed {
+    color: var(--purple-medium);
+}
+
+.journey-navigation button.completed::before {
+    background: var(--purple-medium);
+    box-shadow: 0 0 0 2px var(--purple-medium);
+}
+
+
+/* Momentos que todavía siguen */
+
+.journey-navigation button.upcoming {
+    color: var(--text-soft);
+}
+
