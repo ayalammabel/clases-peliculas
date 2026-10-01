@@ -6,9 +6,9 @@
 "use strict";
 
 
-/* ---------------------------------------------------------
-   1. Configuración
-   --------------------------------------------------------- */
+/* =========================================================
+   1. CONFIGURACIÓN
+   ========================================================= */
 
 const DATA_PATHS = {
     recorrido: "data/docentes-recorrido.json",
@@ -21,9 +21,9 @@ const APP_DATA = {
 };
 
 
-/* ---------------------------------------------------------
-   2. Utilidades
-   --------------------------------------------------------- */
+/* =========================================================
+   2. UTILIDADES
+   ========================================================= */
 
 function normalizeText(value = "") {
     return String(value)
@@ -35,7 +35,9 @@ function normalizeText(value = "") {
 
 
 function getFirstValue(object, keys, fallback = "") {
-    if (!object || typeof object !== "object") return fallback;
+    if (!object || typeof object !== "object") {
+        return fallback;
+    }
 
     for (const key of keys) {
         if (
@@ -81,14 +83,14 @@ function scrollToTop() {
 }
 
 
-/* ---------------------------------------------------------
-   3. Navegación principal
+/* =========================================================
+   3. NAVEGACIÓN PRINCIPAL
    Inicio · Docentes · Acerca del estudio
-   --------------------------------------------------------- */
+   ========================================================= */
 
 function showView(viewName, updateHash = true) {
     const panels = document.querySelectorAll("[data-view-panel]");
-    const links = document.querySelectorAll(".nav-link");
+    const navLinks = document.querySelectorAll(".nav-link");
 
     panels.forEach((panel) => {
         const isActive = panel.dataset.viewPanel === viewName;
@@ -97,7 +99,7 @@ function showView(viewName, updateHash = true) {
         panel.classList.toggle("active", isActive);
     });
 
-    links.forEach((link) => {
+    navLinks.forEach((link) => {
         const isActive = link.dataset.view === viewName;
 
         link.classList.toggle("active", isActive);
@@ -118,12 +120,14 @@ function showView(viewName, updateHash = true) {
 
 
 function initMainNavigation() {
-    document.querySelectorAll(".view-link").forEach((button) => {
-        button.addEventListener("click", () => {
-            const target = button.dataset.view;
+    const viewLinks = document.querySelectorAll(".view-link");
 
-            if (target) {
-                showView(target);
+    viewLinks.forEach((button) => {
+        button.addEventListener("click", () => {
+            const targetView = button.dataset.view;
+
+            if (targetView) {
+                showView(targetView);
             }
         });
     });
@@ -139,23 +143,29 @@ function initMainNavigation() {
 }
 
 
-/* ---------------------------------------------------------
-   4. Selector de ejercicios
-   --------------------------------------------------------- */
+/* =========================================================
+   4. SELECTOR DE EJERCICIOS DE DOCENTES
+   ========================================================= */
 
 function showExercise(exerciseName) {
     const tabs = document.querySelectorAll(".exercise-tab");
-    const panels = document.querySelectorAll("[data-exercise-panel]");
+    const panels = document.querySelectorAll(
+        "[data-exercise-panel]"
+    );
 
     tabs.forEach((tab) => {
         const isActive = tab.dataset.target === exerciseName;
 
         tab.classList.toggle("active", isActive);
-        tab.setAttribute("aria-selected", String(isActive));
+        tab.setAttribute(
+            "aria-selected",
+            String(isActive)
+        );
     });
 
     panels.forEach((panel) => {
-        const isActive = panel.dataset.exercisePanel === exerciseName;
+        const isActive =
+            panel.dataset.exercisePanel === exerciseName;
 
         panel.hidden = !isActive;
         panel.classList.toggle("active", isActive);
@@ -164,7 +174,9 @@ function showExercise(exerciseName) {
 
 
 function initExerciseNavigation() {
-    document.querySelectorAll(".exercise-tab").forEach((tab) => {
+    const tabs = document.querySelectorAll(".exercise-tab");
+
+    tabs.forEach((tab) => {
         tab.addEventListener("click", () => {
             showExercise(tab.dataset.target);
         });
@@ -174,9 +186,9 @@ function initExerciseNavigation() {
 }
 
 
-/* ---------------------------------------------------------
-   5. Lectura de archivos JSON
-   --------------------------------------------------------- */
+/* =========================================================
+   5. CARGA DE DATOS
+   ========================================================= */
 
 async function loadJSON(path) {
     const response = await fetch(path);
@@ -205,7 +217,10 @@ async function loadData() {
         initTrayectoria();
 
     } catch (error) {
-        console.error("Error al cargar los datos:", error);
+        console.error(
+            "Error al cargar los datos:",
+            error
+        );
 
         showDataError(
             "No fue posible cargar los datos de la visualización. " +
@@ -223,7 +238,9 @@ function showDataError(message) {
     ];
 
     containers.forEach((container) => {
-        if (!container) return;
+        if (!container) {
+            return;
+        }
 
         container.innerHTML = `
             <div class="data-message">
@@ -234,14 +251,16 @@ function showDataError(message) {
 }
 
 
-/* ---------------------------------------------------------
-   6. Normalización del JSON del recorrido
-   --------------------------------------------------------- */
+/* =========================================================
+   6. DATOS DEL RECORRIDO PEDAGÓGICO
+   ========================================================= */
 
 function getRecorridoRecords() {
     const data = APP_DATA.recorrido;
 
-    if (!data) return [];
+    if (!data) {
+        return [];
+    }
 
     if (Array.isArray(data)) {
         return data;
@@ -362,11 +381,11 @@ function getTeachers(record) {
 }
 
 
-/* ---------------------------------------------------------
-   7. Agrupar registros del recorrido por tema
-   --------------------------------------------------------- */
+/* =========================================================
+   7. AGRUPACIÓN POR TEMA
+   ========================================================= */
 
-function groupRecorridoByTheme(records) {
+function groupRecordsByTheme(records) {
     const groups = new Map();
 
     records.forEach((record) => {
@@ -385,26 +404,33 @@ function groupRecorridoByTheme(records) {
         }
 
         const group = groups.get(key);
+
         group.records.push(record);
 
-        /*
-         * Si el primer registro no contiene alguno de los campos
-         * interpretativos, intentamos recuperarlo de otro registro
-         * perteneciente al mismo tema.
-         */
-        if (!group.lectura) group.lectura = getReading(record);
-        if (!group.cita) group.cita = getQuote(record);
-        if (!group.frecuencia) group.frecuencia = getFrequency(record);
-        if (!group.docentes) group.docentes = getTeachers(record);
+        if (!group.lectura) {
+            group.lectura = getReading(record);
+        }
+
+        if (!group.cita) {
+            group.cita = getQuote(record);
+        }
+
+        if (!group.frecuencia) {
+            group.frecuencia = getFrequency(record);
+        }
+
+        if (!group.docentes) {
+            group.docentes = getTeachers(record);
+        }
     });
 
     return Array.from(groups.values());
 }
 
 
-/* ---------------------------------------------------------
-   8. Cartografía del recorrido pedagógico
-   --------------------------------------------------------- */
+/* =========================================================
+   8. CARTOGRAFÍA DEL RECORRIDO PEDAGÓGICO
+   ========================================================= */
 
 const RECORRIDO_MOMENTS = [
     {
@@ -440,44 +466,55 @@ function initRecorrido() {
 
 
 function renderRecorridoNavigation() {
-    const container = document.getElementById("recorrido-navigation");
+    const container =
+        document.getElementById("recorrido-navigation");
 
-    if (!container) return;
+    if (!container) {
+        return;
+    }
 
     container.innerHTML = RECORRIDO_MOMENTS
-        .map((moment) => `
-            <button
-                class="journey-step ${
-                    moment.key === activeRecorridoMoment ? "active" : ""
-                }"
-                type="button"
-                data-moment="${moment.key}"
-                aria-pressed="${
-                    moment.key === activeRecorridoMoment
-                }"
-            >
-                <span class="journey-dot">
-                    ${moment.number}
-                </span>
+        .map((moment) => {
+            const isActive =
+                moment.key === activeRecorridoMoment;
 
-                <span class="journey-label">
-                    ${moment.label}
-                </span>
-            </button>
-        `)
+            return `
+                <button
+                    class="journey-step ${
+                        isActive ? "active" : ""
+                    }"
+                    type="button"
+                    data-moment="${moment.key}"
+                    aria-pressed="${isActive}"
+                >
+                    <span class="journey-dot">
+                        ${moment.number}
+                    </span>
+
+                    <span class="journey-label">
+                        ${escapeHTML(moment.label)}
+                    </span>
+                </button>
+            `;
+        })
         .join("");
 
-    container
-        .querySelectorAll(".journey-step")
-        .forEach((button) => {
-            button.addEventListener("click", () => {
-                activeRecorridoMoment = button.dataset.moment;
-                activeRecorridoTheme = 0;
+    const buttons =
+        container.querySelectorAll(".journey-step");
 
-                renderRecorridoNavigation();
-                renderRecorridoMoment(activeRecorridoMoment);
-            });
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            activeRecorridoMoment =
+                button.dataset.moment;
+
+            activeRecorridoTheme = 0;
+
+            renderRecorridoNavigation();
+            renderRecorridoMoment(
+                activeRecorridoMoment
+            );
         });
+    });
 }
 
 
@@ -485,30 +522,42 @@ function getRecordsForMoment(momentKey) {
     const records = getRecorridoRecords();
 
     return records.filter((record) => {
-        const moment = normalizeText(getRecorridoMoment(record));
+        const recordMoment =
+            normalizeText(
+                getRecorridoMoment(record)
+            );
 
-        if (momentKey === "despues") {
-            return moment === "despues";
-        }
-
-        return moment === normalizeText(momentKey);
+        return recordMoment ===
+            normalizeText(momentKey);
     });
 }
 
 
 function renderRecorridoMoment(momentKey) {
-    const records = getRecordsForMoment(momentKey);
-    const themes = groupRecorridoByTheme(records);
+    const records =
+        getRecordsForMoment(momentKey);
 
-    const momentConfig = RECORRIDO_MOMENTS.find(
-        (item) => item.key === momentKey
-    );
+    const themes =
+        groupRecordsByTheme(records);
 
-    const title = document.getElementById("recorrido-title");
-    const count = document.getElementById("recorrido-count");
+    const momentConfig =
+        RECORRIDO_MOMENTS.find(
+            (item) => item.key === momentKey
+        );
+
+    const title =
+        document.getElementById(
+            "recorrido-title"
+        );
+
+    const count =
+        document.getElementById(
+            "recorrido-count"
+        );
 
     if (title) {
-        title.textContent = momentConfig?.label || momentKey;
+        title.textContent =
+            momentConfig?.label || momentKey;
     }
 
     if (count) {
@@ -518,43 +567,40 @@ function renderRecorridoMoment(momentKey) {
                 : `${themes.length} temas identificados`;
     }
 
+    const selectTheme = (index) => {
+        activeRecorridoTheme = index;
+
+        renderRecorridoMoment(momentKey);
+    };
+
     renderThemeList(
         "recorrido-themes",
         themes,
         activeRecorridoTheme,
-        (index) => {
-            activeRecorridoTheme = index;
-
-            renderThemeList(
-                "recorrido-themes",
-                themes,
-                activeRecorridoTheme,
-                arguments.callee
-            );
-
-            renderFinding(
-                "recorrido-detail",
-                themes[activeRecorridoTheme],
-                "Hallazgo del recorrido"
-            );
-        }
+        selectTheme
     );
 
-    if (themes.length) {
+    if (themes.length > 0) {
+        const selectedTheme =
+            themes[activeRecorridoTheme] ||
+            themes[0];
+
         renderFinding(
             "recorrido-detail",
-            themes[activeRecorridoTheme] || themes[0],
+            selectedTheme,
             "Hallazgo del recorrido"
         );
     } else {
-        renderEmptyFinding("recorrido-detail");
+        renderEmptyFinding(
+            "recorrido-detail"
+        );
     }
 }
 
 
-/* ---------------------------------------------------------
-   9. Lista de temas reutilizable
-   --------------------------------------------------------- */
+/* =========================================================
+   9. LISTA DE TEMAS
+   ========================================================= */
 
 function renderThemeList(
     containerId,
@@ -562,77 +608,122 @@ function renderThemeList(
     activeIndex,
     onSelect
 ) {
-    const container = document.getElementById(containerId);
+    const container =
+        document.getElementById(containerId);
 
-    if (!container) return;
+    if (!container) {
+        return;
+    }
 
     if (!themes.length) {
         container.innerHTML = `
             <div class="data-message">
-                <p>No se identificaron temas para esta sección.</p>
+                <p>
+                    No se identificaron temas
+                    para esta sección.
+                </p>
             </div>
         `;
+
         return;
     }
 
     container.innerHTML = themes
-        .map((theme, index) => `
-            <button
-                class="theme-button ${
-                    index === activeIndex ? "active" : ""
-                }"
-                type="button"
-                data-theme-index="${index}"
-                aria-pressed="${index === activeIndex}"
-            >
-                ${escapeHTML(theme.tema)}
-            </button>
-        `)
+        .map((theme, index) => {
+            const isActive =
+                index === activeIndex;
+
+            return `
+                <button
+                    class="theme-button ${
+                        isActive ? "active" : ""
+                    }"
+                    type="button"
+                    data-theme-index="${index}"
+                    aria-pressed="${isActive}"
+                >
+                    ${escapeHTML(theme.tema)}
+                </button>
+            `;
+        })
         .join("");
 
-    container
-        .querySelectorAll(".theme-button")
-        .forEach((button) => {
-            button.addEventListener("click", () => {
-                onSelect(Number(button.dataset.themeIndex));
-            });
-        });
+    const buttons =
+        container.querySelectorAll(
+            ".theme-button"
+        );
+
+    buttons.forEach((button) => {
+        button.addEventListener(
+            "click",
+            () => {
+                const index = Number(
+                    button.dataset.themeIndex
+                );
+
+                onSelect(index);
+            }
+        );
+    });
 }
 
 
-/* ---------------------------------------------------------
-   10. Detalle de hallazgo
-   --------------------------------------------------------- */
+/* =========================================================
+   10. DETALLE DEL HALLAZGO
+   ========================================================= */
 
-function renderFinding(containerId, theme, label = "Hallazgo") {
-    const container = document.getElementById(containerId);
+function renderFinding(
+    containerId,
+    theme,
+    label = "Hallazgo"
+) {
+    const container =
+        document.getElementById(containerId);
 
-    if (!container) return;
+    if (!container) {
+        return;
+    }
 
     if (!theme) {
         renderEmptyFinding(containerId);
         return;
     }
 
+    const metadata = [];
+
     const frequency = theme.frecuencia;
     const teachers = theme.docentes;
 
-    const metadata = [];
-
-    if (frequency !== "" && frequency !== null && frequency !== undefined) {
+    if (
+        frequency !== "" &&
+        frequency !== null &&
+        frequency !== undefined
+    ) {
         metadata.push(`
             <span class="meta-pill">
                 ${formatNumber(frequency)}
-                ${Number(frequency) === 1 ? "aporte" : "aportes"}
+                ${
+                    Number(frequency) === 1
+                        ? "aporte"
+                        : "aportes"
+                }
             </span>
         `);
     }
 
-    if (teachers !== "" && teachers !== null && teachers !== undefined) {
+    if (
+        teachers !== "" &&
+        teachers !== null &&
+        teachers !== undefined
+    ) {
         metadata.push(`
             <span class="meta-pill">
                 ${formatNumber(teachers)}
-                ${Number(teachers) === 1 ? "docente" : "docentes"}
+                ${
+                    Number(teachers) === 1
+                        ? "docente"
+                        : "docentes"
+                }
             </span>
         `);
     }
@@ -650,7 +741,9 @@ function renderFinding(containerId, theme, label = "Hallazgo") {
             theme.lectura
                 ? `
                     <p class="detail-reading">
-                        ${escapeHTML(theme.lectura)}
+                        ${escapeHTML(
+                            theme.lectura
+                        )}
                     </p>
                 `
                 : ""
@@ -669,8 +762,12 @@ function renderFinding(containerId, theme, label = "Hallazgo") {
         ${
             theme.cita
                 ? `
-                    <blockquote class="detail-quote">
-                        ${escapeHTML(theme.cita)}
+                    <blockquote
+                        class="detail-quote"
+                    >
+                        ${escapeHTML(
+                            theme.cita
+                        )}
                     </blockquote>
                 `
                 : ""
@@ -680,28 +777,34 @@ function renderFinding(containerId, theme, label = "Hallazgo") {
 
 
 function renderEmptyFinding(containerId) {
-    const container = document.getElementById(containerId);
+    const container =
+        document.getElementById(containerId);
 
-    if (!container) return;
+    if (!container) {
+        return;
+    }
 
     container.innerHTML = `
         <div class="data-message">
             <p>
-                No hay información disponible para esta sección.
+                No hay información disponible
+                para esta sección.
             </p>
         </div>
     `;
 }
 
 
-/* ---------------------------------------------------------
-   11. Normalización del JSON de trayectoria
-   --------------------------------------------------------- */
+/* =========================================================
+   11. DATOS DEL MAPA DE TRAYECTORIA
+   ========================================================= */
 
 function getTrayectoriaRecords() {
     const data = APP_DATA.trayectoria;
 
-    if (!data) return [];
+    if (!data) {
+        return [];
+    }
 
     if (Array.isArray(data)) {
         return data;
@@ -738,9 +841,9 @@ function getTrajectoryStage(record) {
 }
 
 
-/* ---------------------------------------------------------
-   12. Etapas del mapa de trayectoria
-   --------------------------------------------------------- */
+/* =========================================================
+   12. ETAPAS DEL MAPA DE TRAYECTORIA
+   ========================================================= */
 
 const TRAJECTORY_STAGES = [
     {
@@ -794,31 +897,40 @@ const PROJECTION_STAGES = [
     {
         key: "mantener",
         label: "Mantener",
-        aliases: ["mantener"]
+        aliases: [
+            "mantener"
+        ]
     },
     {
         key: "transformar",
         label: "Transformar",
-        aliases: ["transformar"]
+        aliases: [
+            "transformar"
+        ]
     },
     {
         key: "explorar",
         label: "Explorar",
-        aliases: ["explorar"]
+        aliases: [
+            "explorar"
+        ]
     }
 ];
 
 
-let activeTrajectoryStage = TRAJECTORY_STAGES[0].key;
-let activeProjectionStage = PROJECTION_STAGES[0].key;
+let activeTrajectoryStage =
+    TRAJECTORY_STAGES[0].key;
+
+let activeProjectionStage =
+    PROJECTION_STAGES[0].key;
 
 let activeTrajectoryTheme = 0;
 let activeProjectionTheme = 0;
 
 
-/* ---------------------------------------------------------
-   13. Inicialización de trayectoria
-   --------------------------------------------------------- */
+/* =========================================================
+   13. INICIALIZACIÓN DEL MAPA DE TRAYECTORIA
+   ========================================================= */
 
 function initTrayectoria() {
     initTrajectoryModeSelector();
@@ -851,51 +963,71 @@ function initTrayectoria() {
 }
 
 
-/* ---------------------------------------------------------
-   14. Trayectoria / Proyección
-   --------------------------------------------------------- */
+/* =========================================================
+   14. SELECTOR TRAYECTORIA / PROYECCIÓN
+   ========================================================= */
 
 function initTrajectoryModeSelector() {
-    const buttons = document.querySelectorAll(".mode-button");
+    const buttons =
+        document.querySelectorAll(
+            ".mode-button"
+        );
 
     buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-            const mode = button.dataset.mode;
+        button.addEventListener(
+            "click",
+            () => {
+                const mode =
+                    button.dataset.mode;
 
-            buttons.forEach((item) => {
-                item.classList.toggle(
-                    "active",
-                    item.dataset.mode === mode
-                );
-            });
+                buttons.forEach((item) => {
+                    item.classList.toggle(
+                        "active",
+                        item.dataset.mode === mode
+                    );
+                });
 
-            const trajectoryView =
-                document.getElementById("trajectory-view");
+                const trajectoryView =
+                    document.getElementById(
+                        "trajectory-view"
+                    );
 
-            const projectionView =
-                document.getElementById("projection-view");
+                const projectionView =
+                    document.getElementById(
+                        "projection-view"
+                    );
 
-            const showTrajectory = mode === "trayectoria";
+                const showTrajectory =
+                    mode === "trayectoria";
 
-            trajectoryView.hidden = !showTrajectory;
-            trajectoryView.classList.toggle(
-                "active",
-                showTrajectory
-            );
+                if (trajectoryView) {
+                    trajectoryView.hidden =
+                        !showTrajectory;
 
-            projectionView.hidden = showTrajectory;
-            projectionView.classList.toggle(
-                "active",
-                !showTrajectory
-            );
-        });
+                    trajectoryView.classList.toggle(
+                        "active",
+                        showTrajectory
+                    );
+                }
+
+                if (projectionView) {
+                    projectionView.hidden =
+                        showTrajectory;
+
+                    projectionView.classList.toggle(
+                        "active",
+                        !showTrajectory
+                    );
+                }
+            }
+        );
     });
 }
 
 
-/* ---------------------------------------------------------
-   15. Navegación de trayectoria
-   --------------------------------------------------------- */
+/* =========================================================
+   15. NAVEGACIÓN DEL MAPA DE TRAYECTORIA
+   ========================================================= */
 
 function renderTrajectoryNavigation(
     containerId,
@@ -903,32 +1035,49 @@ function renderTrajectoryNavigation(
     activeStage,
     mode
 ) {
-    const container = document.getElementById(containerId);
+    const container =
+        document.getElementById(containerId);
 
-    if (!container) return;
+    if (!container) {
+        return;
+    }
 
     container.innerHTML = stages
-        .map((stage) => `
-            <button
-                class="trajectory-step ${
-                    stage.key === activeStage ? "active" : ""
-                }"
-                type="button"
-                data-stage="${stage.key}"
-            >
-                ${escapeHTML(stage.label)}
-            </button>
-        `)
+        .map((stage) => {
+            const isActive =
+                stage.key === activeStage;
+
+            return `
+                <button
+                    class="trajectory-step ${
+                        isActive ? "active" : ""
+                    }"
+                    type="button"
+                    data-stage="${stage.key}"
+                    aria-pressed="${isActive}"
+                >
+                    ${escapeHTML(stage.label)}
+                </button>
+            `;
+        })
         .join("");
 
-    container
-        .querySelectorAll(".trajectory-step")
-        .forEach((button) => {
-            button.addEventListener("click", () => {
-                const stageKey = button.dataset.stage;
+    const buttons =
+        container.querySelectorAll(
+            ".trajectory-step"
+        );
+
+    buttons.forEach((button) => {
+        button.addEventListener(
+            "click",
+            () => {
+                const stageKey =
+                    button.dataset.stage;
 
                 if (mode === "trayectoria") {
-                    activeTrajectoryStage = stageKey;
+                    activeTrajectoryStage =
+                        stageKey;
+
                     activeTrajectoryTheme = 0;
 
                     renderTrajectoryNavigation(
@@ -945,7 +1094,9 @@ function renderTrajectoryNavigation(
                     );
 
                 } else {
-                    activeProjectionStage = stageKey;
+                    activeProjectionStage =
+                        stageKey;
+
                     activeProjectionTheme = 0;
 
                     renderTrajectoryNavigation(
@@ -961,48 +1112,64 @@ function renderTrajectoryNavigation(
                         mode
                     );
                 }
-            });
-        });
+            }
+        );
+    });
 }
 
 
-/* ---------------------------------------------------------
-   16. Filtrar registros por etapa
-   --------------------------------------------------------- */
+/* =========================================================
+   16. FILTRADO POR ETAPA
+   ========================================================= */
 
 function recordMatchesStage(record, stage) {
-    const recordStage = normalizeText(
-        getTrajectoryStage(record)
-    );
+    const recordStage =
+        normalizeText(
+            getTrajectoryStage(record)
+        );
 
-    const aliases = stage.aliases.map(normalizeText);
+    const aliases =
+        stage.aliases.map(normalizeText);
 
     return aliases.includes(recordStage);
 }
 
 
 function getRecordsForTrajectoryStage(stage) {
-    return getTrayectoriaRecords().filter((record) =>
+    const records =
+        getTrayectoriaRecords();
+
+    return records.filter((record) =>
         recordMatchesStage(record, stage)
     );
 }
 
 
-/* ---------------------------------------------------------
-   17. Render de etapa de trayectoria
-   --------------------------------------------------------- */
+/* =========================================================
+   17. RENDER DE ETAPA DE TRAYECTORIA
+   ========================================================= */
 
-function renderTrajectoryStage(stageKey, stages, mode) {
+function renderTrajectoryStage(
+    stageKey,
+    stages,
+    mode
+) {
     const stage = stages.find(
         (item) => item.key === stageKey
     );
 
-    if (!stage) return;
+    if (!stage) {
+        return;
+    }
 
-    const records = getRecordsForTrajectoryStage(stage);
-    const themes = groupRecorridoByTheme(records);
+    const records =
+        getRecordsForTrajectoryStage(stage);
 
-    const isTrajectory = mode === "trayectoria";
+    const themes =
+        groupRecordsByTheme(records);
+
+    const isTrajectory =
+        mode === "trayectoria";
 
     const titleId = isTrajectory
         ? "trayectoria-title"
@@ -1020,11 +1187,15 @@ function renderTrajectoryStage(stageKey, stages, mode) {
         ? "trayectoria-detail"
         : "projection-detail";
 
-    const title = document.getElementById(titleId);
-    const count = document.getElementById(countId);
+    const title =
+        document.getElementById(titleId);
+
+    const count =
+        document.getElementById(countId);
 
     if (title) {
-        title.textContent = stage.label;
+        title.textContent =
+            stage.label;
     }
 
     if (count) {
@@ -1045,7 +1216,11 @@ function renderTrajectoryStage(stageKey, stages, mode) {
             activeProjectionTheme = index;
         }
 
-        renderTrajectoryStage(stageKey, stages, mode);
+        renderTrajectoryStage(
+            stageKey,
+            stages,
+            mode
+        );
     };
 
     renderThemeList(
@@ -1055,26 +1230,61 @@ function renderTrajectoryStage(stageKey, stages, mode) {
         selectTheme
     );
 
-    if (themes.length) {
+    if (themes.length > 0) {
+        const selectedTheme =
+            themes[activeIndex] ||
+            themes[0];
+
         renderFinding(
             detailId,
-            themes[activeIndex] || themes[0],
+            selectedTheme,
             isTrajectory
                 ? "Hallazgo de la trayectoria"
                 : "Proyección"
         );
     } else {
-        renderEmptyFinding(detailId);
+        renderEmptyFinding(
+            detailId
+        );
     }
 }
 
 
-/* ---------------------------------------------------------
-   18. Inicio de la aplicación
-   --------------------------------------------------------- */
+/* =========================================================
+   18. CAMBIOS EN EL HASH DEL NAVEGADOR
+   ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
-    initMainNavigation();
-    initExerciseNavigation();
-    loadData();
-});
+window.addEventListener(
+    "hashchange",
+    () => {
+        const hash =
+            window.location.hash.replace(
+                "#",
+                ""
+            );
+
+        const validViews = [
+            "inicio",
+            "docentes",
+            "acerca"
+        ];
+
+        if (validViews.includes(hash)) {
+            showView(hash, false);
+        }
+    }
+);
+
+
+/* =========================================================
+   19. INICIO DE LA APLICACIÓN
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+        initMainNavigation();
+        initExerciseNavigation();
+        loadData();
+    }
+);
