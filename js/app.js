@@ -706,30 +706,32 @@ function getRecorridoThemes(momentKey) {
         );
 
 
-   return themeNames
-    .map(
-        themeName => {
+    const themes =
+        themeNames.map(
+            themeName => {
 
-            const matching =
-                records.filter(
-                    record =>
-                        normalizeText(
-                            record.tema
-                        ) ===
-                        normalizeText(
-                            themeName
-                        )
+                const matching =
+                    records.filter(
+                        record =>
+                            normalizeText(
+                                record.tema
+                            ) ===
+                            normalizeText(
+                                themeName
+                            )
+                    );
+
+
+                return combineThemeRecords(
+                    themeName,
+                    matching
                 );
 
+            }
+        );
 
-            return combineThemeRecords(
-                themeName,
-                matching
-            );
 
-        }
-    )
-    .sort(
+    themes.sort(
         (a, b) => {
 
             const aportesA =
@@ -744,6 +746,9 @@ function getRecorridoThemes(momentKey) {
     );
 
 
+    return themes;
+
+}
 
 /* =========================================================
    11. AGRUPAR REGISTROS POR TEMA
