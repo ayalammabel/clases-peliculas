@@ -2633,3 +2633,89 @@ button:focus-visible {
     color: var(--text-soft);
 }
 
+/* =========================================================
+   CARTOGRAFÍA · AJUSTES FINALES DE JERARQUÍA
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   01. RECORRIDO REALIZADO / ACTUAL / PENDIENTE
+--------------------------------------------------------- */
+
+.journey-navigation button.completed {
+    color: var(--purple-medium);
+}
+
+.journey-navigation button.completed::before {
+    background: var(--purple-medium);
+    box-shadow: 0 0 0 2px var(--purple-medium);
+}
+
+.journey-navigation button.active {
+    color: var(--purple-dark);
+}
+
+.journey-navigation button.active::before {
+    background: var(--yellow);
+    box-shadow: 0 0 0 3px var(--purple);
+}
+
+.journey-navigation button.upcoming {
+    color: var(--text-soft);
+}
+
+
+/* ---------------------------------------------------------
+   02. MENOS AIRE EN EL ENCABEZADO DEL MOMENTO
+--------------------------------------------------------- */
+
+.story-chapter-header {
+    padding-bottom: 36px;
+}
+
+.story-content {
+    padding-top: 36px;
+}
+
+
+/* ---------------------------------------------------------
+   03. TÍTULO DEL HALLAZGO
+   Mantiene protagonismo sin competir con el título general
+--------------------------------------------------------- */
+
+.story-finding-detail h4 {
+    font-size: clamp(28px, 2.8vw, 40px);
+    line-height: 1.1;
+}
+
+
+/* ---------------------------------------------------------
+   04. NAVEGACIÓN ENTRE HALLAZGOS
+--------------------------------------------------------- */
+
+.story-arrow-button:disabled {
+    color: #b9b1c2;
+    opacity: 0.58;
+    cursor: default;
+}
+
+
+/* ---------------------------------------------------------
+   05. AJUSTE RESPONSIVE
+--------------------------------------------------------- */
+
+@media (max-width: 640px) {
+
+    .story-chapter-header {
+        padding-bottom: 30px;
+    }
+
+    .story-content {
+        padding-top: 30px;
+    }
+
+    .story-finding-detail h4 {
+        font-size: 28px;
+    }
+
+}
