@@ -313,7 +313,6 @@
                     data-exercise-panel="recorrido"
                 >
 
-
                     <!-- =============================================
                          INTRODUCCIÓN
                     ============================================== -->
@@ -332,7 +331,6 @@
 
                         </div>
 
-
                         <p>
                             Explora cómo se configura la experiencia
                             antes, durante y después de la visita,
@@ -343,7 +341,7 @@
 
 
                     <!-- =============================================
-                         NAVEGACIÓN DE LOS CUATRO MOMENTOS
+                         MAPA GENERAL DEL RECORRIDO
                     ============================================== -->
 
                     <div class="story-nav-wrapper">
@@ -376,8 +374,7 @@
                         aria-live="polite"
                     >
 
-
-                        <!-- Número grande decorativo -->
+                        <!-- Número decorativo del capítulo -->
 
                         <div
                             id="story-number"
@@ -386,19 +383,6 @@
                         >
                             01
                         </div>
-
-
-                        <!-- Elementos gráficos -->
-
-                        <div
-                            class="story-decoration story-decoration-one"
-                            aria-hidden="true"
-                        ></div>
-
-                        <div
-                            class="story-decoration story-decoration-two"
-                            aria-hidden="true"
-                        ></div>
 
 
                         <!-- =========================================
@@ -449,35 +433,75 @@
 
 
                         <!-- =========================================
-                             HALLAZGO ACTIVO
+                             CONTENIDO DEL MOMENTO
                         ========================================== -->
 
-                        <div class="story-finding">
+                        <div class="story-content">
 
-                            <div class="story-finding-context">
+                            <!-- Contexto -->
+
+                            <aside class="story-finding-context">
 
                                 <p class="story-small-label">
                                     En este momento
                                 </p>
 
-                                <p id="recorrido-count">
+                                <p
+                                    id="recorrido-count"
+                                    class="story-theme-count"
+                                >
                                     Temas identificados
                                 </p>
 
+                                <p class="story-context-description">
+                                    Explora los hallazgos que configuran
+                                    este momento de la experiencia.
+                                </p>
+
+                            </aside>
+
+
+                            <!-- Hallazgo activo -->
+
+                            <div class="story-finding-main">
+
+                                <div
+                                    id="recorrido-detail"
+                                    class="story-finding-detail"
+                                >
+                                    <!--
+                                        app.js inserta:
+                                        tema
+                                        lectura
+                                        frecuencia
+                                        docentes
+                                        cita
+                                    -->
+                                </div>
+
                             </div>
 
+                        </div>
+
+
+                        <!-- =========================================
+                             ÍNDICE DE TEMAS
+                        ========================================== -->
+
+                        <div class="story-theme-index">
+
+                            <p class="story-small-label">
+                                Temas de este momento
+                            </p>
 
                             <div
-                                id="recorrido-detail"
-                                class="story-finding-detail"
+                                id="recorrido-themes"
+                                class="story-theme-list"
+                                aria-label="Temas del momento seleccionado"
                             >
                                 <!--
-                                    app.js inserta:
-                                    tema
-                                    lectura
-                                    frecuencia
-                                    docentes
-                                    cita
+                                    app.js generará aquí los temas
+                                    como opciones navegables.
                                 -->
                             </div>
 
@@ -485,7 +509,7 @@
 
 
                         <!-- =========================================
-                             NAVEGACIÓN ENTRE TEMAS
+                             NAVEGACIÓN ENTRE HALLAZGOS
                         ========================================== -->
 
                         <div class="story-theme-navigation">
@@ -500,7 +524,7 @@
                                 </span>
 
                                 <span>
-                                    Anterior
+                                    Hallazgo anterior
                                 </span>
                             </button>
 
@@ -533,32 +557,15 @@
                                 class="story-arrow-button"
                                 type="button"
                             >
-
                                 <span>
-                                    Siguiente
+                                    Siguiente hallazgo
                                 </span>
 
                                 <span aria-hidden="true">
                                     →
                                 </span>
-
                             </button>
 
-                        </div>
-
-
-                        <!-- =========================================
-                             INDICADORES DE TEMAS
-                        ========================================== -->
-
-                        <div
-                            id="recorrido-themes"
-                            class="story-theme-dots"
-                            aria-label="Temas del momento seleccionado"
-                        >
-                            <!--
-                                app.js genera un indicador por tema.
-                            -->
                         </div>
 
 
