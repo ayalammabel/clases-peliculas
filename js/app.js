@@ -902,15 +902,16 @@ function updateStoryChapterHeader(
     themeCount
 ) {
 
-    setText(
-        "story-number",
-        momento.number
-    );
+    /* ---------------------------------------------
+       NÚMERO DEL MOMENTO
+       Ejemplo: 02 / 04
+    --------------------------------------------- */
 
     setText(
         "story-step-number",
         momento.number
     );
+
 
     setText(
         "story-step-total",
@@ -919,21 +920,31 @@ function updateStoryChapterHeader(
         ).padStart(2, "0")
     );
 
+
+    /* ---------------------------------------------
+       NOMBRE DEL MOMENTO
+       Ejemplo: DURANTE
+    --------------------------------------------- */
+
     setText(
         "story-moment-label",
         momento.key
     );
 
-    setText(
-        "recorrido-title",
-        momento.key
-    );
+
+    /* ---------------------------------------------
+       INTRODUCCIÓN NARRATIVA
+    --------------------------------------------- */
 
     setText(
         "story-introduction",
         momento.intro
     );
 
+
+    /* ---------------------------------------------
+       NÚMERO DE TEMAS
+    --------------------------------------------- */
 
     const count =
         document.getElementById(
@@ -951,7 +962,6 @@ function updateStoryChapterHeader(
     }
 
 }
-
 
 /* =========================================================
    14. HALLAZGO ACTIVO
