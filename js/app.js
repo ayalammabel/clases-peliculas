@@ -13,6 +13,7 @@ const DATA_PATHS = {
     trayectoria: "data/docentes-trayectoria.json"
 };
 
+
 const MOMENTOS_RECORRIDO = [
     {
         key: "Antes",
@@ -109,6 +110,18 @@ function firstValue(object, keys, fallback = "") {
 }
 
 
+function firstNonEmpty(values) {
+
+    return values.find(
+        value =>
+            value !== null &&
+            value !== undefined &&
+            String(value).trim() !== ""
+    ) ?? "";
+
+}
+
+
 function unique(values) {
 
     return [
@@ -125,13 +138,14 @@ function unique(values) {
 }
 
 
-function findMatchingValue(value, options) {
+function setText(id, value) {
 
-    const normalized = normalizeText(value);
+    const element =
+        document.getElementById(id);
 
-    return options.find(
-        option => normalizeText(option) === normalized
-    );
+    if (element) {
+        element.textContent = value ?? "";
+    }
 
 }
 
@@ -255,6 +269,33 @@ async function loadJSON(path) {
 }
 
 
+function extractArray(data) {
+
+    if (Array.isArray(data)) {
+        return data;
+    }
+
+    const possibleKeys = [
+        "data",
+        "datos",
+        "resultados",
+        "recorrido",
+        "trayectoria",
+        "items"
+    ];
+
+    for (const key of possibleKeys) {
+
+        if (Array.isArray(data?.[key])) {
+            return data[key];
+        }
+
+    }
+
+    return [];
+}
+
+
 async function loadData() {
 
     try {
@@ -291,37 +332,6 @@ async function loadData() {
         renderDataError();
 
     }
-
-}
-
-
-function extractArray(data) {
-
-    if (Array.isArray(data)) {
-        return data;
-    }
-
-
-    const possibleKeys = [
-        "data",
-        "datos",
-        "resultados",
-        "recorrido",
-        "trayectoria",
-        "items"
-    ];
-
-
-    for (const key of possibleKeys) {
-
-        if (Array.isArray(data?.[key])) {
-            return data[key];
-        }
-
-    }
-
-
-    return [];
 
 }
 
@@ -429,6 +439,7 @@ function showView(target) {
         document.querySelectorAll(
             "[data-view-panel]"
         );
+
 
     panels.forEach(panel => {
 
@@ -631,21 +642,19 @@ function renderRecorridoNavigation() {
 
 
 /* =========================================================
-   10. OBTENER TEMAS DEL MOMENTO
+   10. OBTENER REGISTROS Y TEMAS
 ========================================================= */
 
 function getRecorridoRecords(momentKey) {
 
     return recorridoData.filter(
-        record => {
-
-            return normalizeText(
+        record =>
+            normalizeText(
                 record.momento
-            ) === normalizeText(
+            ) ===
+            normalizeText(
                 momentKey
-            );
-
-        }
+            )
     );
 
 }
@@ -738,14 +747,6 @@ function combineThemeRecords(
         );
 
 
-    /*
-       Si el JSON ya trae una frecuencia consolidada,
-       se respeta ese valor.
-
-       Si no la trae y hay varias filas por tema,
-       se utiliza el número de registros como recurrencia.
-    */
-
     let frecuencia =
         firstNonEmpty(
             records.map(
@@ -785,20 +786,8 @@ function combineThemeRecords(
 }
 
 
-function firstNonEmpty(values) {
-
-    return values.find(
-        value =>
-            value !== null &&
-            value !== undefined &&
-            String(value).trim() !== ""
-    ) ?? "";
-
-}
-
-
 /* =========================================================
-   12. RENDER DEL CAPÍTULO
+   12. RENDER GENERAL DEL CAPÍTULO
 ========================================================= */
 
 function renderRecorrido() {
@@ -829,7 +818,7 @@ function renderRecorrido() {
     );
 
 
-    renderStoryThemeDots(
+    renderStoryThemeIndex(
         themes
     );
 
@@ -842,6 +831,10 @@ function renderRecorrido() {
 
         updateStoryControls(
             0
+        );
+
+        updateNextMoment(
+            momento
         );
 
         return;
@@ -923,8 +916,8 @@ function updateStoryChapterHeader(
 
         count.textContent =
             themeCount === 1
-                ? "1 tema identificado"
-                : `${themeCount} temas identificados`;
+                ? "1 tema"
+                : `${themeCount} temas`;
 
     }
 
@@ -932,7 +925,7 @@ function updateStoryChapterHeader(
 
 
 /* =========================================================
-   14. RENDER DEL HALLAZGO
+   14. HALLAZGO ACTIVO
 ========================================================= */
 
 function renderStoryFinding(theme) {
@@ -1070,10 +1063,10 @@ function renderEmptyRecorrido(
 
 
 /* =========================================================
-   16. INDICADORES DE TEMAS
+   16. ÍNDICE NAVEGABLE DE TEMAS
 ========================================================= */
 
-function renderStoryThemeDots(
+function renderStoryThemeIndex(
     themes
 ) {
 
@@ -1104,21 +1097,30 @@ function renderStoryThemeDots(
                 "button";
 
 
-            button.className =
-                index === recorridoThemeIndex
-                    ? "active"
-                    : "";
+            button.textContent =
+                theme.tema;
+
+
+            if (
+                index ===
+                recorridoThemeIndex
+            ) {
+
+                button.classList.add(
+                    "active"
+                );
+
+                button.setAttribute(
+                    "aria-current",
+                    "true"
+                );
+
+            }
 
 
             button.setAttribute(
                 "aria-label",
-                `Ver ${theme.tema}`
-            );
-
-
-            button.setAttribute(
-                "title",
-                theme.tema
+                `Ver hallazgo: ${theme.tema}`
             );
 
 
@@ -1312,9 +1314,7 @@ function updateStoryControls(
    19. SIGUIENTE MOMENTO
 ========================================================= */
 
-function updateNextMoment(
-    currentMoment
-) {
+function updateNextMoment() {
 
     const button =
         document.getElementById(
@@ -1363,7 +1363,22 @@ function updateNextMoment(
 
         if (description) {
 
+            const descriptions = {
+                "Durante":
+                    "Continúa hacia durante y explora cómo la experiencia toma forma en el encuentro con el cine.",
+
+                "Después":
+                    "Avanza hacia después y descubre cómo lo vivido continúa en el aula.",
+
+                "Permanece":
+                    "Continúa hacia permanece y explora los aprendizajes, intereses y vínculos que trascienden la experiencia."
+            };
+
+
             description.textContent =
+                descriptions[
+                    nextMoment.key
+                ] ||
                 `Continúa hacia ${nextMoment.key.toLowerCase()} y explora cómo evoluciona la experiencia.`;
 
         }
@@ -1423,30 +1438,7 @@ function scrollStoryIntoView() {
 
 
 /* =========================================================
-   21. UTILIDAD PARA CAMBIAR TEXTO
-========================================================= */
-
-function setText(
-    id,
-    value
-) {
-
-    const element =
-        document.getElementById(id);
-
-
-    if (element) {
-
-        element.textContent =
-            value ?? "";
-
-    }
-
-}
-
-
-/* =========================================================
-   22. EJERCICIO 02 · INICIALIZACIÓN
+   21. EJERCICIO 02 · INICIALIZACIÓN
 ========================================================= */
 
 function initializeTrayectoria() {
@@ -1466,7 +1458,7 @@ function initializeTrayectoria() {
 
 
 /* =========================================================
-   23. TRAYECTORIA / PROYECCIÓN
+   22. TRAYECTORIA / PROYECCIÓN
 ========================================================= */
 
 function initializeTrajectoryModes() {
@@ -1554,7 +1546,7 @@ function initializeTrajectoryModes() {
 
 
 /* =========================================================
-   24. NAVEGACIÓN DE TRAYECTORIA
+   23. NAVEGACIÓN DE TRAYECTORIA
 ========================================================= */
 
 function renderTrayectoriaNavigation() {
@@ -1619,7 +1611,7 @@ function renderTrayectoriaNavigation() {
 
 
 /* =========================================================
-   25. NAVEGACIÓN DE PROYECCIÓN
+   24. NAVEGACIÓN DE PROYECCIÓN
 ========================================================= */
 
 function renderProjectionNavigation() {
@@ -1684,7 +1676,7 @@ function renderProjectionNavigation() {
 
 
 /* =========================================================
-   26. REGISTROS DEL EJERCICIO 02
+   25. REGISTROS DEL EJERCICIO 02
 ========================================================= */
 
 function getTrajectoryRecords(
@@ -1710,11 +1702,6 @@ function getTrajectoryRecords(
                 return true;
             }
 
-
-            /*
-               Algunas variantes previsibles del nombre
-               de las etapas.
-            */
 
             const aliases = {
 
@@ -1782,7 +1769,7 @@ function getTrajectoryRecords(
 
 
 /* =========================================================
-   27. RENDER DE UNA ETAPA DEL EJERCICIO 02
+   26. RENDER DE UNA ETAPA DEL EJERCICIO 02
 ========================================================= */
 
 function renderTrayectoriaStage() {
@@ -1832,7 +1819,7 @@ function renderProjectionStage() {
 
 
 /* =========================================================
-   28. EXPLORADOR DEL EJERCICIO 02
+   27. EXPLORADOR DEL EJERCICIO 02
 ========================================================= */
 
 function renderTrajectoryExplorer({
@@ -2001,7 +1988,7 @@ function renderTrajectoryExplorer({
 
 
 /* =========================================================
-   29. HALLAZGO ESTÁNDAR DEL EJERCICIO 02
+   28. HALLAZGO ESTÁNDAR DEL EJERCICIO 02
 ========================================================= */
 
 function renderStandardFinding(
@@ -2084,7 +2071,7 @@ function renderStandardFinding(
 
 
 /* =========================================================
-   30. INICIALIZACIÓN GENERAL
+   29. INICIALIZACIÓN GENERAL
 ========================================================= */
 
 document.addEventListener(
