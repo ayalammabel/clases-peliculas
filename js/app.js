@@ -1,4 +1,3 @@
-// Lógica de la visualización Clases de Película
 /* =========================================================
    CLASES DE PELÍCULA
    Visualización de resultados cualitativos
@@ -16,68 +15,127 @@ const DATA_PATHS = {
     trayectoria: "data/docentes-trayectoria.json"
 };
 
-const ORDEN_RECORRIDO = [
-    "Antes",
-    "Durante",
-    "Después",
-    "Permanece"
-];
-
-const ORDEN_PROYECCION = [
-    "Mantener",
-    "Transformar",
-    "Explorar"
-];
-
-let datosRecorrido = [];
-let datosTrayectoria = [];
+const APP_DATA = {
+    recorrido: null,
+    trayectoria: null
+};
 
 
 /* ---------------------------------------------------------
-   2. Inicialización
+   2. Utilidades
    --------------------------------------------------------- */
 
-document.addEventListener("DOMContentLoaded", iniciarAplicacion);
+function normalizeText(value = "") {
+    return String(value)
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+}
 
-async function iniciarAplicacion() {
-    configurarSelectorEjercicios();
-    configurarNavegacionPrincipal();
 
-    try {
-        await cargarDatos();
+function getFirstValue(object, keys, fallback = "") {
+    if (!object || typeof object !== "object") return fallback;
 
-        renderizarNavegacionRecorrido();
-        renderizarMomentoRecorrido(ORDEN_RECORRIDO[0]);
-
-        renderizarNavegacionTrayectoria();
-        renderizarPrimerComponenteTrayectoria();
-
-        renderizarProyeccion();
-
-    } catch (error) {
-        console.error("No fue posible cargar los datos:", error);
-        mostrarErrorDatos();
+    for (const key of keys) {
+        if (
+            Object.prototype.hasOwnProperty.call(object, key) &&
+            object[key] !== null &&
+            object[key] !== undefined &&
+            object[key] !== ""
+        ) {
+            return object[key];
+        }
     }
+
+    return fallback;
+}
+
+
+function escapeHTML(value = "") {
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+function formatNumber(value) {
+    const number = Number(value);
+
+    if (Number.isNaN(number)) {
+        return value ?? "";
+    }
+
+    return new Intl.NumberFormat("es-CO").format(number);
+}
+
+
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 }
 
 
 /* ---------------------------------------------------------
-   3. Carga de datos
+   3. Navegación principal
+   Inicio · Docentes · Acerca del estudio
    --------------------------------------------------------- */
 
-async function cargarDatos() {
-    const [respuestaRecorrido, respuestaTrayectoria] =
-        await Promise.all([
-            fetch(DATA_PATHS.recorrido),
-            fetch(DATA_PATHS.trayectoria)
-        ]);
+function showView(viewName, updateHash = true) {
+    const panels = document.querySelectorAll("[data-view-panel]");
+    const links = document.querySelectorAll(".nav-link");
 
-    if (!respuestaRecorrido.ok || !respuestaTrayectoria.ok) {
-        throw new Error("Error al cargar los archivos de datos.");
+    panels.forEach((panel) => {
+        const isActive = panel.dataset.viewPanel === viewName;
+
+        panel.hidden = !isActive;
+        panel.classList.toggle("active", isActive);
+    });
+
+    links.forEach((link) => {
+        const isActive = link.dataset.view === viewName;
+
+        link.classList.toggle("active", isActive);
+
+        if (isActive) {
+            link.setAttribute("aria-current", "page");
+        } else {
+            link.removeAttribute("aria-current");
+        }
+    });
+
+    if (updateHash) {
+        history.replaceState(null, "", `#${viewName}`);
     }
 
-    datosRecorrido = await respuestaRecorrido.json();
-    datosTrayectoria = await respuestaTrayectoria.json();
+    scrollToTop();
+}
+
+
+function initMainNavigation() {
+    document.querySelectorAll(".view-link").forEach((button) => {
+        button.addEventListener("click", () => {
+            const target = button.dataset.view;
+
+            if (target) {
+                showView(target);
+            }
+        });
+    });
+
+    const hash = window.location.hash.replace("#", "");
+    const validViews = ["inicio", "docentes", "acerca"];
+
+    if (validViews.includes(hash)) {
+        showView(hash, false);
+    } else {
+        showView("inicio", false);
+    }
 }
 
 
@@ -85,477 +143,938 @@ async function cargarDatos() {
    4. Selector de ejercicios
    --------------------------------------------------------- */
 
-function configurarSelectorEjercicios() {
-    const botones = document.querySelectorAll(".exercise-tab");
-    const paneles = document.querySelectorAll(".exercise-panel");
+function showExercise(exerciseName) {
+    const tabs = document.querySelectorAll(".exercise-tab");
+    const panels = document.querySelectorAll("[data-exercise-panel]");
 
-    botones.forEach((boton) => {
-        boton.addEventListener("click", () => {
-            const objetivo = boton.dataset.target;
+    tabs.forEach((tab) => {
+        const isActive = tab.dataset.target === exerciseName;
 
-            botones.forEach((item) => {
-                const activo = item === boton;
+        tab.classList.toggle("active", isActive);
+        tab.setAttribute("aria-selected", String(isActive));
+    });
 
-                item.classList.toggle("active", activo);
-                item.setAttribute("aria-selected", activo);
-            });
+    panels.forEach((panel) => {
+        const isActive = panel.dataset.exercisePanel === exerciseName;
 
-            paneles.forEach((panel) => {
-                const esObjetivo = panel.id === `panel-${objetivo}`;
+        panel.hidden = !isActive;
+        panel.classList.toggle("active", isActive);
+    });
+}
 
-                panel.classList.toggle("active", esObjetivo);
-                panel.hidden = !esObjetivo;
-            });
+
+function initExerciseNavigation() {
+    document.querySelectorAll(".exercise-tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+            showExercise(tab.dataset.target);
         });
     });
+
+    showExercise("recorrido");
 }
 
 
 /* ---------------------------------------------------------
-   5. Cartografía del recorrido pedagógico
+   5. Lectura de archivos JSON
    --------------------------------------------------------- */
 
-function renderizarNavegacionRecorrido() {
-    const contenedor = document.getElementById("recorrido-navigation");
+async function loadJSON(path) {
+    const response = await fetch(path);
 
-    if (!contenedor) return;
-
-    contenedor.innerHTML = "";
-
-    ORDEN_RECORRIDO.forEach((momento, indice) => {
-        const boton = document.createElement("button");
-
-        boton.type = "button";
-        boton.className = "journey-step";
-
-        if (indice === 0) {
-            boton.classList.add("active");
-        }
-
-        boton.dataset.momento = momento;
-
-        boton.innerHTML = `
-            <span class="journey-dot">
-                ${String(indice + 1).padStart(2, "0")}
-            </span>
-
-            <span class="journey-label">
-                ${escaparHTML(momento)}
-            </span>
-        `;
-
-        boton.addEventListener("click", () => {
-            document
-                .querySelectorAll(".journey-step")
-                .forEach((item) => item.classList.remove("active"));
-
-            boton.classList.add("active");
-
-            renderizarMomentoRecorrido(momento);
-        });
-
-        contenedor.appendChild(boton);
-    });
-}
-
-
-function renderizarMomentoRecorrido(momento) {
-    const contenedor = document.getElementById("recorrido-content");
-
-    if (!contenedor) return;
-
-    const hallazgos = datosRecorrido.filter(
-        (item) => normalizarTexto(item.submomento) === normalizarTexto(momento)
-    );
-
-    if (!hallazgos.length) {
-        contenedor.innerHTML = crearMensajeVacio(
-            "No se encontraron hallazgos para este momento."
+    if (!response.ok) {
+        throw new Error(
+            `No fue posible cargar ${path}. Código ${response.status}.`
         );
-        return;
     }
 
-    const tarjetas = hallazgos
-        .map((item) => crearTarjetaRecorrido(item))
-        .join("");
-
-    contenedor.innerHTML = `
-        <div class="visualization-header">
-            <div>
-                <p class="section-label">Momento del recorrido</p>
-                <h4>${escaparHTML(momento)}</h4>
-            </div>
-
-            <p>
-                ${hallazgos.length}
-                ${hallazgos.length === 1 ? "tema identificado" : "temas identificados"}
-            </p>
-        </div>
-
-        <div class="findings-grid">
-            ${tarjetas}
-        </div>
-    `;
+    return response.json();
 }
 
 
-function crearTarjetaRecorrido(item) {
-    const frecuencia = Number(item.frecuencia) || 0;
-    const numeroDocentes = Number(item.numeroDocentes) || 0;
+async function loadData() {
+    try {
+        const [recorrido, trayectoria] = await Promise.all([
+            loadJSON(DATA_PATHS.recorrido),
+            loadJSON(DATA_PATHS.trayectoria)
+        ]);
 
-    const cita = item.citaRepresentativa
-        ? `
-            <div class="finding-quote">
-                “${escaparHTML(item.citaRepresentativa)}”
-            </div>
-        `
-        : "";
+        APP_DATA.recorrido = recorrido;
+        APP_DATA.trayectoria = trayectoria;
 
-    return `
-        <article class="finding-card">
-            <h5>${escaparHTML(item.tema)}</h5>
+        initRecorrido();
+        initTrayectoria();
 
-            <p>
-                ${escaparHTML(item.lectura)}
-            </p>
+    } catch (error) {
+        console.error("Error al cargar los datos:", error);
 
-            <div class="finding-meta">
-                <span class="meta-pill">
-                    ${frecuencia} ${frecuencia === 1 ? "aporte" : "aportes"}
-                </span>
-
-                <span class="meta-pill">
-                    ${numeroDocentes}
-                    ${numeroDocentes === 1 ? "docente" : "docentes"}
-                </span>
-            </div>
-
-            ${cita}
-        </article>
-    `;
-}
-
-
-/* ---------------------------------------------------------
-   6. Mapa de trayectoria
-   --------------------------------------------------------- */
-
-function obtenerComponentesTrayectoria() {
-    const componentes = datosTrayectoria
-        .filter(
-            (item) =>
-                normalizarTexto(item.tipo) === normalizarTexto("Trayectoria")
-        )
-        .sort(
-            (a, b) =>
-                Number(a.ordenComponente) - Number(b.ordenComponente)
-        )
-        .map((item) => ({
-            nombre: item.componente,
-            orden: Number(item.ordenComponente)
-        }));
-
-    const unicos = new Map();
-
-    componentes.forEach((item) => {
-        const clave = normalizarTexto(item.nombre);
-
-        if (!unicos.has(clave)) {
-            unicos.set(clave, item);
-        }
-    });
-
-    return [...unicos.values()].sort(
-        (a, b) => a.orden - b.orden
-    );
-}
-
-
-function renderizarNavegacionTrayectoria() {
-    const contenedor = document.getElementById(
-        "trayectoria-navigation"
-    );
-
-    if (!contenedor) return;
-
-    const componentes = obtenerComponentesTrayectoria();
-
-    contenedor.innerHTML = "";
-
-    componentes.forEach((componente, indice) => {
-        const boton = document.createElement("button");
-
-        boton.type = "button";
-        boton.className = "trajectory-step";
-
-        if (indice === 0) {
-            boton.classList.add("active");
-        }
-
-        boton.dataset.componente = componente.nombre;
-        boton.textContent = componente.nombre;
-
-        boton.addEventListener("click", () => {
-            document
-                .querySelectorAll(".trajectory-step")
-                .forEach((item) => item.classList.remove("active"));
-
-            boton.classList.add("active");
-
-            renderizarComponenteTrayectoria(componente.nombre);
-        });
-
-        contenedor.appendChild(boton);
-    });
-}
-
-
-function renderizarPrimerComponenteTrayectoria() {
-    const componentes = obtenerComponentesTrayectoria();
-
-    if (!componentes.length) {
-        const contenedor = document.getElementById(
-            "trayectoria-content"
+        showDataError(
+            "No fue posible cargar los datos de la visualización. " +
+            "Verifica que los archivos JSON estén dentro de la carpeta data."
         );
-
-        if (contenedor) {
-            contenedor.innerHTML = crearMensajeVacio(
-                "No se encontraron componentes de trayectoria."
-            );
-        }
-
-        return;
     }
-
-    renderizarComponenteTrayectoria(componentes[0].nombre);
 }
 
 
-function renderizarComponenteTrayectoria(componente) {
-    const contenedor = document.getElementById(
-        "trayectoria-content"
-    );
-
-    if (!contenedor) return;
-
-    const hallazgos = datosTrayectoria.filter(
-        (item) =>
-            normalizarTexto(item.tipo) === normalizarTexto("Trayectoria") &&
-            normalizarTexto(item.componente) === normalizarTexto(componente)
-    );
-
-    if (!hallazgos.length) {
-        contenedor.innerHTML = crearMensajeVacio(
-            "No se encontraron hallazgos para este componente."
-        );
-        return;
-    }
-
-    const tarjetas = hallazgos
-        .map((item) => crearTarjetaTrayectoria(item))
-        .join("");
-
-    contenedor.innerHTML = `
-        <div class="visualization-header">
-            <div>
-                <p class="section-label">Componente</p>
-                <h4>${escaparHTML(componente)}</h4>
-            </div>
-
-            <p>
-                ${hallazgos.length}
-                ${hallazgos.length === 1 ? "hallazgo" : "hallazgos"}
-            </p>
-        </div>
-
-        <div class="findings-grid">
-            ${tarjetas}
-        </div>
-    `;
-}
-
-
-function crearTarjetaTrayectoria(item) {
-    const frecuencia = Number(item.frecuenciaGrupos) || 0;
-
-    const grupos = Array.isArray(item.grupos)
-        ? item.grupos
-        : [];
-
-    const ideas = Array.isArray(item.ideasAsociadas)
-        ? item.ideasAsociadas
-        : [];
-
-    const ideasHTML = ideas.length
-        ? `
-            <div class="finding-quote">
-                <strong>Ideas asociadas:</strong>
-                ${ideas.map((idea) => escaparHTML(idea)).join(" · ")}
-            </div>
-        `
-        : "";
-
-    return `
-        <article class="finding-card">
-            <h5>${escaparHTML(item.hallazgo)}</h5>
-
-            <p>
-                ${escaparHTML(item.lecturaInterpretativa)}
-            </p>
-
-            <div class="finding-meta">
-                <span class="meta-pill">
-                    ${frecuencia} de 4 grupos
-                </span>
-
-                ${
-                    grupos.length
-                        ? `
-                            <span class="meta-pill">
-                                ${grupos.map((grupo) => escaparHTML(grupo)).join(" · ")}
-                            </span>
-                        `
-                        : ""
-                }
-            </div>
-
-            ${ideasHTML}
-        </article>
-    `;
-}
-
-
-/* ---------------------------------------------------------
-   7. Proyección: Mantener · Transformar · Explorar
-   --------------------------------------------------------- */
-
-function renderizarProyeccion() {
-    const contenedor = document.getElementById(
-        "projection-content"
-    );
-
-    if (!contenedor) return;
-
-    const tarjetas = ORDEN_PROYECCION
-        .map((componente) => {
-            const hallazgos = datosTrayectoria.filter(
-                (item) =>
-                    normalizarTexto(item.tipo) ===
-                        normalizarTexto("Proyección") &&
-                    normalizarTexto(item.componente) ===
-                        normalizarTexto(componente)
-            );
-
-            if (!hallazgos.length) return "";
-
-            const elementos = hallazgos
-                .map(
-                    (item) => `
-                        <li>
-                            <strong>${escaparHTML(item.hallazgo)}</strong>
-                            ${
-                                item.lecturaInterpretativa
-                                    ? `
-                                        <span>
-                                            ${escaparHTML(
-                                                item.lecturaInterpretativa
-                                            )}
-                                        </span>
-                                    `
-                                    : ""
-                            }
-                        </li>
-                    `
-                )
-                .join("");
-
-            return `
-                <article class="projection-card">
-                    <h5>${escaparHTML(componente)}</h5>
-                    <ul>${elementos}</ul>
-                </article>
-            `;
-        })
-        .join("");
-
-    contenedor.innerHTML =
-        tarjetas ||
-        crearMensajeVacio(
-            "No se encontraron hallazgos de proyección."
-        );
-}
-
-
-/* ---------------------------------------------------------
-   8. Navegación principal
-   --------------------------------------------------------- */
-
-function configurarNavegacionPrincipal() {
-    const enlaces = document.querySelectorAll(".nav-link");
-
-    enlaces.forEach((enlace) => {
-        enlace.addEventListener("click", () => {
-            enlaces.forEach((item) =>
-                item.classList.remove("active")
-            );
-
-            enlace.classList.add("active");
-        });
-    });
-}
-
-
-/* ---------------------------------------------------------
-   9. Mensajes de estado
-   --------------------------------------------------------- */
-
-function mostrarErrorDatos() {
-    const contenedores = [
-        document.getElementById("recorrido-content"),
-        document.getElementById("trayectoria-content"),
-        document.getElementById("projection-content")
+function showDataError(message) {
+    const containers = [
+        document.getElementById("recorrido-detail"),
+        document.getElementById("trayectoria-detail"),
+        document.getElementById("projection-detail")
     ];
 
-    contenedores.forEach((contenedor) => {
-        if (!contenedor) return;
+    containers.forEach((container) => {
+        if (!container) return;
 
-        contenedor.innerHTML = `
+        container.innerHTML = `
             <div class="data-message">
-                <strong>No fue posible cargar la información.</strong>
-                <p>
-                    Verifica que los archivos de datos estén disponibles
-                    e intenta nuevamente.
-                </p>
+                <p>${escapeHTML(message)}</p>
             </div>
         `;
     });
 }
 
 
-function crearMensajeVacio(mensaje) {
-    return `
+/* ---------------------------------------------------------
+   6. Normalización del JSON del recorrido
+   --------------------------------------------------------- */
+
+function getRecorridoRecords() {
+    const data = APP_DATA.recorrido;
+
+    if (!data) return [];
+
+    if (Array.isArray(data)) {
+        return data;
+    }
+
+    const possibleArrays = [
+        data.datos,
+        data.data,
+        data.registros,
+        data.resultados,
+        data.temas,
+        data.items
+    ];
+
+    return possibleArrays.find(Array.isArray) || [];
+}
+
+
+function getRecorridoMoment(record) {
+    return getFirstValue(
+        record,
+        [
+            "submomento",
+            "Submomento",
+            "momento",
+            "Momento",
+            "etapa",
+            "Etapa"
+        ]
+    );
+}
+
+
+function getThemeName(record) {
+    return getFirstValue(
+        record,
+        [
+            "tema",
+            "Tema",
+            "tema_principal",
+            "Tema principal",
+            "temaPrincipal",
+            "hallazgo",
+            "Hallazgo"
+        ],
+        "Tema identificado"
+    );
+}
+
+
+function getReading(record) {
+    return getFirstValue(
+        record,
+        [
+            "lectura",
+            "Lectura",
+            "interpretacion",
+            "Interpretación",
+            "interpretación",
+            "descripcion",
+            "Descripción",
+            "descripcion_tema",
+            "sintesis",
+            "Síntesis"
+        ]
+    );
+}
+
+
+function getQuote(record) {
+    return getFirstValue(
+        record,
+        [
+            "cita",
+            "Cita",
+            "cita_representativa",
+            "Cita representativa",
+            "citaRepresentativa",
+            "transcripcion",
+            "Transcripción",
+            "texto"
+        ]
+    );
+}
+
+
+function getFrequency(record) {
+    return getFirstValue(
+        record,
+        [
+            "frecuencia",
+            "Frecuencia",
+            "frecuencia_tema",
+            "Frecuencia del tema",
+            "aportes",
+            "Aportes",
+            "n_aportes"
+        ],
+        ""
+    );
+}
+
+
+function getTeachers(record) {
+    return getFirstValue(
+        record,
+        [
+            "docentes",
+            "Docentes",
+            "numero_docentes",
+            "N.º docentes",
+            "N° docentes",
+            "n_docentes",
+            "cantidad_docentes"
+        ],
+        ""
+    );
+}
+
+
+/* ---------------------------------------------------------
+   7. Agrupar registros del recorrido por tema
+   --------------------------------------------------------- */
+
+function groupRecorridoByTheme(records) {
+    const groups = new Map();
+
+    records.forEach((record) => {
+        const theme = getThemeName(record);
+        const key = normalizeText(theme);
+
+        if (!groups.has(key)) {
+            groups.set(key, {
+                tema: theme,
+                lectura: getReading(record),
+                cita: getQuote(record),
+                frecuencia: getFrequency(record),
+                docentes: getTeachers(record),
+                records: []
+            });
+        }
+
+        const group = groups.get(key);
+        group.records.push(record);
+
+        /*
+         * Si el primer registro no contiene alguno de los campos
+         * interpretativos, intentamos recuperarlo de otro registro
+         * perteneciente al mismo tema.
+         */
+        if (!group.lectura) group.lectura = getReading(record);
+        if (!group.cita) group.cita = getQuote(record);
+        if (!group.frecuencia) group.frecuencia = getFrequency(record);
+        if (!group.docentes) group.docentes = getTeachers(record);
+    });
+
+    return Array.from(groups.values());
+}
+
+
+/* ---------------------------------------------------------
+   8. Cartografía del recorrido pedagógico
+   --------------------------------------------------------- */
+
+const RECORRIDO_MOMENTS = [
+    {
+        key: "antes",
+        label: "Antes",
+        number: "01"
+    },
+    {
+        key: "durante",
+        label: "Durante",
+        number: "02"
+    },
+    {
+        key: "despues",
+        label: "Después",
+        number: "03"
+    },
+    {
+        key: "permanece",
+        label: "Permanece",
+        number: "04"
+    }
+];
+
+let activeRecorridoMoment = "antes";
+let activeRecorridoTheme = 0;
+
+
+function initRecorrido() {
+    renderRecorridoNavigation();
+    renderRecorridoMoment(activeRecorridoMoment);
+}
+
+
+function renderRecorridoNavigation() {
+    const container = document.getElementById("recorrido-navigation");
+
+    if (!container) return;
+
+    container.innerHTML = RECORRIDO_MOMENTS
+        .map((moment) => `
+            <button
+                class="journey-step ${
+                    moment.key === activeRecorridoMoment ? "active" : ""
+                }"
+                type="button"
+                data-moment="${moment.key}"
+                aria-pressed="${
+                    moment.key === activeRecorridoMoment
+                }"
+            >
+                <span class="journey-dot">
+                    ${moment.number}
+                </span>
+
+                <span class="journey-label">
+                    ${moment.label}
+                </span>
+            </button>
+        `)
+        .join("");
+
+    container
+        .querySelectorAll(".journey-step")
+        .forEach((button) => {
+            button.addEventListener("click", () => {
+                activeRecorridoMoment = button.dataset.moment;
+                activeRecorridoTheme = 0;
+
+                renderRecorridoNavigation();
+                renderRecorridoMoment(activeRecorridoMoment);
+            });
+        });
+}
+
+
+function getRecordsForMoment(momentKey) {
+    const records = getRecorridoRecords();
+
+    return records.filter((record) => {
+        const moment = normalizeText(getRecorridoMoment(record));
+
+        if (momentKey === "despues") {
+            return moment === "despues";
+        }
+
+        return moment === normalizeText(momentKey);
+    });
+}
+
+
+function renderRecorridoMoment(momentKey) {
+    const records = getRecordsForMoment(momentKey);
+    const themes = groupRecorridoByTheme(records);
+
+    const momentConfig = RECORRIDO_MOMENTS.find(
+        (item) => item.key === momentKey
+    );
+
+    const title = document.getElementById("recorrido-title");
+    const count = document.getElementById("recorrido-count");
+
+    if (title) {
+        title.textContent = momentConfig?.label || momentKey;
+    }
+
+    if (count) {
+        count.textContent =
+            themes.length === 1
+                ? "1 tema identificado"
+                : `${themes.length} temas identificados`;
+    }
+
+    renderThemeList(
+        "recorrido-themes",
+        themes,
+        activeRecorridoTheme,
+        (index) => {
+            activeRecorridoTheme = index;
+
+            renderThemeList(
+                "recorrido-themes",
+                themes,
+                activeRecorridoTheme,
+                arguments.callee
+            );
+
+            renderFinding(
+                "recorrido-detail",
+                themes[activeRecorridoTheme],
+                "Hallazgo del recorrido"
+            );
+        }
+    );
+
+    if (themes.length) {
+        renderFinding(
+            "recorrido-detail",
+            themes[activeRecorridoTheme] || themes[0],
+            "Hallazgo del recorrido"
+        );
+    } else {
+        renderEmptyFinding("recorrido-detail");
+    }
+}
+
+
+/* ---------------------------------------------------------
+   9. Lista de temas reutilizable
+   --------------------------------------------------------- */
+
+function renderThemeList(
+    containerId,
+    themes,
+    activeIndex,
+    onSelect
+) {
+    const container = document.getElementById(containerId);
+
+    if (!container) return;
+
+    if (!themes.length) {
+        container.innerHTML = `
+            <div class="data-message">
+                <p>No se identificaron temas para esta sección.</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = themes
+        .map((theme, index) => `
+            <button
+                class="theme-button ${
+                    index === activeIndex ? "active" : ""
+                }"
+                type="button"
+                data-theme-index="${index}"
+                aria-pressed="${index === activeIndex}"
+            >
+                ${escapeHTML(theme.tema)}
+            </button>
+        `)
+        .join("");
+
+    container
+        .querySelectorAll(".theme-button")
+        .forEach((button) => {
+            button.addEventListener("click", () => {
+                onSelect(Number(button.dataset.themeIndex));
+            });
+        });
+}
+
+
+/* ---------------------------------------------------------
+   10. Detalle de hallazgo
+   --------------------------------------------------------- */
+
+function renderFinding(containerId, theme, label = "Hallazgo") {
+    const container = document.getElementById(containerId);
+
+    if (!container) return;
+
+    if (!theme) {
+        renderEmptyFinding(containerId);
+        return;
+    }
+
+    const frequency = theme.frecuencia;
+    const teachers = theme.docentes;
+
+    const metadata = [];
+
+    if (frequency !== "" && frequency !== null && frequency !== undefined) {
+        metadata.push(`
+            <span class="meta-pill">
+                ${formatNumber(frequency)}
+                ${Number(frequency) === 1 ? "aporte" : "aportes"}
+            </span>
+        `);
+    }
+
+    if (teachers !== "" && teachers !== null && teachers !== undefined) {
+        metadata.push(`
+            <span class="meta-pill">
+                ${formatNumber(teachers)}
+                ${Number(teachers) === 1 ? "docente" : "docentes"}
+            </span>
+        `);
+    }
+
+    container.innerHTML = `
+        <p class="detail-label">
+            ${escapeHTML(label)}
+        </p>
+
+        <h4>
+            ${escapeHTML(theme.tema)}
+        </h4>
+
+        ${
+            theme.lectura
+                ? `
+                    <p class="detail-reading">
+                        ${escapeHTML(theme.lectura)}
+                    </p>
+                `
+                : ""
+        }
+
+        ${
+            metadata.length
+                ? `
+                    <div class="detail-meta">
+                        ${metadata.join("")}
+                    </div>
+                `
+                : ""
+        }
+
+        ${
+            theme.cita
+                ? `
+                    <blockquote class="detail-quote">
+                        ${escapeHTML(theme.cita)}
+                    </blockquote>
+                `
+                : ""
+        }
+    `;
+}
+
+
+function renderEmptyFinding(containerId) {
+    const container = document.getElementById(containerId);
+
+    if (!container) return;
+
+    container.innerHTML = `
         <div class="data-message">
-            <p>${escaparHTML(mensaje)}</p>
+            <p>
+                No hay información disponible para esta sección.
+            </p>
         </div>
     `;
 }
 
 
 /* ---------------------------------------------------------
-   10. Utilidades
+   11. Normalización del JSON de trayectoria
    --------------------------------------------------------- */
 
-function normalizarTexto(valor = "") {
-    return String(valor)
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .trim()
-        .toLowerCase();
+function getTrayectoriaRecords() {
+    const data = APP_DATA.trayectoria;
+
+    if (!data) return [];
+
+    if (Array.isArray(data)) {
+        return data;
+    }
+
+    const possibleArrays = [
+        data.datos,
+        data.data,
+        data.registros,
+        data.resultados,
+        data.temas,
+        data.items
+    ];
+
+    return possibleArrays.find(Array.isArray) || [];
 }
 
 
-function escaparHTML(valor = "") {
-    const elemento = document.createElement("div");
-    elemento.textContent = String(valor);
-    return elemento.innerHTML;
+function getTrajectoryStage(record) {
+    return getFirstValue(
+        record,
+        [
+            "momento",
+            "Momento",
+            "etapa",
+            "Etapa",
+            "categoria",
+            "Categoría",
+            "categoria_principal",
+            "trayectoria",
+            "Trayectoria"
+        ]
+    );
 }
+
+
+/* ---------------------------------------------------------
+   12. Etapas del mapa de trayectoria
+   --------------------------------------------------------- */
+
+const TRAJECTORY_STAGES = [
+    {
+        key: "punto-de-partida",
+        label: "Punto de partida",
+        aliases: [
+            "punto de partida"
+        ]
+    },
+    {
+        key: "descubrimientos",
+        label: "Descubrimientos",
+        aliases: [
+            "descubrimientos"
+        ]
+    },
+    {
+        key: "lo-que-moviliza",
+        label: "Lo que moviliza",
+        aliases: [
+            "lo que moviliza"
+        ]
+    },
+    {
+        key: "genera-estudiantes",
+        label: "Lo que genera",
+        aliases: [
+            "clases de pelicula genera en los estudiantes",
+            "lo que genera",
+            "genera en los estudiantes"
+        ]
+    },
+    {
+        key: "lo-que-transforma",
+        label: "Lo que transforma",
+        aliases: [
+            "lo que transforma"
+        ]
+    },
+    {
+        key: "lo-que-permanece",
+        label: "Lo que permanece",
+        aliases: [
+            "lo que permanece"
+        ]
+    }
+];
+
+
+const PROJECTION_STAGES = [
+    {
+        key: "mantener",
+        label: "Mantener",
+        aliases: ["mantener"]
+    },
+    {
+        key: "transformar",
+        label: "Transformar",
+        aliases: ["transformar"]
+    },
+    {
+        key: "explorar",
+        label: "Explorar",
+        aliases: ["explorar"]
+    }
+];
+
+
+let activeTrajectoryStage = TRAJECTORY_STAGES[0].key;
+let activeProjectionStage = PROJECTION_STAGES[0].key;
+
+let activeTrajectoryTheme = 0;
+let activeProjectionTheme = 0;
+
+
+/* ---------------------------------------------------------
+   13. Inicialización de trayectoria
+   --------------------------------------------------------- */
+
+function initTrayectoria() {
+    initTrajectoryModeSelector();
+
+    renderTrajectoryNavigation(
+        "trayectoria-navigation",
+        TRAJECTORY_STAGES,
+        activeTrajectoryStage,
+        "trayectoria"
+    );
+
+    renderTrajectoryNavigation(
+        "projection-navigation",
+        PROJECTION_STAGES,
+        activeProjectionStage,
+        "proyeccion"
+    );
+
+    renderTrajectoryStage(
+        activeTrajectoryStage,
+        TRAJECTORY_STAGES,
+        "trayectoria"
+    );
+
+    renderTrajectoryStage(
+        activeProjectionStage,
+        PROJECTION_STAGES,
+        "proyeccion"
+    );
+}
+
+
+/* ---------------------------------------------------------
+   14. Trayectoria / Proyección
+   --------------------------------------------------------- */
+
+function initTrajectoryModeSelector() {
+    const buttons = document.querySelectorAll(".mode-button");
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const mode = button.dataset.mode;
+
+            buttons.forEach((item) => {
+                item.classList.toggle(
+                    "active",
+                    item.dataset.mode === mode
+                );
+            });
+
+            const trajectoryView =
+                document.getElementById("trajectory-view");
+
+            const projectionView =
+                document.getElementById("projection-view");
+
+            const showTrajectory = mode === "trayectoria";
+
+            trajectoryView.hidden = !showTrajectory;
+            trajectoryView.classList.toggle(
+                "active",
+                showTrajectory
+            );
+
+            projectionView.hidden = showTrajectory;
+            projectionView.classList.toggle(
+                "active",
+                !showTrajectory
+            );
+        });
+    });
+}
+
+
+/* ---------------------------------------------------------
+   15. Navegación de trayectoria
+   --------------------------------------------------------- */
+
+function renderTrajectoryNavigation(
+    containerId,
+    stages,
+    activeStage,
+    mode
+) {
+    const container = document.getElementById(containerId);
+
+    if (!container) return;
+
+    container.innerHTML = stages
+        .map((stage) => `
+            <button
+                class="trajectory-step ${
+                    stage.key === activeStage ? "active" : ""
+                }"
+                type="button"
+                data-stage="${stage.key}"
+            >
+                ${escapeHTML(stage.label)}
+            </button>
+        `)
+        .join("");
+
+    container
+        .querySelectorAll(".trajectory-step")
+        .forEach((button) => {
+            button.addEventListener("click", () => {
+                const stageKey = button.dataset.stage;
+
+                if (mode === "trayectoria") {
+                    activeTrajectoryStage = stageKey;
+                    activeTrajectoryTheme = 0;
+
+                    renderTrajectoryNavigation(
+                        containerId,
+                        stages,
+                        activeTrajectoryStage,
+                        mode
+                    );
+
+                    renderTrajectoryStage(
+                        activeTrajectoryStage,
+                        stages,
+                        mode
+                    );
+
+                } else {
+                    activeProjectionStage = stageKey;
+                    activeProjectionTheme = 0;
+
+                    renderTrajectoryNavigation(
+                        containerId,
+                        stages,
+                        activeProjectionStage,
+                        mode
+                    );
+
+                    renderTrajectoryStage(
+                        activeProjectionStage,
+                        stages,
+                        mode
+                    );
+                }
+            });
+        });
+}
+
+
+/* ---------------------------------------------------------
+   16. Filtrar registros por etapa
+   --------------------------------------------------------- */
+
+function recordMatchesStage(record, stage) {
+    const recordStage = normalizeText(
+        getTrajectoryStage(record)
+    );
+
+    const aliases = stage.aliases.map(normalizeText);
+
+    return aliases.includes(recordStage);
+}
+
+
+function getRecordsForTrajectoryStage(stage) {
+    return getTrayectoriaRecords().filter((record) =>
+        recordMatchesStage(record, stage)
+    );
+}
+
+
+/* ---------------------------------------------------------
+   17. Render de etapa de trayectoria
+   --------------------------------------------------------- */
+
+function renderTrajectoryStage(stageKey, stages, mode) {
+    const stage = stages.find(
+        (item) => item.key === stageKey
+    );
+
+    if (!stage) return;
+
+    const records = getRecordsForTrajectoryStage(stage);
+    const themes = groupRecorridoByTheme(records);
+
+    const isTrajectory = mode === "trayectoria";
+
+    const titleId = isTrajectory
+        ? "trayectoria-title"
+        : "projection-title";
+
+    const countId = isTrajectory
+        ? "trayectoria-count"
+        : "projection-count";
+
+    const themesId = isTrajectory
+        ? "trayectoria-themes"
+        : "projection-themes";
+
+    const detailId = isTrajectory
+        ? "trayectoria-detail"
+        : "projection-detail";
+
+    const title = document.getElementById(titleId);
+    const count = document.getElementById(countId);
+
+    if (title) {
+        title.textContent = stage.label;
+    }
+
+    if (count) {
+        count.textContent =
+            themes.length === 1
+                ? "1 tema identificado"
+                : `${themes.length} temas identificados`;
+    }
+
+    const activeIndex = isTrajectory
+        ? activeTrajectoryTheme
+        : activeProjectionTheme;
+
+    const selectTheme = (index) => {
+        if (isTrajectory) {
+            activeTrajectoryTheme = index;
+        } else {
+            activeProjectionTheme = index;
+        }
+
+        renderTrajectoryStage(stageKey, stages, mode);
+    };
+
+    renderThemeList(
+        themesId,
+        themes,
+        activeIndex,
+        selectTheme
+    );
+
+    if (themes.length) {
+        renderFinding(
+            detailId,
+            themes[activeIndex] || themes[0],
+            isTrajectory
+                ? "Hallazgo de la trayectoria"
+                : "Proyección"
+        );
+    } else {
+        renderEmptyFinding(detailId);
+    }
+}
+
+
+/* ---------------------------------------------------------
+   18. Inicio de la aplicación
+   --------------------------------------------------------- */
+
+document.addEventListener("DOMContentLoaded", () => {
+    initMainNavigation();
+    initExerciseNavigation();
+    loadData();
+});
