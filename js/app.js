@@ -706,7 +706,8 @@ function getRecorridoThemes(momentKey) {
         );
 
 
-    return themeNames.map(
+   return themeNames
+    .map(
         themeName => {
 
             const matching =
@@ -727,9 +728,21 @@ function getRecorridoThemes(momentKey) {
             );
 
         }
+    )
+    .sort(
+        (a, b) => {
+
+            const aportesA =
+                Number(a.frecuencia) || 0;
+
+            const aportesB =
+                Number(b.frecuencia) || 0;
+
+            return aportesB - aportesA;
+
+        }
     );
 
-}
 
 
 /* =========================================================
