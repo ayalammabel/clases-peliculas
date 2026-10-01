@@ -1,759 +1,2068 @@
 /* =========================================================
    CLASES DE PELÍCULA
-   Visualización de resultados cualitativos
-   ========================================================= */
-
-"use strict";
+   Visualización cualitativa
+========================================================= */
 
 
 /* =========================================================
-   1. CONFIGURACIÓN
-   ========================================================= */
+   01. CONFIGURACIÓN
+========================================================= */
 
 const DATA_PATHS = {
     recorrido: "data/docentes-recorrido.json",
     trayectoria: "data/docentes-trayectoria.json"
 };
 
-const APP_DATA = {
-    recorrido: null,
-    trayectoria: null
-};
+const MOMENTOS_RECORRIDO = [
+    {
+        key: "Antes",
+        number: "01",
+        intro: "La experiencia comienza antes de llegar a la sala."
+    },
+    {
+        key: "Durante",
+        number: "02",
+        intro: "El encuentro con el cine activa experiencias, emociones, conversaciones y nuevas formas de participación."
+    },
+    {
+        key: "Después",
+        number: "03",
+        intro: "La experiencia continúa cuando lo vivido vuelve al aula y se convierte en conversación, reflexión y creación."
+    },
+    {
+        key: "Permanece",
+        number: "04",
+        intro: "Algunos aprendizajes, intereses y vínculos con el cine permanecen más allá de la experiencia inmediata."
+    }
+];
+
+
+const ETAPAS_TRAYECTORIA = [
+    "Punto de partida",
+    "Descubrimientos",
+    "Lo que moviliza",
+    "Lo que genera",
+    "Lo que transforma",
+    "Lo que permanece"
+];
+
+
+const ETAPAS_PROYECCION = [
+    "Mantener",
+    "Transformar",
+    "Explorar"
+];
 
 
 /* =========================================================
-   2. UTILIDADES
-   ========================================================= */
+   02. ESTADO
+========================================================= */
 
-function normalizeText(value = "") {
-    return String(value)
+let recorridoData = [];
+let trayectoriaData = [];
+
+let recorridoMomentIndex = 0;
+let recorridoThemeIndex = 0;
+
+let trayectoriaMode = "trayectoria";
+let trayectoriaStageIndex = 0;
+let projectionStageIndex = 0;
+
+
+/* =========================================================
+   03. UTILIDADES
+========================================================= */
+
+function normalizeText(value) {
+    return String(value ?? "")
         .trim()
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
+        .toLocaleLowerCase("es");
 }
 
 
-function getFirstValue(object, keys, fallback = "") {
-    if (!object || typeof object !== "object") {
-        return fallback;
-    }
+function escapeHTML(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+function firstValue(object, keys, fallback = "") {
 
     for (const key of keys) {
+
         if (
             Object.prototype.hasOwnProperty.call(object, key) &&
             object[key] !== null &&
             object[key] !== undefined &&
-            object[key] !== ""
+            String(object[key]).trim() !== ""
         ) {
             return object[key];
         }
+
     }
 
     return fallback;
 }
 
 
-function escapeHTML(value = "") {
-    return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+function unique(values) {
+
+    return [
+        ...new Set(
+            values.filter(
+                value =>
+                    value !== null &&
+                    value !== undefined &&
+                    String(value).trim() !== ""
+            )
+        )
+    ];
+
 }
 
 
-function formatNumber(value) {
-    const number = Number(value);
+function findMatchingValue(value, options) {
 
-    if (Number.isNaN(number)) {
-        return value ?? "";
-    }
+    const normalized = normalizeText(value);
 
-    return new Intl.NumberFormat("es-CO").format(number);
-}
-
-
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
-
-
-/* =========================================================
-   3. NAVEGACIÓN PRINCIPAL
-   Inicio · Docentes · Acerca del estudio
-   ========================================================= */
-
-function showView(viewName, updateHash = true) {
-    const panels = document.querySelectorAll("[data-view-panel]");
-    const navLinks = document.querySelectorAll(".nav-link");
-
-    panels.forEach((panel) => {
-        const isActive = panel.dataset.viewPanel === viewName;
-
-        panel.hidden = !isActive;
-        panel.classList.toggle("active", isActive);
-    });
-
-    navLinks.forEach((link) => {
-        const isActive = link.dataset.view === viewName;
-
-        link.classList.toggle("active", isActive);
-
-        if (isActive) {
-            link.setAttribute("aria-current", "page");
-        } else {
-            link.removeAttribute("aria-current");
-        }
-    });
-
-    if (updateHash) {
-        history.replaceState(null, "", `#${viewName}`);
-    }
-
-    scrollToTop();
-}
-
-
-function initMainNavigation() {
-    const viewLinks = document.querySelectorAll(".view-link");
-
-    viewLinks.forEach((button) => {
-        button.addEventListener("click", () => {
-            const targetView = button.dataset.view;
-
-            if (targetView) {
-                showView(targetView);
-            }
-        });
-    });
-
-    const hash = window.location.hash.replace("#", "");
-    const validViews = ["inicio", "docentes", "acerca"];
-
-    if (validViews.includes(hash)) {
-        showView(hash, false);
-    } else {
-        showView("inicio", false);
-    }
-}
-
-
-/* =========================================================
-   4. SELECTOR DE EJERCICIOS DE DOCENTES
-   ========================================================= */
-
-function showExercise(exerciseName) {
-    const tabs = document.querySelectorAll(".exercise-tab");
-    const panels = document.querySelectorAll(
-        "[data-exercise-panel]"
+    return options.find(
+        option => normalizeText(option) === normalized
     );
 
-    tabs.forEach((tab) => {
-        const isActive = tab.dataset.target === exerciseName;
-
-        tab.classList.toggle("active", isActive);
-        tab.setAttribute(
-            "aria-selected",
-            String(isActive)
-        );
-    });
-
-    panels.forEach((panel) => {
-        const isActive =
-            panel.dataset.exercisePanel === exerciseName;
-
-        panel.hidden = !isActive;
-        panel.classList.toggle("active", isActive);
-    });
-}
-
-
-function initExerciseNavigation() {
-    const tabs = document.querySelectorAll(".exercise-tab");
-
-    tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-            showExercise(tab.dataset.target);
-        });
-    });
-
-    showExercise("recorrido");
 }
 
 
 /* =========================================================
-   5. CARGA DE DATOS
-   ========================================================= */
+   04. NORMALIZACIÓN DE DATOS
+========================================================= */
+
+function normalizeRecord(record) {
+
+    return {
+
+        raw: record,
+
+        momento: firstValue(
+            record,
+            [
+                "momento",
+                "Momento",
+                "submomento",
+                "Submomento",
+                "etapa",
+                "Etapa",
+                "categoria",
+                "Categoría"
+            ]
+        ),
+
+        tema: firstValue(
+            record,
+            [
+                "tema",
+                "Tema",
+                "tema_principal",
+                "Tema principal",
+                "temaPrincipal",
+                "hallazgo",
+                "Hallazgo"
+            ],
+            "Hallazgo"
+        ),
+
+        lectura: firstValue(
+            record,
+            [
+                "lectura",
+                "Lectura",
+                "interpretacion",
+                "Interpretación",
+                "descripcion",
+                "Descripción",
+                "sintesis",
+                "Síntesis",
+                "analisis",
+                "Análisis"
+            ]
+        ),
+
+        cita: firstValue(
+            record,
+            [
+                "cita",
+                "Cita",
+                "cita_representativa",
+                "Cita representativa",
+                "citaRepresentativa",
+                "transcripcion",
+                "Transcripción",
+                "ejemplo",
+                "Ejemplo"
+            ]
+        ),
+
+        frecuencia: firstValue(
+            record,
+            [
+                "frecuencia",
+                "Frecuencia",
+                "aportes",
+                "Aportes",
+                "numero_aportes",
+                "Número de aportes",
+                "n_aportes"
+            ]
+        ),
+
+        docentes: firstValue(
+            record,
+            [
+                "docentes",
+                "Docentes",
+                "numero_docentes",
+                "Número de docentes",
+                "N.º docentes",
+                "N° docentes",
+                "n_docentes"
+            ]
+        )
+
+    };
+
+}
+
+
+/* =========================================================
+   05. CARGA DE DATOS
+========================================================= */
 
 async function loadJSON(path) {
+
     const response = await fetch(path);
 
     if (!response.ok) {
         throw new Error(
-            `No fue posible cargar ${path}. Código ${response.status}.`
+            `No fue posible cargar ${path}`
         );
     }
 
     return response.json();
+
 }
 
 
 async function loadData() {
+
     try {
-        const [recorrido, trayectoria] = await Promise.all([
-            loadJSON(DATA_PATHS.recorrido),
-            loadJSON(DATA_PATHS.trayectoria)
-        ]);
 
-        APP_DATA.recorrido = recorrido;
-        APP_DATA.trayectoria = trayectoria;
+        const [recorridoRaw, trayectoriaRaw] =
+            await Promise.all([
+                loadJSON(DATA_PATHS.recorrido),
+                loadJSON(DATA_PATHS.trayectoria)
+            ]);
 
-        initRecorrido();
-        initTrayectoria();
 
-    } catch (error) {
+        recorridoData =
+            extractArray(recorridoRaw)
+                .map(normalizeRecord);
+
+
+        trayectoriaData =
+            extractArray(trayectoriaRaw)
+                .map(normalizeRecord);
+
+
+        initializeRecorrido();
+        initializeTrayectoria();
+
+    }
+
+    catch (error) {
+
         console.error(
-            "Error al cargar los datos:",
+            "Error cargando los datos:",
             error
         );
 
-        showDataError(
-            "No fue posible cargar los datos de la visualización. " +
-            "Verifica que los archivos JSON estén dentro de la carpeta data."
-        );
+        renderDataError();
+
     }
+
 }
 
 
-function showDataError(message) {
-    const containers = [
-        document.getElementById("recorrido-detail"),
-        document.getElementById("trayectoria-detail"),
-        document.getElementById("projection-detail")
-    ];
-
-    containers.forEach((container) => {
-        if (!container) {
-            return;
-        }
-
-        container.innerHTML = `
-            <div class="data-message">
-                <p>${escapeHTML(message)}</p>
-            </div>
-        `;
-    });
-}
-
-
-/* =========================================================
-   6. DATOS DEL RECORRIDO PEDAGÓGICO
-   ========================================================= */
-
-function getRecorridoRecords() {
-    const data = APP_DATA.recorrido;
-
-    if (!data) {
-        return [];
-    }
+function extractArray(data) {
 
     if (Array.isArray(data)) {
         return data;
     }
 
-    const possibleArrays = [
-        data.datos,
-        data.data,
-        data.registros,
-        data.resultados,
-        data.temas,
-        data.items
+
+    const possibleKeys = [
+        "data",
+        "datos",
+        "resultados",
+        "recorrido",
+        "trayectoria",
+        "items"
     ];
 
-    return possibleArrays.find(Array.isArray) || [];
+
+    for (const key of possibleKeys) {
+
+        if (Array.isArray(data?.[key])) {
+            return data[key];
+        }
+
+    }
+
+
+    return [];
+
 }
 
 
-function getRecorridoMoment(record) {
-    return getFirstValue(
-        record,
-        [
-            "submomento",
-            "Submomento",
-            "momento",
-            "Momento",
-            "etapa",
-            "Etapa"
-        ]
-    );
-}
+function renderDataError() {
 
+    const recorridoDetail =
+        document.getElementById(
+            "recorrido-detail"
+        );
 
-function getThemeName(record) {
-    return getFirstValue(
-        record,
-        [
-            "tema",
-            "Tema",
-            "tema_principal",
-            "Tema principal",
-            "temaPrincipal",
-            "hallazgo",
-            "Hallazgo"
-        ],
-        "Tema identificado"
-    );
-}
+    if (recorridoDetail) {
 
+        recorridoDetail.innerHTML = `
+            <h3>No fue posible cargar los resultados</h3>
 
-function getReading(record) {
-    return getFirstValue(
-        record,
-        [
-            "lectura",
-            "Lectura",
-            "interpretacion",
-            "Interpretación",
-            "interpretación",
-            "descripcion",
-            "Descripción",
-            "descripcion_tema",
-            "sintesis",
-            "Síntesis"
-        ]
-    );
-}
+            <p>
+                Revisa que los archivos JSON se encuentren
+                dentro de la carpeta <strong>data</strong>.
+            </p>
+        `;
 
+    }
 
-function getQuote(record) {
-    return getFirstValue(
-        record,
-        [
-            "cita",
-            "Cita",
-            "cita_representativa",
-            "Cita representativa",
-            "citaRepresentativa",
-            "transcripcion",
-            "Transcripción",
-            "texto"
-        ]
-    );
-}
-
-
-function getFrequency(record) {
-    return getFirstValue(
-        record,
-        [
-            "frecuencia",
-            "Frecuencia",
-            "frecuencia_tema",
-            "Frecuencia del tema",
-            "aportes",
-            "Aportes",
-            "n_aportes"
-        ],
-        ""
-    );
-}
-
-
-function getTeachers(record) {
-    return getFirstValue(
-        record,
-        [
-            "docentes",
-            "Docentes",
-            "numero_docentes",
-            "N.º docentes",
-            "N° docentes",
-            "n_docentes",
-            "cantidad_docentes"
-        ],
-        ""
-    );
 }
 
 
 /* =========================================================
-   7. AGRUPACIÓN POR TEMA
-   ========================================================= */
+   06. NAVEGACIÓN PRINCIPAL
+========================================================= */
 
-function groupRecordsByTheme(records) {
-    const groups = new Map();
+function initializeMainNavigation() {
 
-    records.forEach((record) => {
-        const theme = getThemeName(record);
-        const key = normalizeText(theme);
+    const links =
+        document.querySelectorAll(".view-link");
 
-        if (!groups.has(key)) {
-            groups.set(key, {
-                tema: theme,
-                lectura: getReading(record),
-                cita: getQuote(record),
-                frecuencia: getFrequency(record),
-                docentes: getTeachers(record),
-                records: []
-            });
-        }
 
-        const group = groups.get(key);
+    links.forEach(link => {
 
-        group.records.push(record);
+        link.addEventListener(
+            "click",
+            () => {
 
-        if (!group.lectura) {
-            group.lectura = getReading(record);
-        }
+                const target =
+                    link.dataset.view;
 
-        if (!group.cita) {
-            group.cita = getQuote(record);
-        }
+                showView(target);
 
-        if (!group.frecuencia) {
-            group.frecuencia = getFrequency(record);
-        }
+                window.location.hash =
+                    target;
 
-        if (!group.docentes) {
-            group.docentes = getTeachers(record);
-        }
+            }
+        );
+
     });
 
-    return Array.from(groups.values());
+
+    window.addEventListener(
+        "hashchange",
+        () => {
+
+            const target =
+                window.location.hash
+                    .replace("#", "");
+
+            if (
+                [
+                    "inicio",
+                    "docentes",
+                    "acerca"
+                ].includes(target)
+            ) {
+                showView(target);
+            }
+
+        }
+    );
+
+
+    const initial =
+        window.location.hash
+            .replace("#", "");
+
+
+    if (
+        [
+            "inicio",
+            "docentes",
+            "acerca"
+        ].includes(initial)
+    ) {
+        showView(initial);
+    }
+
+    else {
+        showView("inicio");
+    }
+
+}
+
+
+function showView(target) {
+
+    const panels =
+        document.querySelectorAll(
+            "[data-view-panel]"
+        );
+
+    panels.forEach(panel => {
+
+        const active =
+            panel.dataset.viewPanel === target;
+
+        panel.hidden = !active;
+
+        panel.classList.toggle(
+            "active",
+            active
+        );
+
+    });
+
+
+    document
+        .querySelectorAll(".nav-link")
+        .forEach(link => {
+
+            link.classList.toggle(
+                "active",
+                link.dataset.view === target
+            );
+
+        });
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
 }
 
 
 /* =========================================================
-   8. CARTOGRAFÍA DEL RECORRIDO PEDAGÓGICO
-   ========================================================= */
+   07. SELECTOR DE EJERCICIOS
+========================================================= */
 
-const RECORRIDO_MOMENTS = [
-    {
-        key: "antes",
-        label: "Antes",
-        number: "01"
-    },
-    {
-        key: "durante",
-        label: "Durante",
-        number: "02"
-    },
-    {
-        key: "despues",
-        label: "Después",
-        number: "03"
-    },
-    {
-        key: "permanece",
-        label: "Permanece",
-        number: "04"
-    }
-];
+function initializeExerciseNavigation() {
 
-let activeRecorridoMoment = "antes";
-let activeRecorridoTheme = 0;
+    const tabs =
+        document.querySelectorAll(
+            ".exercise-tab"
+        );
 
 
-function initRecorrido() {
-    renderRecorridoNavigation();
-    renderRecorridoMoment(activeRecorridoMoment);
+    tabs.forEach(tab => {
+
+        tab.addEventListener(
+            "click",
+            () => {
+
+                const target =
+                    tab.dataset.target;
+
+
+                tabs.forEach(item => {
+
+                    const active =
+                        item === tab;
+
+                    item.classList.toggle(
+                        "active",
+                        active
+                    );
+
+                    item.setAttribute(
+                        "aria-selected",
+                        active
+                    );
+
+                });
+
+
+                document
+                    .querySelectorAll(
+                        "[data-exercise-panel]"
+                    )
+                    .forEach(panel => {
+
+                        const active =
+                            panel.dataset.exercisePanel
+                            === target;
+
+                        panel.hidden =
+                            !active;
+
+                        panel.classList.toggle(
+                            "active",
+                            active
+                        );
+
+                    });
+
+            }
+        );
+
+    });
+
 }
 
 
+/* =========================================================
+   08. CARTOGRAFÍA DEL RECORRIDO
+========================================================= */
+
+function initializeRecorrido() {
+
+    recorridoMomentIndex = 0;
+    recorridoThemeIndex = 0;
+
+    renderRecorridoNavigation();
+    renderRecorrido();
+
+    initializeStoryControls();
+
+}
+
+
+/* =========================================================
+   09. NAVEGACIÓN DE MOMENTOS
+========================================================= */
+
 function renderRecorridoNavigation() {
+
     const container =
-        document.getElementById("recorrido-navigation");
+        document.getElementById(
+            "recorrido-navigation"
+        );
+
 
     if (!container) {
         return;
     }
 
-    container.innerHTML = RECORRIDO_MOMENTS
-        .map((moment) => {
-            const isActive =
-                moment.key === activeRecorridoMoment;
 
-            return `
-                <button
-                    class="journey-step ${
-                        isActive ? "active" : ""
-                    }"
-                    type="button"
-                    data-moment="${moment.key}"
-                    aria-pressed="${isActive}"
-                >
-                    <span class="journey-dot">
-                        ${moment.number}
-                    </span>
+    container.innerHTML = "";
 
-                    <span class="journey-label">
-                        ${escapeHTML(moment.label)}
-                    </span>
-                </button>
+
+    MOMENTOS_RECORRIDO.forEach(
+        (momento, index) => {
+
+            const button =
+                document.createElement("button");
+
+            button.type = "button";
+
+            button.className =
+                index === recorridoMomentIndex
+                    ? "active"
+                    : "";
+
+
+            button.innerHTML = `
+                <span>
+                    ${escapeHTML(momento.number)}
+                </span>
+
+                <span>
+                    ${escapeHTML(momento.key)}
+                </span>
             `;
-        })
-        .join("");
 
-    const buttons =
-        container.querySelectorAll(".journey-step");
 
-    buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-            activeRecorridoMoment =
-                button.dataset.moment;
-
-            activeRecorridoTheme = 0;
-
-            renderRecorridoNavigation();
-            renderRecorridoMoment(
-                activeRecorridoMoment
+            button.setAttribute(
+                "aria-label",
+                `Ir al momento ${momento.key}`
             );
-        });
-    });
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    recorridoMomentIndex =
+                        index;
+
+                    recorridoThemeIndex =
+                        0;
+
+                    renderRecorridoNavigation();
+                    renderRecorrido();
+
+                    scrollStoryIntoView();
+
+                }
+            );
+
+
+            container.appendChild(
+                button
+            );
+
+        }
+    );
+
 }
 
 
-function getRecordsForMoment(momentKey) {
-    const records = getRecorridoRecords();
+/* =========================================================
+   10. OBTENER TEMAS DEL MOMENTO
+========================================================= */
 
-    return records.filter((record) => {
-        const recordMoment =
-            normalizeText(
-                getRecorridoMoment(record)
+function getRecorridoRecords(momentKey) {
+
+    return recorridoData.filter(
+        record => {
+
+            return normalizeText(
+                record.momento
+            ) === normalizeText(
+                momentKey
             );
 
-        return recordMoment ===
-            normalizeText(momentKey);
-    });
+        }
+    );
+
 }
 
 
-function renderRecorridoMoment(momentKey) {
+function getRecorridoThemes(momentKey) {
+
     const records =
-        getRecordsForMoment(momentKey);
+        getRecorridoRecords(
+            momentKey
+        );
+
+
+    const themeNames =
+        unique(
+            records.map(
+                record =>
+                    record.tema
+            )
+        );
+
+
+    return themeNames.map(
+        themeName => {
+
+            const matching =
+                records.filter(
+                    record =>
+                        normalizeText(
+                            record.tema
+                        ) ===
+                        normalizeText(
+                            themeName
+                        )
+                );
+
+
+            return combineThemeRecords(
+                themeName,
+                matching
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   11. AGRUPAR REGISTROS POR TEMA
+========================================================= */
+
+function combineThemeRecords(
+    themeName,
+    records
+) {
+
+    if (!records.length) {
+
+        return {
+            tema: themeName,
+            lectura: "",
+            cita: "",
+            frecuencia: "",
+            docentes: ""
+        };
+
+    }
+
+
+    const principal =
+        records[0];
+
+
+    const lectura =
+        firstNonEmpty(
+            records.map(
+                record =>
+                    record.lectura
+            )
+        );
+
+
+    const cita =
+        firstNonEmpty(
+            records.map(
+                record =>
+                    record.cita
+            )
+        );
+
+
+    /*
+       Si el JSON ya trae una frecuencia consolidada,
+       se respeta ese valor.
+
+       Si no la trae y hay varias filas por tema,
+       se utiliza el número de registros como recurrencia.
+    */
+
+    let frecuencia =
+        firstNonEmpty(
+            records.map(
+                record =>
+                    record.frecuencia
+            )
+        );
+
+
+    if (
+        frecuencia === "" &&
+        records.length > 1
+    ) {
+        frecuencia =
+            records.length;
+    }
+
+
+    const docentes =
+        firstNonEmpty(
+            records.map(
+                record =>
+                    record.docentes
+            )
+        );
+
+
+    return {
+        tema: themeName,
+        lectura,
+        cita,
+        frecuencia,
+        docentes,
+        raw: principal.raw
+    };
+
+}
+
+
+function firstNonEmpty(values) {
+
+    return values.find(
+        value =>
+            value !== null &&
+            value !== undefined &&
+            String(value).trim() !== ""
+    ) ?? "";
+
+}
+
+
+/* =========================================================
+   12. RENDER DEL CAPÍTULO
+========================================================= */
+
+function renderRecorrido() {
+
+    const momento =
+        MOMENTOS_RECORRIDO[
+            recorridoMomentIndex
+        ];
+
 
     const themes =
-        groupRecordsByTheme(records);
-
-    const momentConfig =
-        RECORRIDO_MOMENTS.find(
-            (item) => item.key === momentKey
+        getRecorridoThemes(
+            momento.key
         );
 
-    const title =
-        document.getElementById(
-            "recorrido-title"
+
+    if (
+        recorridoThemeIndex >=
+        themes.length
+    ) {
+        recorridoThemeIndex = 0;
+    }
+
+
+    updateStoryChapterHeader(
+        momento,
+        themes.length
+    );
+
+
+    renderStoryThemeDots(
+        themes
+    );
+
+
+    if (!themes.length) {
+
+        renderEmptyRecorrido(
+            momento
         );
+
+        updateStoryControls(
+            0
+        );
+
+        return;
+    }
+
+
+    const selectedTheme =
+        themes[
+            recorridoThemeIndex
+        ];
+
+
+    renderStoryFinding(
+        selectedTheme
+    );
+
+
+    updateStoryControls(
+        themes.length
+    );
+
+
+    updateNextMoment(
+        momento
+    );
+
+}
+
+
+/* =========================================================
+   13. ENCABEZADO DEL CAPÍTULO
+========================================================= */
+
+function updateStoryChapterHeader(
+    momento,
+    themeCount
+) {
+
+    setText(
+        "story-number",
+        momento.number
+    );
+
+    setText(
+        "story-step-number",
+        momento.number
+    );
+
+    setText(
+        "story-step-total",
+        String(
+            MOMENTOS_RECORRIDO.length
+        ).padStart(2, "0")
+    );
+
+    setText(
+        "story-moment-label",
+        momento.key
+    );
+
+    setText(
+        "recorrido-title",
+        momento.key
+    );
+
+    setText(
+        "story-introduction",
+        momento.intro
+    );
+
 
     const count =
         document.getElementById(
             "recorrido-count"
         );
 
-    if (title) {
-        title.textContent =
-            momentConfig?.label || momentKey;
-    }
 
     if (count) {
+
         count.textContent =
-            themes.length === 1
+            themeCount === 1
                 ? "1 tema identificado"
-                : `${themes.length} temas identificados`;
+                : `${themeCount} temas identificados`;
+
     }
 
-    const selectTheme = (index) => {
-        activeRecorridoTheme = index;
+}
 
-        renderRecorridoMoment(momentKey);
-    };
 
-    renderThemeList(
-        "recorrido-themes",
-        themes,
-        activeRecorridoTheme,
-        selectTheme
-    );
+/* =========================================================
+   14. RENDER DEL HALLAZGO
+========================================================= */
 
-    if (themes.length > 0) {
-        const selectedTheme =
-            themes[activeRecorridoTheme] ||
-            themes[0];
+function renderStoryFinding(theme) {
 
-        renderFinding(
-            "recorrido-detail",
-            selectedTheme,
-            "Hallazgo del recorrido"
-        );
-    } else {
-        renderEmptyFinding(
+    const container =
+        document.getElementById(
             "recorrido-detail"
         );
-    }
-}
 
-
-/* =========================================================
-   9. LISTA DE TEMAS
-   ========================================================= */
-
-function renderThemeList(
-    containerId,
-    themes,
-    activeIndex,
-    onSelect
-) {
-    const container =
-        document.getElementById(containerId);
 
     if (!container) {
         return;
     }
 
-    if (!themes.length) {
-        container.innerHTML = `
-            <div class="data-message">
-                <p>
-                    No se identificaron temas
-                    para esta sección.
+
+    const stats = [];
+
+
+    if (
+        theme.frecuencia !== "" &&
+        theme.frecuencia !== null &&
+        theme.frecuencia !== undefined
+    ) {
+
+        stats.push(
+            `<span>${escapeHTML(theme.frecuencia)} aportes</span>`
+        );
+
+    }
+
+
+    if (
+        theme.docentes !== "" &&
+        theme.docentes !== null &&
+        theme.docentes !== undefined
+    ) {
+
+        stats.push(
+            `<span>${escapeHTML(theme.docentes)} docentes</span>`
+        );
+
+    }
+
+
+    const readingHTML =
+        theme.lectura
+            ? `
+                <p class="finding-text">
+                    ${escapeHTML(theme.lectura)}
                 </p>
-            </div>
-        `;
-
-        return;
-    }
-
-    container.innerHTML = themes
-        .map((theme, index) => {
-            const isActive =
-                index === activeIndex;
-
-            return `
-                <button
-                    class="theme-button ${
-                        isActive ? "active" : ""
-                    }"
-                    type="button"
-                    data-theme-index="${index}"
-                    aria-pressed="${isActive}"
-                >
-                    ${escapeHTML(theme.tema)}
-                </button>
-            `;
-        })
-        .join("");
-
-    const buttons =
-        container.querySelectorAll(
-            ".theme-button"
-        );
-
-    buttons.forEach((button) => {
-        button.addEventListener(
-            "click",
-            () => {
-                const index = Number(
-                    button.dataset.themeIndex
-                );
-
-                onSelect(index);
-            }
-        );
-    });
-}
+            `
+            : "";
 
 
-/* =========================================================
-   10. DETALLE DEL HALLAZGO
-   ========================================================= */
+    const statsHTML =
+        stats.length
+            ? `
+                <div class="story-stats">
+                    ${stats.join("")}
+                </div>
+            `
+            : "";
 
-function renderFinding(
-    containerId,
-    theme,
-    label = "Hallazgo"
-) {
-    const container =
-        document.getElementById(containerId);
 
-    if (!container) {
-        return;
-    }
+    const quoteHTML =
+        theme.cita
+            ? `
+                <blockquote>
+                    <p>
+                        “${escapeHTML(theme.cita)}”
+                    </p>
+                </blockquote>
+            `
+            : "";
 
-    if (!theme) {
-        renderEmptyFinding(containerId);
-        return;
-    }
-
-    const metadata = [];
-
-    const frequency = theme.frecuencia;
-    const teachers = theme.docentes;
-
-    if (
-        frequency !== "" &&
-        frequency !== null &&
-        frequency !== undefined
-    ) {
-        metadata.push(`
-            <span class="meta-pill">
-                ${formatNumber(frequency)}
-                ${
-                    Number(frequency) === 1
-                        ? "aporte"
-                        : "aportes"
-                }
-            </span>
-        `);
-    }
-
-    if (
-        teachers !== "" &&
-        teachers !== null &&
-        teachers !== undefined
-    ) {
-        metadata.push(`
-            <span class="meta-pill">
-                ${formatNumber(teachers)}
-                ${
-                    Number(teachers) === 1
-                        ? "docente"
-                        : "docentes"
-                }
-            </span>
-        `);
-    }
 
     container.innerHTML = `
-        <p class="detail-label">
-            ${escapeHTML(label)}
+
+        <p class="finding-kicker">
+            Hallazgo del recorrido
         </p>
 
         <h4>
             ${escapeHTML(theme.tema)}
         </h4>
 
+        ${readingHTML}
+
+        ${statsHTML}
+
+        ${quoteHTML}
+
+    `;
+
+}
+
+
+/* =========================================================
+   15. ESTADO SIN TEMAS
+========================================================= */
+
+function renderEmptyRecorrido(
+    momento
+) {
+
+    const container =
+        document.getElementById(
+            "recorrido-detail"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    container.innerHTML = `
+
+        <p class="finding-kicker">
+            ${escapeHTML(momento.key)}
+        </p>
+
+        <h4>
+            No se encontraron hallazgos
+        </h4>
+
+        <p class="finding-text">
+            No hay registros asociados a este momento
+            en el archivo de datos.
+        </p>
+
+    `;
+
+}
+
+
+/* =========================================================
+   16. INDICADORES DE TEMAS
+========================================================= */
+
+function renderStoryThemeDots(
+    themes
+) {
+
+    const container =
+        document.getElementById(
+            "recorrido-themes"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    themes.forEach(
+        (theme, index) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.className =
+                index === recorridoThemeIndex
+                    ? "active"
+                    : "";
+
+
+            button.setAttribute(
+                "aria-label",
+                `Ver ${theme.tema}`
+            );
+
+
+            button.setAttribute(
+                "title",
+                theme.tema
+            );
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    recorridoThemeIndex =
+                        index;
+
+                    renderRecorrido();
+
+                }
+            );
+
+
+            container.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   17. CONTROLES ANTERIOR / SIGUIENTE
+========================================================= */
+
+function initializeStoryControls() {
+
+    const previous =
+        document.getElementById(
+            "story-prev-theme"
+        );
+
+    const next =
+        document.getElementById(
+            "story-next-theme"
+        );
+
+    const nextMoment =
+        document.getElementById(
+            "story-next-moment"
+        );
+
+
+    if (previous) {
+
+        previous.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    recorridoThemeIndex > 0
+                ) {
+
+                    recorridoThemeIndex--;
+
+                    renderRecorrido();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    if (next) {
+
+        next.addEventListener(
+            "click",
+            () => {
+
+                const momento =
+                    MOMENTOS_RECORRIDO[
+                        recorridoMomentIndex
+                    ];
+
+
+                const themes =
+                    getRecorridoThemes(
+                        momento.key
+                    );
+
+
+                if (
+                    recorridoThemeIndex <
+                    themes.length - 1
+                ) {
+
+                    recorridoThemeIndex++;
+
+                    renderRecorrido();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    if (nextMoment) {
+
+        nextMoment.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    recorridoMomentIndex <
+                    MOMENTOS_RECORRIDO.length - 1
+                ) {
+
+                    recorridoMomentIndex++;
+
+                    recorridoThemeIndex = 0;
+
+                    renderRecorridoNavigation();
+                    renderRecorrido();
+
+                    scrollStoryIntoView();
+
+                }
+
+            }
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   18. ACTUALIZAR CONTROLES
+========================================================= */
+
+function updateStoryControls(
+    totalThemes
+) {
+
+    const previous =
+        document.getElementById(
+            "story-prev-theme"
+        );
+
+    const next =
+        document.getElementById(
+            "story-next-theme"
+        );
+
+
+    if (previous) {
+
+        previous.disabled =
+            totalThemes === 0 ||
+            recorridoThemeIndex === 0;
+
+    }
+
+
+    if (next) {
+
+        next.disabled =
+            totalThemes === 0 ||
+            recorridoThemeIndex >=
+            totalThemes - 1;
+
+    }
+
+
+    setText(
+        "story-theme-current",
+        totalThemes
+            ? recorridoThemeIndex + 1
+            : 0
+    );
+
+
+    setText(
+        "story-theme-total",
+        totalThemes
+    );
+
+}
+
+
+/* =========================================================
+   19. SIGUIENTE MOMENTO
+========================================================= */
+
+function updateNextMoment(
+    currentMoment
+) {
+
+    const button =
+        document.getElementById(
+            "story-next-moment"
+        );
+
+    const label =
+        document.getElementById(
+            "story-next-moment-label"
+        );
+
+    const description =
+        document.getElementById(
+            "story-next-description"
+        );
+
+
+    if (!button) {
+        return;
+    }
+
+
+    const nextIndex =
+        recorridoMomentIndex + 1;
+
+
+    if (
+        nextIndex <
+        MOMENTOS_RECORRIDO.length
+    ) {
+
+        const nextMoment =
+            MOMENTOS_RECORRIDO[
+                nextIndex
+            ];
+
+
+        button.hidden = false;
+
+
+        if (label) {
+            label.textContent =
+                nextMoment.key;
+        }
+
+
+        if (description) {
+
+            description.textContent =
+                `Continúa hacia ${nextMoment.key.toLowerCase()} y explora cómo evoluciona la experiencia.`;
+
+        }
+
+    }
+
+    else {
+
+        button.hidden = true;
+
+
+        if (description) {
+
+            description.textContent =
+                "Has llegado al cierre de este recorrido pedagógico.";
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   20. SCROLL DEL STORYMAP
+========================================================= */
+
+function scrollStoryIntoView() {
+
+    const chapter =
+        document.getElementById(
+            "story-chapter"
+        );
+
+
+    if (!chapter) {
+        return;
+    }
+
+
+    const reducedMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+
+    chapter.scrollIntoView({
+        behavior:
+            reducedMotion
+                ? "auto"
+                : "smooth",
+
+        block: "start"
+    });
+
+}
+
+
+/* =========================================================
+   21. UTILIDAD PARA CAMBIAR TEXTO
+========================================================= */
+
+function setText(
+    id,
+    value
+) {
+
+    const element =
+        document.getElementById(id);
+
+
+    if (element) {
+
+        element.textContent =
+            value ?? "";
+
+    }
+
+}
+
+
+/* =========================================================
+   22. EJERCICIO 02 · INICIALIZACIÓN
+========================================================= */
+
+function initializeTrayectoria() {
+
+    initializeTrajectoryModes();
+
+    trayectoriaStageIndex = 0;
+    projectionStageIndex = 0;
+
+    renderTrayectoriaNavigation();
+    renderProjectionNavigation();
+
+    renderTrayectoriaStage();
+    renderProjectionStage();
+
+}
+
+
+/* =========================================================
+   23. TRAYECTORIA / PROYECCIÓN
+========================================================= */
+
+function initializeTrajectoryModes() {
+
+    const buttons =
+        document.querySelectorAll(
+            ".mode-button"
+        );
+
+
+    buttons.forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const mode =
+                        button.dataset.mode;
+
+
+                    trayectoriaMode =
+                        mode;
+
+
+                    buttons.forEach(
+                        item => {
+
+                            item.classList.toggle(
+                                "active",
+                                item === button
+                            );
+
+                        }
+                    );
+
+
+                    const trajectoryView =
+                        document.getElementById(
+                            "trajectory-view"
+                        );
+
+                    const projectionView =
+                        document.getElementById(
+                            "projection-view"
+                        );
+
+
+                    if (
+                        trajectoryView &&
+                        projectionView
+                    ) {
+
+                        const isTrajectory =
+                            mode ===
+                            "trayectoria";
+
+
+                        trajectoryView.hidden =
+                            !isTrajectory;
+
+                        projectionView.hidden =
+                            isTrajectory;
+
+
+                        trajectoryView.classList.toggle(
+                            "active",
+                            isTrajectory
+                        );
+
+                        projectionView.classList.toggle(
+                            "active",
+                            !isTrajectory
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   24. NAVEGACIÓN DE TRAYECTORIA
+========================================================= */
+
+function renderTrayectoriaNavigation() {
+
+    const container =
+        document.getElementById(
+            "trayectoria-navigation"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    ETAPAS_TRAYECTORIA.forEach(
+        (stage, index) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type = "button";
+
+            button.textContent =
+                stage;
+
+
+            button.className =
+                index === trayectoriaStageIndex
+                    ? "active"
+                    : "";
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    trayectoriaStageIndex =
+                        index;
+
+                    renderTrayectoriaNavigation();
+                    renderTrayectoriaStage();
+
+                }
+            );
+
+
+            container.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   25. NAVEGACIÓN DE PROYECCIÓN
+========================================================= */
+
+function renderProjectionNavigation() {
+
+    const container =
+        document.getElementById(
+            "projection-navigation"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    ETAPAS_PROYECCION.forEach(
+        (stage, index) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type = "button";
+
+            button.textContent =
+                stage;
+
+
+            button.className =
+                index === projectionStageIndex
+                    ? "active"
+                    : "";
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    projectionStageIndex =
+                        index;
+
+                    renderProjectionNavigation();
+                    renderProjectionStage();
+
+                }
+            );
+
+
+            container.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   26. REGISTROS DEL EJERCICIO 02
+========================================================= */
+
+function getTrajectoryRecords(
+    stage
+) {
+
+    return trayectoriaData.filter(
+        record => {
+
+            const value =
+                normalizeText(
+                    record.momento
+                );
+
+
+            const target =
+                normalizeText(
+                    stage
+                );
+
+
+            if (value === target) {
+                return true;
+            }
+
+
+            /*
+               Algunas variantes previsibles del nombre
+               de las etapas.
+            */
+
+            const aliases = {
+
+                "lo que genera": [
+                    "genera",
+                    "lo que genera",
+                    "qué genera",
+                    "que genera"
+                ],
+
+                "lo que moviliza": [
+                    "moviliza",
+                    "lo que moviliza"
+                ],
+
+                "lo que transforma": [
+                    "transforma",
+                    "lo que transforma"
+                ],
+
+                "lo que permanece": [
+                    "permanece",
+                    "lo que permanece"
+                ],
+
+                "punto de partida": [
+                    "punto de partida",
+                    "inicio"
+                ],
+
+                "descubrimientos": [
+                    "descubrimientos",
+                    "descubrimiento"
+                ],
+
+                "mantener": [
+                    "mantener"
+                ],
+
+                "transformar": [
+                    "transformar"
+                ],
+
+                "explorar": [
+                    "explorar"
+                ]
+
+            };
+
+
+            const possible =
+                aliases[target] || [];
+
+
+            return possible.some(
+                alias =>
+                    value ===
+                    normalizeText(alias)
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   27. RENDER DE UNA ETAPA DEL EJERCICIO 02
+========================================================= */
+
+function renderTrayectoriaStage() {
+
+    const stage =
+        ETAPAS_TRAYECTORIA[
+            trayectoriaStageIndex
+        ];
+
+
+    renderTrajectoryExplorer({
+        stage,
+        titleId:
+            "trayectoria-title",
+        countId:
+            "trayectoria-count",
+        themesId:
+            "trayectoria-themes",
+        detailId:
+            "trayectoria-detail"
+    });
+
+}
+
+
+function renderProjectionStage() {
+
+    const stage =
+        ETAPAS_PROYECCION[
+            projectionStageIndex
+        ];
+
+
+    renderTrajectoryExplorer({
+        stage,
+        titleId:
+            "projection-title",
+        countId:
+            "projection-count",
+        themesId:
+            "projection-themes",
+        detailId:
+            "projection-detail"
+    });
+
+}
+
+
+/* =========================================================
+   28. EXPLORADOR DEL EJERCICIO 02
+========================================================= */
+
+function renderTrajectoryExplorer({
+    stage,
+    titleId,
+    countId,
+    themesId,
+    detailId
+}) {
+
+    const records =
+        getTrajectoryRecords(
+            stage
+        );
+
+
+    const themeNames =
+        unique(
+            records.map(
+                record =>
+                    record.tema
+            )
+        );
+
+
+    const themes =
+        themeNames.map(
+            name =>
+                combineThemeRecords(
+                    name,
+                    records.filter(
+                        record =>
+                            normalizeText(
+                                record.tema
+                            ) ===
+                            normalizeText(
+                                name
+                            )
+                    )
+                )
+        );
+
+
+    setText(
+        titleId,
+        stage
+    );
+
+
+    setText(
+        countId,
+        themes.length === 1
+            ? "1 hallazgo identificado"
+            : `${themes.length} hallazgos identificados`
+    );
+
+
+    const themesContainer =
+        document.getElementById(
+            themesId
+        );
+
+    const detailContainer =
+        document.getElementById(
+            detailId
+        );
+
+
+    if (
+        !themesContainer ||
+        !detailContainer
+    ) {
+        return;
+    }
+
+
+    themesContainer.innerHTML = "";
+
+
+    if (!themes.length) {
+
+        detailContainer.innerHTML = `
+
+            <h3>
+                ${escapeHTML(stage)}
+            </h3>
+
+            <p>
+                No se encontraron registros asociados
+                a esta etapa.
+            </p>
+
+        `;
+
+        return;
+    }
+
+
+    themes.forEach(
+        (theme, index) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.textContent =
+                theme.tema;
+
+
+            button.className =
+                index === 0
+                    ? "active"
+                    : "";
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    themesContainer
+                        .querySelectorAll(
+                            "button"
+                        )
+                        .forEach(
+                            item =>
+                                item.classList.remove(
+                                    "active"
+                                )
+                        );
+
+
+                    button.classList.add(
+                        "active"
+                    );
+
+
+                    renderStandardFinding(
+                        detailContainer,
+                        theme
+                    );
+
+                }
+            );
+
+
+            themesContainer.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    renderStandardFinding(
+        detailContainer,
+        themes[0]
+    );
+
+}
+
+
+/* =========================================================
+   29. HALLAZGO ESTÁNDAR DEL EJERCICIO 02
+========================================================= */
+
+function renderStandardFinding(
+    container,
+    theme
+) {
+
+    const stats = [];
+
+
+    if (
+        theme.frecuencia !== "" &&
+        theme.frecuencia !== null &&
+        theme.frecuencia !== undefined
+    ) {
+
+        stats.push(
+            `<span>${escapeHTML(theme.frecuencia)} aportes</span>`
+        );
+
+    }
+
+
+    if (
+        theme.docentes !== "" &&
+        theme.docentes !== null &&
+        theme.docentes !== undefined
+    ) {
+
+        stats.push(
+            `<span>${escapeHTML(theme.docentes)} docentes</span>`
+        );
+
+    }
+
+
+    container.innerHTML = `
+
+        <p class="section-label">
+            Hallazgo
+        </p>
+
+        <h3>
+            ${escapeHTML(theme.tema)}
+        </h3>
+
         ${
             theme.lectura
                 ? `
-                    <p class="detail-reading">
-                        ${escapeHTML(
-                            theme.lectura
-                        )}
+                    <p>
+                        ${escapeHTML(theme.lectura)}
                     </p>
                 `
                 : ""
         }
 
         ${
-            metadata.length
+            stats.length
                 ? `
-                    <div class="detail-meta">
-                        ${metadata.join("")}
+                    <div class="finding-stats">
+                        ${stats.join("")}
                     </div>
                 `
                 : ""
@@ -762,529 +2071,30 @@ function renderFinding(
         ${
             theme.cita
                 ? `
-                    <blockquote
-                        class="detail-quote"
-                    >
-                        ${escapeHTML(
-                            theme.cita
-                        )}
+                    <blockquote>
+                        “${escapeHTML(theme.cita)}”
                     </blockquote>
                 `
                 : ""
         }
+
     `;
-}
 
-
-function renderEmptyFinding(containerId) {
-    const container =
-        document.getElementById(containerId);
-
-    if (!container) {
-        return;
-    }
-
-    container.innerHTML = `
-        <div class="data-message">
-            <p>
-                No hay información disponible
-                para esta sección.
-            </p>
-        </div>
-    `;
 }
 
 
 /* =========================================================
-   11. DATOS DEL MAPA DE TRAYECTORIA
-   ========================================================= */
-
-function getTrayectoriaRecords() {
-    const data = APP_DATA.trayectoria;
-
-    if (!data) {
-        return [];
-    }
-
-    if (Array.isArray(data)) {
-        return data;
-    }
-
-    const possibleArrays = [
-        data.datos,
-        data.data,
-        data.registros,
-        data.resultados,
-        data.temas,
-        data.items
-    ];
-
-    return possibleArrays.find(Array.isArray) || [];
-}
-
-
-function getTrajectoryStage(record) {
-    return getFirstValue(
-        record,
-        [
-            "momento",
-            "Momento",
-            "etapa",
-            "Etapa",
-            "categoria",
-            "Categoría",
-            "categoria_principal",
-            "trayectoria",
-            "Trayectoria"
-        ]
-    );
-}
-
-
-/* =========================================================
-   12. ETAPAS DEL MAPA DE TRAYECTORIA
-   ========================================================= */
-
-const TRAJECTORY_STAGES = [
-    {
-        key: "punto-de-partida",
-        label: "Punto de partida",
-        aliases: [
-            "punto de partida"
-        ]
-    },
-    {
-        key: "descubrimientos",
-        label: "Descubrimientos",
-        aliases: [
-            "descubrimientos"
-        ]
-    },
-    {
-        key: "lo-que-moviliza",
-        label: "Lo que moviliza",
-        aliases: [
-            "lo que moviliza"
-        ]
-    },
-    {
-        key: "genera-estudiantes",
-        label: "Lo que genera",
-        aliases: [
-            "clases de pelicula genera en los estudiantes",
-            "lo que genera",
-            "genera en los estudiantes"
-        ]
-    },
-    {
-        key: "lo-que-transforma",
-        label: "Lo que transforma",
-        aliases: [
-            "lo que transforma"
-        ]
-    },
-    {
-        key: "lo-que-permanece",
-        label: "Lo que permanece",
-        aliases: [
-            "lo que permanece"
-        ]
-    }
-];
-
-
-const PROJECTION_STAGES = [
-    {
-        key: "mantener",
-        label: "Mantener",
-        aliases: [
-            "mantener"
-        ]
-    },
-    {
-        key: "transformar",
-        label: "Transformar",
-        aliases: [
-            "transformar"
-        ]
-    },
-    {
-        key: "explorar",
-        label: "Explorar",
-        aliases: [
-            "explorar"
-        ]
-    }
-];
-
-
-let activeTrajectoryStage =
-    TRAJECTORY_STAGES[0].key;
-
-let activeProjectionStage =
-    PROJECTION_STAGES[0].key;
-
-let activeTrajectoryTheme = 0;
-let activeProjectionTheme = 0;
-
-
-/* =========================================================
-   13. INICIALIZACIÓN DEL MAPA DE TRAYECTORIA
-   ========================================================= */
-
-function initTrayectoria() {
-    initTrajectoryModeSelector();
-
-    renderTrajectoryNavigation(
-        "trayectoria-navigation",
-        TRAJECTORY_STAGES,
-        activeTrajectoryStage,
-        "trayectoria"
-    );
-
-    renderTrajectoryNavigation(
-        "projection-navigation",
-        PROJECTION_STAGES,
-        activeProjectionStage,
-        "proyeccion"
-    );
-
-    renderTrajectoryStage(
-        activeTrajectoryStage,
-        TRAJECTORY_STAGES,
-        "trayectoria"
-    );
-
-    renderTrajectoryStage(
-        activeProjectionStage,
-        PROJECTION_STAGES,
-        "proyeccion"
-    );
-}
-
-
-/* =========================================================
-   14. SELECTOR TRAYECTORIA / PROYECCIÓN
-   ========================================================= */
-
-function initTrajectoryModeSelector() {
-    const buttons =
-        document.querySelectorAll(
-            ".mode-button"
-        );
-
-    buttons.forEach((button) => {
-        button.addEventListener(
-            "click",
-            () => {
-                const mode =
-                    button.dataset.mode;
-
-                buttons.forEach((item) => {
-                    item.classList.toggle(
-                        "active",
-                        item.dataset.mode === mode
-                    );
-                });
-
-                const trajectoryView =
-                    document.getElementById(
-                        "trajectory-view"
-                    );
-
-                const projectionView =
-                    document.getElementById(
-                        "projection-view"
-                    );
-
-                const showTrajectory =
-                    mode === "trayectoria";
-
-                if (trajectoryView) {
-                    trajectoryView.hidden =
-                        !showTrajectory;
-
-                    trajectoryView.classList.toggle(
-                        "active",
-                        showTrajectory
-                    );
-                }
-
-                if (projectionView) {
-                    projectionView.hidden =
-                        showTrajectory;
-
-                    projectionView.classList.toggle(
-                        "active",
-                        !showTrajectory
-                    );
-                }
-            }
-        );
-    });
-}
-
-
-/* =========================================================
-   15. NAVEGACIÓN DEL MAPA DE TRAYECTORIA
-   ========================================================= */
-
-function renderTrajectoryNavigation(
-    containerId,
-    stages,
-    activeStage,
-    mode
-) {
-    const container =
-        document.getElementById(containerId);
-
-    if (!container) {
-        return;
-    }
-
-    container.innerHTML = stages
-        .map((stage) => {
-            const isActive =
-                stage.key === activeStage;
-
-            return `
-                <button
-                    class="trajectory-step ${
-                        isActive ? "active" : ""
-                    }"
-                    type="button"
-                    data-stage="${stage.key}"
-                    aria-pressed="${isActive}"
-                >
-                    ${escapeHTML(stage.label)}
-                </button>
-            `;
-        })
-        .join("");
-
-    const buttons =
-        container.querySelectorAll(
-            ".trajectory-step"
-        );
-
-    buttons.forEach((button) => {
-        button.addEventListener(
-            "click",
-            () => {
-                const stageKey =
-                    button.dataset.stage;
-
-                if (mode === "trayectoria") {
-                    activeTrajectoryStage =
-                        stageKey;
-
-                    activeTrajectoryTheme = 0;
-
-                    renderTrajectoryNavigation(
-                        containerId,
-                        stages,
-                        activeTrajectoryStage,
-                        mode
-                    );
-
-                    renderTrajectoryStage(
-                        activeTrajectoryStage,
-                        stages,
-                        mode
-                    );
-
-                } else {
-                    activeProjectionStage =
-                        stageKey;
-
-                    activeProjectionTheme = 0;
-
-                    renderTrajectoryNavigation(
-                        containerId,
-                        stages,
-                        activeProjectionStage,
-                        mode
-                    );
-
-                    renderTrajectoryStage(
-                        activeProjectionStage,
-                        stages,
-                        mode
-                    );
-                }
-            }
-        );
-    });
-}
-
-
-/* =========================================================
-   16. FILTRADO POR ETAPA
-   ========================================================= */
-
-function recordMatchesStage(record, stage) {
-    const recordStage =
-        normalizeText(
-            getTrajectoryStage(record)
-        );
-
-    const aliases =
-        stage.aliases.map(normalizeText);
-
-    return aliases.includes(recordStage);
-}
-
-
-function getRecordsForTrajectoryStage(stage) {
-    const records =
-        getTrayectoriaRecords();
-
-    return records.filter((record) =>
-        recordMatchesStage(record, stage)
-    );
-}
-
-
-/* =========================================================
-   17. RENDER DE ETAPA DE TRAYECTORIA
-   ========================================================= */
-
-function renderTrajectoryStage(
-    stageKey,
-    stages,
-    mode
-) {
-    const stage = stages.find(
-        (item) => item.key === stageKey
-    );
-
-    if (!stage) {
-        return;
-    }
-
-    const records =
-        getRecordsForTrajectoryStage(stage);
-
-    const themes =
-        groupRecordsByTheme(records);
-
-    const isTrajectory =
-        mode === "trayectoria";
-
-    const titleId = isTrajectory
-        ? "trayectoria-title"
-        : "projection-title";
-
-    const countId = isTrajectory
-        ? "trayectoria-count"
-        : "projection-count";
-
-    const themesId = isTrajectory
-        ? "trayectoria-themes"
-        : "projection-themes";
-
-    const detailId = isTrajectory
-        ? "trayectoria-detail"
-        : "projection-detail";
-
-    const title =
-        document.getElementById(titleId);
-
-    const count =
-        document.getElementById(countId);
-
-    if (title) {
-        title.textContent =
-            stage.label;
-    }
-
-    if (count) {
-        count.textContent =
-            themes.length === 1
-                ? "1 tema identificado"
-                : `${themes.length} temas identificados`;
-    }
-
-    const activeIndex = isTrajectory
-        ? activeTrajectoryTheme
-        : activeProjectionTheme;
-
-    const selectTheme = (index) => {
-        if (isTrajectory) {
-            activeTrajectoryTheme = index;
-        } else {
-            activeProjectionTheme = index;
-        }
-
-        renderTrajectoryStage(
-            stageKey,
-            stages,
-            mode
-        );
-    };
-
-    renderThemeList(
-        themesId,
-        themes,
-        activeIndex,
-        selectTheme
-    );
-
-    if (themes.length > 0) {
-        const selectedTheme =
-            themes[activeIndex] ||
-            themes[0];
-
-        renderFinding(
-            detailId,
-            selectedTheme,
-            isTrajectory
-                ? "Hallazgo de la trayectoria"
-                : "Proyección"
-        );
-    } else {
-        renderEmptyFinding(
-            detailId
-        );
-    }
-}
-
-
-/* =========================================================
-   18. CAMBIOS EN EL HASH DEL NAVEGADOR
-   ========================================================= */
-
-window.addEventListener(
-    "hashchange",
-    () => {
-        const hash =
-            window.location.hash.replace(
-                "#",
-                ""
-            );
-
-        const validViews = [
-            "inicio",
-            "docentes",
-            "acerca"
-        ];
-
-        if (validViews.includes(hash)) {
-            showView(hash, false);
-        }
-    }
-);
-
-
-/* =========================================================
-   19. INICIO DE LA APLICACIÓN
-   ========================================================= */
+   30. INICIALIZACIÓN GENERAL
+========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
     () => {
-        initMainNavigation();
-        initExerciseNavigation();
+
+        initializeMainNavigation();
+        initializeExerciseNavigation();
+
         loadData();
+
     }
 );
