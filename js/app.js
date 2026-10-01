@@ -589,10 +589,28 @@ function renderRecorridoNavigation() {
 
             button.type = "button";
 
-            button.className =
-                index === recorridoMomentIndex
-                    ? "active"
-                    : "";
+
+            /* ---------------------------------------------
+               ESTADO DEL MOMENTO
+            --------------------------------------------- */
+
+            if (index < recorridoMomentIndex) {
+
+                button.className = "completed";
+
+            }
+
+            else if (index === recorridoMomentIndex) {
+
+                button.className = "active";
+
+            }
+
+            else {
+
+                button.className = "upcoming";
+
+            }
 
 
             button.innerHTML = `
@@ -612,6 +630,16 @@ function renderRecorridoNavigation() {
             );
 
 
+            if (index === recorridoMomentIndex) {
+
+                button.setAttribute(
+                    "aria-current",
+                    "step"
+                );
+
+            }
+
+
             button.addEventListener(
                 "click",
                 () => {
@@ -623,6 +651,7 @@ function renderRecorridoNavigation() {
                         0;
 
                     renderRecorridoNavigation();
+
                     renderRecorrido();
 
                     scrollStoryIntoView();
