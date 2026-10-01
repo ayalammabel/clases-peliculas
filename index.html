@@ -22,6 +22,7 @@
     ====================================================== -->
 
     <header class="site-header">
+
         <div class="header-container">
 
             <button
@@ -30,11 +31,21 @@
                 data-view="inicio"
                 aria-label="Ir al inicio"
             >
-                <span class="brand-mark" aria-hidden="true"></span>
-                <span class="brand-name">Clases de Película</span>
+                <span
+                    class="brand-mark"
+                    aria-hidden="true"
+                ></span>
+
+                <span class="brand-name">
+                    Clases de Película
+                </span>
             </button>
 
-            <nav class="main-nav" aria-label="Navegación principal">
+
+            <nav
+                class="main-nav"
+                aria-label="Navegación principal"
+            >
 
                 <button
                     class="nav-link view-link active"
@@ -63,10 +74,16 @@
             </nav>
 
         </div>
+
     </header>
 
 
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ====================================================== -->
+
     <main class="app-main">
+
 
         <!-- =================================================
              VISTA 01 · INICIO
@@ -107,18 +124,40 @@
                 </div>
 
 
-                <div class="hero-visual" aria-hidden="true">
+                <div
+                    class="hero-visual"
+                    aria-hidden="true"
+                >
 
                     <div class="visual-frame">
 
-                        <span class="film-line film-line-1"></span>
-                        <span class="film-line film-line-2"></span>
-                        <span class="film-line film-line-3"></span>
+                        <span
+                            class="film-line film-line-1"
+                        ></span>
+
+                        <span
+                            class="film-line film-line-2"
+                        ></span>
+
+                        <span
+                            class="film-line film-line-3"
+                        ></span>
+
 
                         <div class="visual-message">
-                            <span>Experiencia</span>
-                            <span>Aprendizaje</span>
-                            <span>Transformación</span>
+
+                            <span>
+                                Experiencia
+                            </span>
+
+                            <span>
+                                Aprendizaje
+                            </span>
+
+                            <span>
+                                Transformación
+                            </span>
+
                         </div>
 
                     </div>
@@ -131,6 +170,7 @@
             <div class="home-intro">
 
                 <div>
+
                     <p class="section-label">
                         Una lectura cualitativa
                     </p>
@@ -139,7 +179,9 @@
                         Recorrer la experiencia desde las voces
                         de quienes participan
                     </h2>
+
                 </div>
+
 
                 <p>
                     Los resultados permiten explorar recorridos,
@@ -165,17 +207,25 @@
 
             <div class="content-container">
 
-                <!-- Encabezado docentes -->
+
+                <!-- =========================================
+                     ENCABEZADO DOCENTES
+                ========================================== -->
 
                 <div class="page-heading">
 
                     <div>
-                        <p class="section-label">Docentes</p>
+
+                        <p class="section-label">
+                            Docentes
+                        </p>
 
                         <h1>
                             La experiencia desde la práctica pedagógica
                         </h1>
+
                     </div>
+
 
                     <p>
                         Dos ejercicios permiten recorrer la experiencia
@@ -185,7 +235,9 @@
                 </div>
 
 
-                <!-- Selector de ejercicios -->
+                <!-- =========================================
+                     SELECTOR DE EJERCICIOS
+                ========================================== -->
 
                 <div
                     class="exercise-selector"
@@ -200,9 +252,13 @@
                         aria-selected="true"
                         data-target="recorrido"
                     >
-                        <span class="tab-number">01</span>
+
+                        <span class="tab-number">
+                            01
+                        </span>
 
                         <span class="tab-content">
+
                             <strong>
                                 Cartografía del recorrido pedagógico
                             </strong>
@@ -210,7 +266,9 @@
                             <small>
                                 Antes · Durante · Después · Permanece
                             </small>
+
                         </span>
+
                     </button>
 
 
@@ -221,9 +279,13 @@
                         aria-selected="false"
                         data-target="trayectoria"
                     >
-                        <span class="tab-number">02</span>
+
+                        <span class="tab-number">
+                            02
+                        </span>
 
                         <span class="tab-content">
+
                             <strong>
                                 Mapa de trayectoria de la experiencia
                                 y aprendizajes que permanecen
@@ -232,25 +294,34 @@
                             <small>
                                 Trayectoria · Proyección
                             </small>
+
                         </span>
+
                     </button>
 
                 </div>
 
 
-                <!-- =========================================
+                <!-- =================================================
                      EJERCICIO 01
-                ========================================== -->
+                     CARTOGRAFÍA DEL RECORRIDO PEDAGÓGICO
+                ================================================== -->
 
                 <section
                     id="panel-recorrido"
-                    class="exercise-panel active"
+                    class="exercise-panel story-exercise active"
                     data-exercise-panel="recorrido"
                 >
+
+
+                    <!-- =============================================
+                         INTRODUCCIÓN
+                    ============================================== -->
 
                     <div class="exercise-heading">
 
                         <div>
+
                             <p class="exercise-kicker">
                                 Ejercicio 01
                             </p>
@@ -258,7 +329,9 @@
                             <h2>
                                 Cartografía del recorrido pedagógico
                             </h2>
+
                         </div>
+
 
                         <p>
                             Explora cómo se configura la experiencia
@@ -269,57 +342,276 @@
                     </div>
 
 
-                    <!-- Momentos -->
+                    <!-- =============================================
+                         NAVEGACIÓN DE LOS CUATRO MOMENTOS
+                    ============================================== -->
 
-                    <div
-                        id="recorrido-navigation"
-                        class="journey-navigation"
-                        aria-label="Momentos del recorrido pedagógico"
-                    ></div>
+                    <div class="story-nav-wrapper">
 
-
-                    <!-- Explorador de temas -->
-
-                    <div class="qualitative-explorer">
-
-                        <div class="themes-panel">
-
-                            <div class="explorer-heading">
-                                <p class="section-label">
-                                    Temas identificados
-                                </p>
-
-                                <h3 id="recorrido-title">
-                                    Antes
-                                </h3>
-
-                                <p id="recorrido-count"></p>
-                            </div>
-
-                            <div
-                                id="recorrido-themes"
-                                class="theme-list"
-                            ></div>
-
-                        </div>
-
+                        <p class="story-nav-label">
+                            Recorrido de la experiencia
+                        </p>
 
                         <div
-                            id="recorrido-detail"
-                            class="finding-detail"
-                            aria-live="polite"
+                            id="recorrido-navigation"
+                            class="journey-navigation story-journey-navigation"
+                            aria-label="Momentos del recorrido pedagógico"
                         >
-                            <!-- Hallazgo seleccionado -->
+                            <!--
+                                app.js construye:
+                                Antes · Durante · Después · Permanece
+                            -->
                         </div>
 
                     </div>
 
+
+                    <!-- =============================================
+                         CAPÍTULO ACTIVO
+                    ============================================== -->
+
+                    <article
+                        id="story-chapter"
+                        class="story-chapter"
+                        aria-live="polite"
+                    >
+
+
+                        <!-- Número grande decorativo -->
+
+                        <div
+                            id="story-number"
+                            class="story-number"
+                            aria-hidden="true"
+                        >
+                            01
+                        </div>
+
+
+                        <!-- Elementos gráficos -->
+
+                        <div
+                            class="story-decoration story-decoration-one"
+                            aria-hidden="true"
+                        ></div>
+
+                        <div
+                            class="story-decoration story-decoration-two"
+                            aria-hidden="true"
+                        ></div>
+
+
+                        <!-- =========================================
+                             PRESENTACIÓN DEL MOMENTO
+                        ========================================== -->
+
+                        <header class="story-chapter-header">
+
+                            <div class="story-chapter-index">
+
+                                <span id="story-step-number">
+                                    01
+                                </span>
+
+                                <span aria-hidden="true">
+                                    /
+                                </span>
+
+                                <span id="story-step-total">
+                                    04
+                                </span>
+
+                            </div>
+
+
+                            <p
+                                id="story-moment-label"
+                                class="story-moment-label"
+                            >
+                                Antes
+                            </p>
+
+
+                            <h3 id="recorrido-title">
+                                Antes
+                            </h3>
+
+
+                            <p
+                                id="story-introduction"
+                                class="story-introduction"
+                            >
+                                La experiencia comienza antes
+                                de llegar a la sala.
+                            </p>
+
+                        </header>
+
+
+                        <!-- =========================================
+                             HALLAZGO ACTIVO
+                        ========================================== -->
+
+                        <div class="story-finding">
+
+                            <div class="story-finding-context">
+
+                                <p class="story-small-label">
+                                    En este momento
+                                </p>
+
+                                <p id="recorrido-count">
+                                    Temas identificados
+                                </p>
+
+                            </div>
+
+
+                            <div
+                                id="recorrido-detail"
+                                class="story-finding-detail"
+                            >
+                                <!--
+                                    app.js inserta:
+                                    tema
+                                    lectura
+                                    frecuencia
+                                    docentes
+                                    cita
+                                -->
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             NAVEGACIÓN ENTRE TEMAS
+                        ========================================== -->
+
+                        <div class="story-theme-navigation">
+
+                            <button
+                                id="story-prev-theme"
+                                class="story-arrow-button"
+                                type="button"
+                            >
+                                <span aria-hidden="true">
+                                    ←
+                                </span>
+
+                                <span>
+                                    Anterior
+                                </span>
+                            </button>
+
+
+                            <div class="story-progress">
+
+                                <span
+                                    id="story-theme-current"
+                                    class="story-progress-current"
+                                >
+                                    1
+                                </span>
+
+                                <span>
+                                    de
+                                </span>
+
+                                <span
+                                    id="story-theme-total"
+                                    class="story-progress-total"
+                                >
+                                    1
+                                </span>
+
+                            </div>
+
+
+                            <button
+                                id="story-next-theme"
+                                class="story-arrow-button"
+                                type="button"
+                            >
+
+                                <span>
+                                    Siguiente
+                                </span>
+
+                                <span aria-hidden="true">
+                                    →
+                                </span>
+
+                            </button>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             INDICADORES DE TEMAS
+                        ========================================== -->
+
+                        <div
+                            id="recorrido-themes"
+                            class="story-theme-dots"
+                            aria-label="Temas del momento seleccionado"
+                        >
+                            <!--
+                                app.js genera un indicador por tema.
+                            -->
+                        </div>
+
+
+                        <!-- =========================================
+                             TRANSICIÓN AL SIGUIENTE MOMENTO
+                        ========================================== -->
+
+                        <div class="story-next-chapter">
+
+                            <div>
+
+                                <p class="story-small-label">
+                                    Continuar el recorrido
+                                </p>
+
+                                <p
+                                    id="story-next-description"
+                                    class="story-next-description"
+                                >
+                                    Avanza al siguiente momento
+                                    de la experiencia.
+                                </p>
+
+                            </div>
+
+
+                            <button
+                                id="story-next-moment"
+                                class="story-next-button"
+                                type="button"
+                            >
+
+                                <span id="story-next-moment-label">
+                                    Durante
+                                </span>
+
+                                <span aria-hidden="true">
+                                    →
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </article>
+
                 </section>
 
 
-                <!-- =========================================
+                <!-- =================================================
                      EJERCICIO 02
-                ========================================== -->
+                     MAPA DE TRAYECTORIA
+                ================================================== -->
 
                 <section
                     id="panel-trayectoria"
@@ -331,6 +623,7 @@
                     <div class="exercise-heading">
 
                         <div>
+
                             <p class="exercise-kicker">
                                 Ejercicio 02
                             </p>
@@ -339,7 +632,9 @@
                                 Mapa de trayectoria de la experiencia
                                 y aprendizajes que permanecen
                             </h2>
+
                         </div>
+
 
                         <p>
                             Explora lo que se descubre, moviliza,
@@ -350,7 +645,9 @@
                     </div>
 
 
-                    <!-- Selector interno -->
+                    <!-- =============================================
+                         SELECTOR TRAYECTORIA / PROYECCIÓN
+                    ============================================== -->
 
                     <div
                         class="trajectory-mode-selector"
@@ -377,7 +674,9 @@
                     </div>
 
 
-                    <!-- Trayectoria -->
+                    <!-- =============================================
+                         TRAYECTORIA
+                    ============================================== -->
 
                     <div
                         id="trajectory-view"
@@ -395,6 +694,7 @@
                             <div class="themes-panel">
 
                                 <div class="explorer-heading">
+
                                     <p class="section-label">
                                         Hallazgos
                                     </p>
@@ -402,7 +702,9 @@
                                     <h3 id="trayectoria-title"></h3>
 
                                     <p id="trayectoria-count"></p>
+
                                 </div>
+
 
                                 <div
                                     id="trayectoria-themes"
@@ -423,7 +725,9 @@
                     </div>
 
 
-                    <!-- Proyección -->
+                    <!-- =============================================
+                         PROYECCIÓN
+                    ============================================== -->
 
                     <div
                         id="projection-view"
@@ -442,6 +746,7 @@
                             <div class="themes-panel">
 
                                 <div class="explorer-heading">
+
                                     <p class="section-label">
                                         Proyección
                                     </p>
@@ -449,7 +754,9 @@
                                     <h3 id="projection-title"></h3>
 
                                     <p id="projection-count"></p>
+
                                 </div>
+
 
                                 <div
                                     id="projection-themes"
@@ -508,9 +815,12 @@
 
                     <div class="about-note">
 
-                        <span class="about-number">01</span>
+                        <span class="about-number">
+                            01
+                        </span>
 
                         <div>
+
                             <strong>
                                 Una lectura cualitativa
                             </strong>
@@ -520,6 +830,7 @@
                                 experiencias y sentidos presentes en la
                                 información analizada.
                             </p>
+
                         </div>
 
                     </div>
@@ -527,9 +838,12 @@
 
                     <div class="about-note">
 
-                        <span class="about-number">02</span>
+                        <span class="about-number">
+                            02
+                        </span>
 
                         <div>
+
                             <strong>
                                 Cómo interpretar las frecuencias
                             </strong>
@@ -539,6 +853,7 @@
                                 de recurrencia y no como una medida estadística
                                 de representatividad.
                             </p>
+
                         </div>
 
                     </div>
@@ -552,7 +867,14 @@
     </main>
 
 
-    <script src="js/app.js" defer></script>
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script
+        src="js/app.js"
+        defer
+    ></script>
 
 </body>
 
