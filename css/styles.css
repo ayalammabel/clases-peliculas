@@ -6,1725 +6,2096 @@
 
 
 /* =========================================================
-   01. VARIABLES
+   01. CONFIGURACIÓN
 ========================================================= */
 
-:root {
-    --purple-dark: #35185f;
-    --purple: #58328c;
-    --purple-medium: #7654a5;
-    --purple-light: #eee8f6;
-    --purple-soft: #f7f4fa;
+const DATA_PATHS = {
+    recorrido: "data/docentes-recorrido.json",
+    trayectoria: "data/docentes-trayectoria.json"
+};
 
-    --yellow: #f1c84b;
-    --yellow-soft: #fbf4d8;
+const MOMENTOS_RECORRIDO = [
+    {
+        key: "Antes",
+        number: "01",
+        intro: "La experiencia comienza antes de llegar a la sala."
+    },
+    {
+        key: "Durante",
+        number: "02",
+        intro: "El encuentro con el cine activa experiencias, emociones, conversaciones y nuevas formas de participación."
+    },
+    {
+        key: "Después",
+        number: "03",
+        intro: "La experiencia continúa cuando lo vivido vuelve al aula y se convierte en conversación, reflexión y creación."
+    },
+    {
+        key: "Permanece",
+        number: "04",
+        intro: "Algunos aprendizajes, intereses y vínculos con el cine permanecen más allá de la experiencia inmediata."
+    }
+];
 
-    --text: #29252f;
-    --text-soft: #6f6977;
 
-    --white: #ffffff;
-    --background: #faf9fb;
+const ETAPAS_TRAYECTORIA = [
+    "Punto de partida",
+    "Descubrimientos",
+    "Lo que moviliza",
+    "Lo que genera",
+    "Lo que transforma",
+    "Lo que permanece"
+];
 
-    --border: #e5e0e9;
-    --border-dark: #d5cddd;
 
-    --max-width: 1240px;
+const ETAPAS_PROYECCION = [
+    "Mantener",
+    "Transformar",
+    "Explorar"
+];
 
-    --radius-small: 8px;
-    --radius: 16px;
-    --radius-large: 26px;
 
-    --transition: 180ms ease;
+/* =========================================================
+   02. ESTADO
+========================================================= */
+
+let recorridoData = [];
+let trayectoriaData = [];
+
+let recorridoMomentIndex = 0;
+let recorridoThemeIndex = 0;
+
+let trayectoriaMode = "trayectoria";
+let trayectoriaStageIndex = 0;
+let projectionStageIndex = 0;
+
+
+/* =========================================================
+   03. UTILIDADES
+========================================================= */
+
+function normalizeText(value) {
+    return String(value ?? "")
+        .trim()
+        .toLocaleLowerCase("es");
+}
+
+
+function escapeHTML(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+function firstValue(object, keys, fallback = "") {
+
+    for (const key of keys) {
+
+        if (
+            Object.prototype.hasOwnProperty.call(object, key) &&
+            object[key] !== null &&
+            object[key] !== undefined &&
+            String(object[key]).trim() !== ""
+        ) {
+            return object[key];
+        }
+
+    }
+
+    return fallback;
+}
+
+
+function unique(values) {
+
+    return [
+        ...new Set(
+            values.filter(
+                value =>
+                    value !== null &&
+                    value !== undefined &&
+                    String(value).trim() !== ""
+            )
+        )
+    ];
+
+}
+
+
+function findMatchingValue(value, options) {
+
+    const normalized = normalizeText(value);
+
+    return options.find(
+        option => normalizeText(option) === normalized
+    );
+
 }
 
 
 /* =========================================================
-   02. RESET
+   04. NORMALIZACIÓN DE DATOS
 ========================================================= */
 
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    background: var(--background);
-    color: var(--text);
-
-    font-family:
-        Inter,
-        "Segoe UI",
-        Roboto,
-        Helvetica,
-        Arial,
-        sans-serif;
-
-    line-height: 1.5;
-}
-
-button {
-    font: inherit;
-}
-
-button,
-a {
-    -webkit-tap-highlight-color: transparent;
-}
-
-button:focus-visible {
-    outline: 3px solid rgba(241, 200, 75, 0.55);
-    outline-offset: 3px;
-}
-
-[hidden] {
-    display: none !important;
-}
-
-
-/* =========================================================
-   03. ENCABEZADO
-========================================================= */
-
-.site-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-
-    background: rgba(255, 255, 255, 0.96);
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(12px);
-}
-
-.header-container {
-    width: min(calc(100% - 48px), var(--max-width));
-    min-height: 72px;
-
-    margin: 0 auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 32px;
-}
-
-.brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-
-    padding: 0;
-    border: 0;
-    background: transparent;
-
-    color: var(--purple-dark);
-    cursor: pointer;
-}
-
-.brand-mark {
-    width: 12px;
-    height: 12px;
-
-    border-radius: 50%;
-    background: var(--yellow);
-}
-
-.brand-name {
-    font-size: 0.98rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-}
-
-.main-nav {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.nav-link {
-    position: relative;
-
-    padding: 10px 14px;
-
-    border: 0;
-    background: transparent;
-
-    color: var(--text-soft);
-
-    font-size: 0.9rem;
-    font-weight: 600;
-
-    cursor: pointer;
-    transition:
-        color var(--transition),
-        background var(--transition);
-}
-
-.nav-link:hover {
-    color: var(--purple-dark);
-}
-
-.nav-link.active {
-    color: var(--purple-dark);
-}
-
-.nav-link.active::after {
-    content: "";
-
-    position: absolute;
-    left: 14px;
-    right: 14px;
-    bottom: 2px;
-
-    height: 2px;
-
-    border-radius: 10px;
-    background: var(--purple);
-}
-
-
-/* =========================================================
-   04. ESTRUCTURA GENERAL
-========================================================= */
-
-.app-main {
-    min-height: calc(100vh - 72px);
-}
-
-.app-view {
-    width: 100%;
-}
-
-.content-container {
-    width: min(calc(100% - 48px), var(--max-width));
-    margin: 0 auto;
-
-    padding: 64px 0 96px;
-}
-
-.section-label,
-.exercise-kicker,
-.eyebrow,
-.story-nav-label,
-.story-small-label {
-    margin: 0;
-
-    color: var(--purple);
-
-    font-size: 0.72rem;
-    font-weight: 800;
-
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-}
-
-
-/* =========================================================
-   05. INICIO
-========================================================= */
-
-.hero-container {
-    width: min(calc(100% - 48px), var(--max-width));
-    min-height: 560px;
-
-    margin: 0 auto;
-
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    align-items: center;
-
-    gap: 70px;
-
-    padding: 70px 0 54px;
-}
-
-.hero-content {
-    max-width: 650px;
-}
-
-.eyebrow {
-    margin-bottom: 20px;
-}
-
-.hero-content h1 {
-    margin: 0;
-
-    color: var(--purple-dark);
-
-    font-size: clamp(4rem, 8vw, 7rem);
-    line-height: 0.87;
-
-    letter-spacing: -0.065em;
-}
-
-.hero-lead {
-    max-width: 580px;
-
-    margin: 32px 0 0;
-
-    color: var(--text-soft);
-
-    font-size: clamp(1.05rem, 2vw, 1.25rem);
-    line-height: 1.7;
-}
-
-.primary-button {
-    margin-top: 34px;
-
-    display: inline-flex;
-    align-items: center;
-    gap: 20px;
-
-    min-height: 48px;
-    padding: 0 22px;
-
-    border: 0;
-    border-radius: 999px;
-
-    background: var(--purple-dark);
-    color: var(--white);
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition:
-        transform var(--transition),
-        background var(--transition);
-}
-
-.primary-button:hover {
-    background: var(--purple);
-    transform: translateY(-2px);
-}
-
-
-/* =========================================================
-   06. VISUAL DE PORTADA
-========================================================= */
-
-.hero-visual {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    min-width: 0;
-}
-
-.visual-frame {
-    position: relative;
-
-    width: min(100%, 480px);
-    aspect-ratio: 1;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.film-line {
-    position: absolute;
-
-    border: 1px solid rgba(88, 50, 140, 0.23);
-    border-radius: 50%;
-}
-
-.film-line-1 {
-    width: 100%;
-    height: 100%;
-}
-
-.film-line-2 {
-    width: 76%;
-    height: 76%;
-}
-
-.film-line-3 {
-    width: 50%;
-    height: 50%;
-
-    border-color: rgba(241, 200, 75, 0.85);
-}
-
-.visual-message {
-    position: relative;
-    z-index: 2;
-
-    display: flex;
-    flex-direction: column;
-
-    text-align: center;
-
-    color: var(--purple-dark);
-
-    font-weight: 700;
-    line-height: 1.55;
-}
-
-.visual-message span:nth-child(2) {
-    color: var(--purple-medium);
-}
-
-.visual-message span:nth-child(3) {
-    color: var(--text-soft);
-}
-
-
-/* =========================================================
-   07. INTRODUCCIÓN HOME
-========================================================= */
-
-.home-intro {
-    width: min(calc(100% - 48px), var(--max-width));
-
-    margin: 0 auto 80px;
-
-    padding: 48px 0;
-
-    border-top: 1px solid var(--border);
-
-    display: grid;
-    grid-template-columns: 1.25fr 0.75fr;
-
-    gap: 70px;
-}
-
-.home-intro h2 {
-    max-width: 700px;
-
-    margin: 10px 0 0;
-
-    color: var(--purple-dark);
-
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    line-height: 1.08;
-
-    letter-spacing: -0.04em;
-}
-
-.home-intro > p {
-    margin: 24px 0 0;
-
-    color: var(--text-soft);
-
-    font-size: 1rem;
-    line-height: 1.75;
-}
-
-
-/* =========================================================
-   08. ENCABEZADO DE DOCENTES
-========================================================= */
-
-.page-heading {
-    display: grid;
-    grid-template-columns: 1.25fr 0.75fr;
-
-    gap: 70px;
-
-    padding-bottom: 40px;
-}
-
-.page-heading h1 {
-    max-width: 760px;
-
-    margin: 10px 0 0;
-
-    color: var(--purple-dark);
-
-    font-size: clamp(2.6rem, 5vw, 4.5rem);
-    line-height: 0.98;
-
-    letter-spacing: -0.055em;
-}
-
-.page-heading > p {
-    max-width: 420px;
-
-    margin: 27px 0 0;
-
-    color: var(--text-soft);
-
-    line-height: 1.75;
-}
-
-
-/* =========================================================
-   09. SELECTOR DE EJERCICIOS
-========================================================= */
-
-.exercise-selector {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    gap: 14px;
-
-    margin: 12px 0 52px;
-}
-
-.exercise-tab {
-    min-width: 0;
-    min-height: 104px;
-
-    display: flex;
-    align-items: flex-start;
-
-    gap: 18px;
-
-    padding: 22px 24px;
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-
-    background: var(--white);
-    color: var(--text);
-
-    text-align: left;
-
-    cursor: pointer;
-
-    transition:
-        border-color var(--transition),
-        background var(--transition),
-        transform var(--transition);
-}
-
-.exercise-tab:hover {
-    border-color: var(--purple-medium);
-    transform: translateY(-1px);
-}
-
-.exercise-tab.active {
-    border-color: var(--purple);
-    background: var(--purple-soft);
-}
-
-.tab-number {
-    flex: 0 0 auto;
-
-    color: var(--purple-medium);
-
-    font-size: 0.78rem;
-    font-weight: 800;
-}
-
-.exercise-tab.active .tab-number {
-    color: var(--purple-dark);
-}
-
-.tab-content {
-    min-width: 0;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 7px;
-}
-
-.tab-content strong {
-    color: var(--purple-dark);
-
-    font-size: 1rem;
-    line-height: 1.35;
-}
-
-.tab-content small {
-    color: var(--text-soft);
-
-    font-size: 0.82rem;
-}
-
-
-/* =========================================================
-   10. PANELES DE EJERCICIOS
-========================================================= */
-
-.exercise-panel {
-    border-top: 1px solid var(--border);
-    padding-top: 42px;
-}
-
-.exercise-heading {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-
-    gap: 60px;
-
-    margin-bottom: 44px;
-}
-
-.exercise-heading h2 {
-    max-width: 700px;
-
-    margin: 8px 0 0;
-
-    color: var(--purple-dark);
-
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.08;
-
-    letter-spacing: -0.04em;
-}
-
-.exercise-heading > p {
-    max-width: 440px;
-
-    margin: 22px 0 0;
-
-    color: var(--text-soft);
-
-    line-height: 1.7;
-}
-
-
-/* =========================================================
-   11. STORYMAP · NAVEGACIÓN DE MOMENTOS
-========================================================= */
-
-.story-nav-wrapper {
-    position: sticky;
-    top: 72px;
-    z-index: 40;
-
-    margin: 0 0 24px;
-    padding: 18px 24px 20px;
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-
-    background: rgba(255, 255, 255, 0.97);
-    backdrop-filter: blur(12px);
-}
-
-.story-nav-label {
-    margin-bottom: 15px;
-}
-
-.journey-navigation {
-    position: relative;
-
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: 0;
-}
-
-.journey-navigation::before {
-    content: "";
-
-    position: absolute;
-
-    left: 12.5%;
-    right: 12.5%;
-    top: 17px;
-
-    height: 1px;
-
-    background: var(--border-dark);
-}
-
-.journey-navigation button {
-    position: relative;
-    z-index: 2;
-
-    min-width: 0;
-
-    padding: 0 8px;
-
-    border: 0;
-    background: transparent;
-
-    color: var(--text-soft);
-
-    cursor: pointer;
-}
-
-.journey-navigation button::before {
-    content: "";
-
-    display: block;
-
-    width: 13px;
-    height: 13px;
-
-    margin: 11px auto 9px;
-
-    border: 3px solid var(--white);
-    border-radius: 50%;
-
-    background: var(--border-dark);
-
-    box-shadow: 0 0 0 1px var(--border-dark);
-
-    transition:
-        background var(--transition),
-        box-shadow var(--transition),
-        transform var(--transition);
-}
-
-.journey-navigation button:hover::before {
-    transform: scale(1.15);
-}
-
-.journey-navigation button.active {
-    color: var(--purple-dark);
-}
-
-.journey-navigation button.active::before {
-    background: var(--yellow);
-    box-shadow: 0 0 0 2px var(--purple);
-}
-
-.journey-navigation button span {
-    display: block;
-}
-
-.journey-navigation button span:first-child {
-    color: inherit;
-
-    font-size: 0.68rem;
-    font-weight: 800;
-
-    letter-spacing: 0.08em;
-}
-
-.journey-navigation button span:last-child {
-    margin-top: 3px;
-
-    color: inherit;
-
-    font-size: 0.84rem;
-    font-weight: 700;
-}
-
-
-/* =========================================================
-   12. STORYMAP · CAPÍTULO
-========================================================= */
-
-.story-chapter {
-    position: relative;
-    isolation: isolate;
-
-    min-height: 650px;
-
-    overflow: hidden;
-
-    padding: 72px clamp(32px, 6vw, 82px) 46px;
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius-large);
-
-    background:
-        radial-gradient(
-            circle at 86% 18%,
-            rgba(88, 50, 140, 0.055) 0,
-            rgba(88, 50, 140, 0.055) 110px,
-            transparent 111px
+function normalizeRecord(record) {
+
+    return {
+
+        raw: record,
+
+        momento: firstValue(
+            record,
+            [
+                "momento",
+                "Momento",
+                "submomento",
+                "Submomento",
+                "etapa",
+                "Etapa",
+                "categoria",
+                "Categoría"
+            ]
         ),
-        var(--white);
-}
 
-.story-number {
-    position: absolute;
-    z-index: -1;
+        tema: firstValue(
+            record,
+            [
+                "tema",
+                "Tema",
+                "tema_principal",
+                "Tema principal",
+                "temaPrincipal",
+                "hallazgo",
+                "Hallazgo"
+            ],
+            "Hallazgo"
+        ),
 
-    top: 20px;
-    right: 5%;
+        lectura: firstValue(
+            record,
+            [
+                "lectura",
+                "Lectura",
+                "interpretacion",
+                "Interpretación",
+                "descripcion",
+                "Descripción",
+                "sintesis",
+                "Síntesis",
+                "analisis",
+                "Análisis"
+            ]
+        ),
 
-    color: rgba(53, 24, 95, 0.045);
+        cita: firstValue(
+            record,
+            [
+                "cita",
+                "Cita",
+                "cita_representativa",
+                "Cita representativa",
+                "citaRepresentativa",
+                "transcripcion",
+                "Transcripción",
+                "ejemplo",
+                "Ejemplo"
+            ]
+        ),
 
-    font-size: clamp(10rem, 24vw, 19rem);
-    font-weight: 800;
-    line-height: 0.8;
+        frecuencia: firstValue(
+            record,
+            [
+                "frecuencia",
+                "Frecuencia",
+                "aportes",
+                "Aportes",
+                "numero_aportes",
+                "Número de aportes",
+                "n_aportes"
+            ]
+        ),
 
-    letter-spacing: -0.09em;
+        docentes: firstValue(
+            record,
+            [
+                "docentes",
+                "Docentes",
+                "numero_docentes",
+                "Número de docentes",
+                "N.º docentes",
+                "N° docentes",
+                "n_docentes"
+            ]
+        )
 
-    user-select: none;
-}
+    };
 
-.story-decoration {
-    position: absolute;
-    z-index: -1;
-
-    border-radius: 50%;
-
-    pointer-events: none;
-}
-
-.story-decoration-one {
-    width: 16px;
-    height: 16px;
-
-    top: 90px;
-    left: 5%;
-
-    background: var(--yellow);
-}
-
-.story-decoration-two {
-    width: 110px;
-    height: 110px;
-
-    right: 7%;
-    bottom: 130px;
-
-    border: 1px solid rgba(88, 50, 140, 0.12);
-}
-
-
-/* =========================================================
-   13. STORYMAP · ENCABEZADO DEL CAPÍTULO
-========================================================= */
-
-.story-chapter-header {
-    position: relative;
-    z-index: 2;
-
-    max-width: 780px;
-
-    margin: 0 auto 58px;
-
-    text-align: center;
-}
-
-.story-chapter-index {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-
-    margin-bottom: 16px;
-
-    color: var(--text-soft);
-
-    font-size: 0.75rem;
-    font-weight: 700;
-}
-
-.story-moment-label {
-    margin: 0 0 7px;
-
-    color: var(--purple);
-
-    font-size: 0.78rem;
-    font-weight: 800;
-
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-}
-
-.story-chapter-header h3 {
-    margin: 0;
-
-    color: var(--purple-dark);
-
-    font-size: clamp(3.1rem, 7vw, 5.7rem);
-    line-height: 0.95;
-
-    letter-spacing: -0.06em;
-}
-
-.story-introduction {
-    max-width: 630px;
-
-    margin: 24px auto 0;
-
-    color: var(--text-soft);
-
-    font-size: clamp(1.05rem, 2vw, 1.25rem);
-    line-height: 1.7;
 }
 
 
 /* =========================================================
-   14. STORYMAP · HALLAZGO
+   05. CARGA DE DATOS
 ========================================================= */
 
-.story-finding {
-    position: relative;
-    z-index: 3;
+async function loadJSON(path) {
 
-    max-width: 930px;
+    const response = await fetch(path);
 
-    margin: 0 auto;
-    padding: 42px 0 38px;
-
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-
-    display: grid;
-    grid-template-columns: 190px minmax(0, 1fr);
-
-    gap: 50px;
-}
-
-.story-finding-context {
-    padding-top: 5px;
-}
-
-.story-finding-context .story-small-label {
-    margin-bottom: 10px;
-}
-
-.story-finding-context > p:last-child {
-    margin: 0;
-
-    color: var(--text-soft);
-
-    font-size: 0.88rem;
-    line-height: 1.55;
-}
-
-
-/* =========================================================
-   15. CONTENIDO GENERADO DEL HALLAZGO
-========================================================= */
-
-.story-finding-detail {
-    min-width: 0;
-}
-
-.story-finding-detail .finding-kicker,
-.story-finding-detail .detail-kicker,
-.story-finding-detail .section-label {
-    margin: 0 0 10px;
-
-    color: var(--purple);
-
-    font-size: 0.7rem;
-    font-weight: 800;
-
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
-
-.story-finding-detail h3,
-.story-finding-detail h4 {
-    max-width: 680px;
-
-    margin: 0;
-
-    color: var(--purple-dark);
-
-    font-size: clamp(1.7rem, 3.5vw, 2.7rem);
-    line-height: 1.08;
-
-    letter-spacing: -0.035em;
-}
-
-.story-finding-detail > p,
-.story-finding-detail .finding-text,
-.story-finding-detail .detail-text {
-    max-width: 720px;
-
-    margin: 20px 0 0;
-
-    color: var(--text);
-
-    font-size: 1rem;
-    line-height: 1.8;
-}
-
-
-/* =========================================================
-   16. MÉTRICAS / RECURRENCIAS
-========================================================= */
-
-.finding-stats,
-.detail-stats,
-.story-stats {
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: 9px;
-
-    margin-top: 24px;
-}
-
-.finding-stats span,
-.detail-stats span,
-.story-stats span {
-    display: inline-flex;
-    align-items: center;
-
-    min-height: 30px;
-
-    padding: 5px 11px;
-
-    border: 1px solid var(--border);
-    border-radius: 999px;
-
-    background: var(--purple-soft);
-    color: var(--purple-dark);
-
-    font-size: 0.78rem;
-    font-weight: 700;
-}
-
-
-/* =========================================================
-   17. CITA
-========================================================= */
-
-.story-finding-detail blockquote,
-.finding-quote,
-.detail-quote {
-    position: relative;
-
-    max-width: 700px;
-
-    margin: 30px 0 0;
-    padding: 5px 0 5px 24px;
-
-    border-left: 3px solid var(--yellow);
-
-    color: var(--purple-dark);
-
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(1.05rem, 2vw, 1.25rem);
-    font-style: italic;
-    line-height: 1.65;
-}
-
-.story-finding-detail blockquote p {
-    margin: 0;
-}
-
-
-/* =========================================================
-   18. STORYMAP · ANTERIOR / SIGUIENTE
-========================================================= */
-
-.story-theme-navigation {
-    max-width: 930px;
-
-    margin: 26px auto 0;
-
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-
-    gap: 24px;
-}
-
-.story-arrow-button {
-    display: inline-flex;
-    align-items: center;
-
-    gap: 10px;
-
-    min-height: 44px;
-
-    padding: 8px 0;
-
-    border: 0;
-    background: transparent;
-
-    color: var(--purple-dark);
-
-    font-size: 0.88rem;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition:
-        opacity var(--transition),
-        transform var(--transition);
-}
-
-.story-arrow-button:first-child {
-    justify-self: start;
-}
-
-.story-arrow-button:last-child {
-    justify-self: end;
-}
-
-.story-arrow-button:hover:not(:disabled) {
-    transform: translateY(-1px);
-}
-
-.story-arrow-button:disabled {
-    opacity: 0.3;
-    cursor: default;
-}
-
-.story-progress {
-    color: var(--text-soft);
-
-    font-size: 0.82rem;
-}
-
-.story-progress-current {
-    color: var(--purple-dark);
-    font-weight: 800;
-}
-
-
-/* =========================================================
-   19. INDICADORES DE TEMAS
-========================================================= */
-
-.story-theme-dots {
-    min-height: 32px;
-
-    margin: 6px auto 34px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 8px;
-}
-
-.story-theme-dots button {
-    width: 9px;
-    height: 9px;
-
-    padding: 0;
-
-    border: 0;
-    border-radius: 50%;
-
-    background: var(--border-dark);
-
-    cursor: pointer;
-
-    transition:
-        width var(--transition),
-        border-radius var(--transition),
-        background var(--transition);
-}
-
-.story-theme-dots button.active {
-    width: 27px;
-
-    border-radius: 999px;
-
-    background: var(--purple);
-}
-
-
-/* =========================================================
-   20. TRANSICIÓN AL SIGUIENTE CAPÍTULO
-========================================================= */
-
-.story-next-chapter {
-    position: relative;
-    z-index: 3;
-
-    max-width: 930px;
-
-    margin: 0 auto;
-    padding: 27px 0 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 30px;
-}
-
-.story-next-description {
-    max-width: 430px;
-
-    margin: 7px 0 0;
-
-    color: var(--text-soft);
-
-    font-size: 0.9rem;
-}
-
-.story-next-button {
-    flex: 0 0 auto;
-
-    min-height: 48px;
-
-    display: inline-flex;
-    align-items: center;
-
-    gap: 18px;
-
-    padding: 0 20px;
-
-    border: 1px solid var(--purple);
-    border-radius: 999px;
-
-    background: transparent;
-    color: var(--purple-dark);
-
-    font-size: 0.88rem;
-    font-weight: 800;
-
-    cursor: pointer;
-
-    transition:
-        background var(--transition),
-        color var(--transition),
-        transform var(--transition);
-}
-
-.story-next-button:hover {
-    background: var(--purple-dark);
-    color: var(--white);
-
-    transform: translateY(-1px);
-}
-
-
-/* =========================================================
-   21. EJERCICIO 02 · SELECTOR INTERNO
-========================================================= */
-
-.trajectory-mode-selector {
-    display: inline-flex;
-
-    margin-bottom: 30px;
-    padding: 4px;
-
-    border: 1px solid var(--border);
-    border-radius: 999px;
-
-    background: var(--white);
-}
-
-.mode-button {
-    min-height: 40px;
-
-    padding: 0 20px;
-
-    border: 0;
-    border-radius: 999px;
-
-    background: transparent;
-    color: var(--text-soft);
-
-    font-size: 0.86rem;
-    font-weight: 700;
-
-    cursor: pointer;
-}
-
-.mode-button.active {
-    background: var(--purple-dark);
-    color: var(--white);
-}
-
-
-/* =========================================================
-   22. EJERCICIO 02 · NAVEGACIÓN
-========================================================= */
-
-.trajectory-navigation {
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: 8px;
-
-    margin-bottom: 22px;
-}
-
-.trajectory-navigation button {
-    min-height: 42px;
-
-    padding: 8px 15px;
-
-    border: 1px solid var(--border);
-    border-radius: 999px;
-
-    background: var(--white);
-    color: var(--text-soft);
-
-    font-size: 0.8rem;
-    font-weight: 700;
-
-    cursor: pointer;
-}
-
-.trajectory-navigation button:hover {
-    border-color: var(--purple-medium);
-    color: var(--purple-dark);
-}
-
-.trajectory-navigation button.active {
-    border-color: var(--purple);
-    background: var(--purple-light);
-    color: var(--purple-dark);
-}
-
-
-/* =========================================================
-   23. EXPLORADOR CUALITATIVO
-   EJERCICIO 02
-========================================================= */
-
-.qualitative-explorer {
-    display: grid;
-    grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
-
-    overflow: hidden;
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius-large);
-
-    background: var(--white);
-}
-
-.themes-panel {
-    padding: 32px;
-
-    border-right: 1px solid var(--border);
-    background: var(--purple-soft);
-}
-
-.explorer-heading h3 {
-    margin: 8px 0 5px;
-
-    color: var(--purple-dark);
-
-    font-size: 1.65rem;
-    line-height: 1.1;
-}
-
-.explorer-heading > p:last-child {
-    margin: 0;
-
-    color: var(--text-soft);
-
-    font-size: 0.82rem;
-}
-
-.theme-list {
-    display: flex;
-    flex-direction: column;
-
-    gap: 7px;
-
-    margin-top: 26px;
-}
-
-.theme-list button {
-    width: 100%;
-
-    padding: 13px 14px;
-
-    border: 1px solid transparent;
-    border-radius: 10px;
-
-    background: transparent;
-    color: var(--text);
-
-    text-align: left;
-
-    font-size: 0.87rem;
-    line-height: 1.35;
-
-    cursor: pointer;
-
-    transition:
-        background var(--transition),
-        border-color var(--transition);
-}
-
-.theme-list button:hover {
-    background: var(--white);
-}
-
-.theme-list button.active {
-    border-color: var(--border-dark);
-    background: var(--white);
-
-    color: var(--purple-dark);
-    font-weight: 700;
-}
-
-.finding-detail {
-    min-width: 0;
-    min-height: 400px;
-
-    padding: 48px clamp(32px, 5vw, 64px);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.finding-detail h3,
-.finding-detail h4 {
-    margin: 0;
-
-    color: var(--purple-dark);
-
-    font-size: clamp(1.7rem, 3vw, 2.5rem);
-    line-height: 1.1;
-
-    letter-spacing: -0.035em;
-}
-
-.finding-detail > p {
-    margin: 20px 0 0;
-
-    color: var(--text);
-
-    line-height: 1.8;
-}
-
-.finding-detail blockquote {
-    margin: 28px 0 0;
-    padding-left: 22px;
-
-    border-left: 3px solid var(--yellow);
-
-    color: var(--purple-dark);
-
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.08rem;
-    font-style: italic;
-    line-height: 1.65;
-}
-
-
-/* =========================================================
-   24. ACERCA DEL ESTUDIO
-========================================================= */
-
-.about-view {
-    width: min(calc(100% - 48px), 940px);
-
-    margin: 0 auto;
-
-    padding: 88px 0 100px;
-}
-
-.about-content {
-    padding: clamp(34px, 6vw, 68px);
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius-large);
-
-    background: var(--white);
-}
-
-.about-content h1 {
-    max-width: 700px;
-
-    margin: 10px 0 0;
-
-    color: var(--purple-dark);
-
-    font-size: clamp(2.7rem, 6vw, 4.7rem);
-    line-height: 0.98;
-
-    letter-spacing: -0.055em;
-}
-
-.about-lead {
-    max-width: 700px;
-
-    margin: 27px 0 45px;
-
-    color: var(--text-soft);
-
-    font-size: 1.08rem;
-    line-height: 1.75;
-}
-
-.about-note {
-    display: grid;
-    grid-template-columns: 55px minmax(0, 1fr);
-
-    gap: 20px;
-
-    padding: 25px 0;
-
-    border-top: 1px solid var(--border);
-}
-
-.about-number {
-    color: var(--purple-medium);
-
-    font-size: 0.75rem;
-    font-weight: 800;
-}
-
-.about-note strong {
-    color: var(--purple-dark);
-}
-
-.about-note p {
-    max-width: 650px;
-
-    margin: 8px 0 0;
-
-    color: var(--text-soft);
-
-    line-height: 1.7;
-}
-
-
-/* =========================================================
-   25. TRANSICIONES
-========================================================= */
-
-.app-view.active,
-.exercise-panel.active,
-.trajectory-mode.active {
-    animation: revealView 280ms ease both;
-}
-
-@keyframes revealView {
-
-    from {
-        opacity: 0;
-        transform: translateY(6px);
+    if (!response.ok) {
+        throw new Error(
+            `No fue posible cargar ${path}`
+        );
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    return response.json();
+
+}
+
+
+async function loadData() {
+
+    try {
+
+        const [recorridoRaw, trayectoriaRaw] =
+            await Promise.all([
+                loadJSON(DATA_PATHS.recorrido),
+                loadJSON(DATA_PATHS.trayectoria)
+            ]);
+
+
+        recorridoData =
+            extractArray(recorridoRaw)
+                .map(normalizeRecord);
+
+
+        trayectoriaData =
+            extractArray(trayectoriaRaw)
+                .map(normalizeRecord);
+
+
+        initializeRecorrido();
+        initializeTrayectoria();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Error cargando los datos:",
+            error
+        );
+
+        renderDataError();
+
+    }
+
+}
+
+
+function extractArray(data) {
+
+    if (Array.isArray(data)) {
+        return data;
+    }
+
+
+    const possibleKeys = [
+        "data",
+        "datos",
+        "resultados",
+        "recorrido",
+        "trayectoria",
+        "items"
+    ];
+
+
+    for (const key of possibleKeys) {
+
+        if (Array.isArray(data?.[key])) {
+            return data[key];
+        }
+
+    }
+
+
+    return [];
+
+}
+
+
+function renderDataError() {
+
+    const recorridoDetail =
+        document.getElementById(
+            "recorrido-detail"
+        );
+
+    if (recorridoDetail) {
+
+        recorridoDetail.innerHTML = `
+            <h3>No fue posible cargar los resultados</h3>
+
+            <p>
+                Revisa que los archivos JSON se encuentren
+                dentro de la carpeta <strong>data</strong>.
+            </p>
+        `;
+
     }
 
 }
 
 
 /* =========================================================
-   26. RESPONSIVE · TABLET
+   06. NAVEGACIÓN PRINCIPAL
 ========================================================= */
 
-@media (max-width: 900px) {
+function initializeMainNavigation() {
 
-    .hero-container,
-    .page-heading,
-    .exercise-heading,
-    .home-intro {
-        grid-template-columns: 1fr;
-        gap: 30px;
+    const links =
+        document.querySelectorAll(".view-link");
+
+
+    links.forEach(link => {
+
+        link.addEventListener(
+            "click",
+            () => {
+
+                const target =
+                    link.dataset.view;
+
+                showView(target);
+
+                window.location.hash =
+                    target;
+
+            }
+        );
+
+    });
+
+
+    window.addEventListener(
+        "hashchange",
+        () => {
+
+            const target =
+                window.location.hash
+                    .replace("#", "");
+
+            if (
+                [
+                    "inicio",
+                    "docentes",
+                    "acerca"
+                ].includes(target)
+            ) {
+                showView(target);
+            }
+
+        }
+    );
+
+
+    const initial =
+        window.location.hash
+            .replace("#", "");
+
+
+    if (
+        [
+            "inicio",
+            "docentes",
+            "acerca"
+        ].includes(initial)
+    ) {
+        showView(initial);
     }
 
-    .hero-container {
-        min-height: auto;
-
-        padding-top: 60px;
+    else {
+        showView("inicio");
     }
 
-    .hero-visual {
-        max-width: 430px;
-        margin: 10px auto 0;
+}
+
+
+function showView(target) {
+
+    const panels =
+        document.querySelectorAll(
+            "[data-view-panel]"
+        );
+
+    panels.forEach(panel => {
+
+        const active =
+            panel.dataset.viewPanel === target;
+
+        panel.hidden = !active;
+
+        panel.classList.toggle(
+            "active",
+            active
+        );
+
+    });
+
+
+    document
+        .querySelectorAll(".nav-link")
+        .forEach(link => {
+
+            link.classList.toggle(
+                "active",
+                link.dataset.view === target
+            );
+
+        });
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================================================
+   07. SELECTOR DE EJERCICIOS
+========================================================= */
+
+function initializeExerciseNavigation() {
+
+    const tabs =
+        document.querySelectorAll(
+            ".exercise-tab"
+        );
+
+
+    tabs.forEach(tab => {
+
+        tab.addEventListener(
+            "click",
+            () => {
+
+                const target =
+                    tab.dataset.target;
+
+
+                tabs.forEach(item => {
+
+                    const active =
+                        item === tab;
+
+                    item.classList.toggle(
+                        "active",
+                        active
+                    );
+
+                    item.setAttribute(
+                        "aria-selected",
+                        active
+                    );
+
+                });
+
+
+                document
+                    .querySelectorAll(
+                        "[data-exercise-panel]"
+                    )
+                    .forEach(panel => {
+
+                        const active =
+                            panel.dataset.exercisePanel
+                            === target;
+
+                        panel.hidden =
+                            !active;
+
+                        panel.classList.toggle(
+                            "active",
+                            active
+                        );
+
+                    });
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   08. CARTOGRAFÍA DEL RECORRIDO
+========================================================= */
+
+function initializeRecorrido() {
+
+    recorridoMomentIndex = 0;
+    recorridoThemeIndex = 0;
+
+    renderRecorridoNavigation();
+    renderRecorrido();
+
+    initializeStoryControls();
+
+}
+
+
+/* =========================================================
+   09. NAVEGACIÓN DE MOMENTOS
+========================================================= */
+
+function renderRecorridoNavigation() {
+
+    const container =
+        document.getElementById(
+            "recorrido-navigation"
+        );
+
+
+    if (!container) {
+        return;
     }
 
-    .exercise-selector {
-        grid-template-columns: 1fr;
+
+    container.innerHTML = "";
+
+
+    MOMENTOS_RECORRIDO.forEach(
+        (momento, index) => {
+
+            const button =
+                document.createElement("button");
+
+            button.type = "button";
+
+            button.className =
+                index === recorridoMomentIndex
+                    ? "active"
+                    : "";
+
+
+            button.innerHTML = `
+                <span>
+                    ${escapeHTML(momento.number)}
+                </span>
+
+                <span>
+                    ${escapeHTML(momento.key)}
+                </span>
+            `;
+
+
+            button.setAttribute(
+                "aria-label",
+                `Ir al momento ${momento.key}`
+            );
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    recorridoMomentIndex =
+                        index;
+
+                    recorridoThemeIndex =
+                        0;
+
+                    renderRecorridoNavigation();
+                    renderRecorrido();
+
+                    scrollStoryIntoView();
+
+                }
+            );
+
+
+            container.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   10. OBTENER TEMAS DEL MOMENTO
+========================================================= */
+
+function getRecorridoRecords(momentKey) {
+
+    return recorridoData.filter(
+        record => {
+
+            return normalizeText(
+                record.momento
+            ) === normalizeText(
+                momentKey
+            );
+
+        }
+    );
+
+}
+
+
+function getRecorridoThemes(momentKey) {
+
+    const records =
+        getRecorridoRecords(
+            momentKey
+        );
+
+
+    const themeNames =
+        unique(
+            records.map(
+                record =>
+                    record.tema
+            )
+        );
+
+
+    return themeNames.map(
+        themeName => {
+
+            const matching =
+                records.filter(
+                    record =>
+                        normalizeText(
+                            record.tema
+                        ) ===
+                        normalizeText(
+                            themeName
+                        )
+                );
+
+
+            return combineThemeRecords(
+                themeName,
+                matching
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   11. AGRUPAR REGISTROS POR TEMA
+========================================================= */
+
+function combineThemeRecords(
+    themeName,
+    records
+) {
+
+    if (!records.length) {
+
+        return {
+            tema: themeName,
+            lectura: "",
+            cita: "",
+            frecuencia: "",
+            docentes: ""
+        };
+
     }
 
-    .story-finding {
-        grid-template-columns: 1fr;
-        gap: 18px;
+
+    const principal =
+        records[0];
+
+
+    const lectura =
+        firstNonEmpty(
+            records.map(
+                record =>
+                    record.lectura
+            )
+        );
+
+
+    const cita =
+        firstNonEmpty(
+            records.map(
+                record =>
+                    record.cita
+            )
+        );
+
+
+    /*
+       Si el JSON ya trae una frecuencia consolidada,
+       se respeta ese valor.
+
+       Si no la trae y hay varias filas por tema,
+       se utiliza el número de registros como recurrencia.
+    */
+
+    let frecuencia =
+        firstNonEmpty(
+            records.map(
+                record =>
+                    record.frecuencia
+            )
+        );
+
+
+    if (
+        frecuencia === "" &&
+        records.length > 1
+    ) {
+        frecuencia =
+            records.length;
     }
 
-    .qualitative-explorer {
-        grid-template-columns: 1fr;
+
+    const docentes =
+        firstNonEmpty(
+            records.map(
+                record =>
+                    record.docentes
+            )
+        );
+
+
+    return {
+        tema: themeName,
+        lectura,
+        cita,
+        frecuencia,
+        docentes,
+        raw: principal.raw
+    };
+
+}
+
+
+function firstNonEmpty(values) {
+
+    return values.find(
+        value =>
+            value !== null &&
+            value !== undefined &&
+            String(value).trim() !== ""
+    ) ?? "";
+
+}
+
+
+/* =========================================================
+   12. RENDER DEL CAPÍTULO
+========================================================= */
+
+function renderRecorrido() {
+
+    const momento =
+        MOMENTOS_RECORRIDO[
+            recorridoMomentIndex
+        ];
+
+
+    const themes =
+        getRecorridoThemes(
+            momento.key
+        );
+
+
+    if (
+        recorridoThemeIndex >=
+        themes.length
+    ) {
+        recorridoThemeIndex = 0;
     }
 
-    .themes-panel {
-        border-right: 0;
-        border-bottom: 1px solid var(--border);
+
+    updateStoryChapterHeader(
+        momento,
+        themes.length
+    );
+
+
+    renderStoryThemeDots(
+        themes
+    );
+
+
+    if (!themes.length) {
+
+        renderEmptyRecorrido(
+            momento
+        );
+
+        updateStoryControls(
+            0
+        );
+
+        return;
+    }
+
+
+    const selectedTheme =
+        themes[
+            recorridoThemeIndex
+        ];
+
+
+    renderStoryFinding(
+        selectedTheme
+    );
+
+
+    updateStoryControls(
+        themes.length
+    );
+
+
+    updateNextMoment(
+        momento
+    );
+
+}
+
+
+/* =========================================================
+   13. ENCABEZADO DEL CAPÍTULO
+========================================================= */
+
+function updateStoryChapterHeader(
+    momento,
+    themeCount
+) {
+
+    setText(
+        "story-number",
+        momento.number
+    );
+
+    setText(
+        "story-step-number",
+        momento.number
+    );
+
+    setText(
+        "story-step-total",
+        String(
+            MOMENTOS_RECORRIDO.length
+        ).padStart(2, "0")
+    );
+
+    setText(
+        "story-moment-label",
+        momento.key
+    );
+
+    setText(
+        "recorrido-title",
+        momento.key
+    );
+
+    setText(
+        "story-introduction",
+        momento.intro
+    );
+
+
+    const count =
+        document.getElementById(
+            "recorrido-count"
+        );
+
+
+    if (count) {
+
+        count.textContent =
+            themeCount === 1
+                ? "1 tema identificado"
+                : `${themeCount} temas identificados`;
+
     }
 
 }
 
 
 /* =========================================================
-   27. RESPONSIVE · MÓVIL
+   14. RENDER DEL HALLAZGO
 ========================================================= */
 
-@media (max-width: 650px) {
+function renderStoryFinding(theme) {
 
-    .header-container {
-        width: min(calc(100% - 28px), var(--max-width));
-        min-height: 64px;
+    const container =
+        document.getElementById(
+            "recorrido-detail"
+        );
 
-        gap: 10px;
+
+    if (!container) {
+        return;
     }
 
-    .brand-name {
-        display: none;
+
+    const stats = [];
+
+
+    if (
+        theme.frecuencia !== "" &&
+        theme.frecuencia !== null &&
+        theme.frecuencia !== undefined
+    ) {
+
+        stats.push(
+            `<span>${escapeHTML(theme.frecuencia)} aportes</span>`
+        );
+
     }
 
-    .main-nav {
-        gap: 0;
+
+    if (
+        theme.docentes !== "" &&
+        theme.docentes !== null &&
+        theme.docentes !== undefined
+    ) {
+
+        stats.push(
+            `<span>${escapeHTML(theme.docentes)} docentes</span>`
+        );
+
     }
 
-    .nav-link {
-        padding: 9px 8px;
-        font-size: 0.78rem;
+
+    const readingHTML =
+        theme.lectura
+            ? `
+                <p class="finding-text">
+                    ${escapeHTML(theme.lectura)}
+                </p>
+            `
+            : "";
+
+
+    const statsHTML =
+        stats.length
+            ? `
+                <div class="story-stats">
+                    ${stats.join("")}
+                </div>
+            `
+            : "";
+
+
+    const quoteHTML =
+        theme.cita
+            ? `
+                <blockquote>
+                    <p>
+                        “${escapeHTML(theme.cita)}”
+                    </p>
+                </blockquote>
+            `
+            : "";
+
+
+    container.innerHTML = `
+
+        <p class="finding-kicker">
+            Hallazgo del recorrido
+        </p>
+
+        <h4>
+            ${escapeHTML(theme.tema)}
+        </h4>
+
+        ${readingHTML}
+
+        ${statsHTML}
+
+        ${quoteHTML}
+
+    `;
+
+}
+
+
+/* =========================================================
+   15. ESTADO SIN TEMAS
+========================================================= */
+
+function renderEmptyRecorrido(
+    momento
+) {
+
+    const container =
+        document.getElementById(
+            "recorrido-detail"
+        );
+
+
+    if (!container) {
+        return;
     }
 
-    .nav-link.active::after {
-        left: 8px;
-        right: 8px;
+
+    container.innerHTML = `
+
+        <p class="finding-kicker">
+            ${escapeHTML(momento.key)}
+        </p>
+
+        <h4>
+            No se encontraron hallazgos
+        </h4>
+
+        <p class="finding-text">
+            No hay registros asociados a este momento
+            en el archivo de datos.
+        </p>
+
+    `;
+
+}
+
+
+/* =========================================================
+   16. INDICADORES DE TEMAS
+========================================================= */
+
+function renderStoryThemeDots(
+    themes
+) {
+
+    const container =
+        document.getElementById(
+            "recorrido-themes"
+        );
+
+
+    if (!container) {
+        return;
     }
 
-    .content-container,
-    .hero-container,
-    .home-intro {
-        width: min(calc(100% - 28px), var(--max-width));
+
+    container.innerHTML = "";
+
+
+    themes.forEach(
+        (theme, index) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.className =
+                index === recorridoThemeIndex
+                    ? "active"
+                    : "";
+
+
+            button.setAttribute(
+                "aria-label",
+                `Ver ${theme.tema}`
+            );
+
+
+            button.setAttribute(
+                "title",
+                theme.tema
+            );
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    recorridoThemeIndex =
+                        index;
+
+                    renderRecorrido();
+
+                }
+            );
+
+
+            container.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   17. CONTROLES ANTERIOR / SIGUIENTE
+========================================================= */
+
+function initializeStoryControls() {
+
+    const previous =
+        document.getElementById(
+            "story-prev-theme"
+        );
+
+    const next =
+        document.getElementById(
+            "story-next-theme"
+        );
+
+    const nextMoment =
+        document.getElementById(
+            "story-next-moment"
+        );
+
+
+    if (previous) {
+
+        previous.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    recorridoThemeIndex > 0
+                ) {
+
+                    recorridoThemeIndex--;
+
+                    renderRecorrido();
+
+                }
+
+            }
+        );
+
     }
 
-    .content-container {
-        padding-top: 42px;
+
+    if (next) {
+
+        next.addEventListener(
+            "click",
+            () => {
+
+                const momento =
+                    MOMENTOS_RECORRIDO[
+                        recorridoMomentIndex
+                    ];
+
+
+                const themes =
+                    getRecorridoThemes(
+                        momento.key
+                    );
+
+
+                if (
+                    recorridoThemeIndex <
+                    themes.length - 1
+                ) {
+
+                    recorridoThemeIndex++;
+
+                    renderRecorrido();
+
+                }
+
+            }
+        );
+
     }
 
-    .hero-content h1 {
-        font-size: clamp(3.5rem, 18vw, 5.2rem);
-    }
 
-    .hero-container {
-        gap: 40px;
-    }
+    if (nextMoment) {
 
-    .home-intro {
-        margin-bottom: 50px;
-    }
+        nextMoment.addEventListener(
+            "click",
+            () => {
 
-    .page-heading h1 {
-        font-size: clamp(2.6rem, 13vw, 3.8rem);
-    }
+                if (
+                    recorridoMomentIndex <
+                    MOMENTOS_RECORRIDO.length - 1
+                ) {
 
-    .exercise-tab {
-        padding: 18px;
-    }
+                    recorridoMomentIndex++;
 
-    .story-nav-wrapper {
-        top: 64px;
+                    recorridoThemeIndex = 0;
 
-        padding: 14px 12px 16px;
-    }
+                    renderRecorridoNavigation();
+                    renderRecorrido();
 
-    .story-nav-label {
-        text-align: center;
-    }
+                    scrollStoryIntoView();
 
-    .journey-navigation button {
-        padding: 0 2px;
-    }
+                }
 
-    .journey-navigation button span:first-child {
-        font-size: 0.62rem;
-    }
+            }
+        );
 
-    .journey-navigation button span:last-child {
-        font-size: 0.69rem;
-    }
-
-    .story-chapter {
-        min-height: auto;
-
-        padding: 55px 22px 32px;
-
-        border-radius: 20px;
-    }
-
-    .story-number {
-        top: 28px;
-        right: 4%;
-
-        font-size: 9rem;
-    }
-
-    .story-decoration-one {
-        top: 64px;
-    }
-
-    .story-chapter-header {
-        margin-bottom: 42px;
-    }
-
-    .story-chapter-header h3 {
-        font-size: clamp(3rem, 18vw, 4.4rem);
-    }
-
-    .story-finding {
-        padding: 30px 0;
-    }
-
-    .story-theme-navigation {
-        grid-template-columns: 1fr auto 1fr;
-        gap: 8px;
-    }
-
-    .story-arrow-button {
-        font-size: 0.78rem;
-    }
-
-    .story-next-chapter {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .story-next-button {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .trajectory-mode-selector {
-        display: flex;
-        width: 100%;
-    }
-
-    .mode-button {
-        flex: 1;
-    }
-
-    .trajectory-navigation {
-        flex-wrap: nowrap;
-
-        overflow-x: auto;
-
-        padding-bottom: 7px;
-    }
-
-    .trajectory-navigation button {
-        flex: 0 0 auto;
-    }
-
-    .themes-panel,
-    .finding-detail {
-        padding: 27px 22px;
-    }
-
-    .about-view {
-        width: min(calc(100% - 28px), 940px);
-
-        padding: 55px 0;
-    }
-
-    .about-content {
-        padding: 30px 23px;
     }
 
 }
 
 
 /* =========================================================
-   28. MOVIMIENTO REDUCIDO
+   18. ACTUALIZAR CONTROLES
 ========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
+function updateStoryControls(
+    totalThemes
+) {
 
-    html {
-        scroll-behavior: auto;
+    const previous =
+        document.getElementById(
+            "story-prev-theme"
+        );
+
+    const next =
+        document.getElementById(
+            "story-next-theme"
+        );
+
+
+    if (previous) {
+
+        previous.disabled =
+            totalThemes === 0 ||
+            recorridoThemeIndex === 0;
+
     }
 
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+
+    if (next) {
+
+        next.disabled =
+            totalThemes === 0 ||
+            recorridoThemeIndex >=
+            totalThemes - 1;
+
+    }
+
+
+    setText(
+        "story-theme-current",
+        totalThemes
+            ? recorridoThemeIndex + 1
+            : 0
+    );
+
+
+    setText(
+        "story-theme-total",
+        totalThemes
+    );
+
+}
+
+
+/* =========================================================
+   19. SIGUIENTE MOMENTO
+========================================================= */
+
+function updateNextMoment(
+    currentMoment
+) {
+
+    const button =
+        document.getElementById(
+            "story-next-moment"
+        );
+
+    const label =
+        document.getElementById(
+            "story-next-moment-label"
+        );
+
+    const description =
+        document.getElementById(
+            "story-next-description"
+        );
+
+
+    if (!button) {
+        return;
+    }
+
+
+    const nextIndex =
+        recorridoMomentIndex + 1;
+
+
+    if (
+        nextIndex <
+        MOMENTOS_RECORRIDO.length
+    ) {
+
+        const nextMoment =
+            MOMENTOS_RECORRIDO[
+                nextIndex
+            ];
+
+
+        button.hidden = false;
+
+
+        if (label) {
+            label.textContent =
+                nextMoment.key;
+        }
+
+
+        if (description) {
+
+            description.textContent =
+                `Continúa hacia ${nextMoment.key.toLowerCase()} y explora cómo evoluciona la experiencia.`;
+
+        }
+
+    }
+
+    else {
+
+        button.hidden = true;
+
+
+        if (description) {
+
+            description.textContent =
+                "Has llegado al cierre de este recorrido pedagógico.";
+
+        }
+
     }
 
 }
+
+
+/* =========================================================
+   20. SCROLL DEL STORYMAP
+========================================================= */
+
+function scrollStoryIntoView() {
+
+    const chapter =
+        document.getElementById(
+            "story-chapter"
+        );
+
+
+    if (!chapter) {
+        return;
+    }
+
+
+    const reducedMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+
+    chapter.scrollIntoView({
+        behavior:
+            reducedMotion
+                ? "auto"
+                : "smooth",
+
+        block: "start"
+    });
+
+}
+
+
+/* =========================================================
+   21. UTILIDAD PARA CAMBIAR TEXTO
+========================================================= */
+
+function setText(
+    id,
+    value
+) {
+
+    const element =
+        document.getElementById(id);
+
+
+    if (element) {
+
+        element.textContent =
+            value ?? "";
+
+    }
+
+}
+
+
+/* =========================================================
+   22. EJERCICIO 02 · INICIALIZACIÓN
+========================================================= */
+
+function initializeTrayectoria() {
+
+    initializeTrajectoryModes();
+
+    trayectoriaStageIndex = 0;
+    projectionStageIndex = 0;
+
+    renderTrayectoriaNavigation();
+    renderProjectionNavigation();
+
+    renderTrayectoriaStage();
+    renderProjectionStage();
+
+}
+
+
+/* =========================================================
+   23. TRAYECTORIA / PROYECCIÓN
+========================================================= */
+
+function initializeTrajectoryModes() {
+
+    const buttons =
+        document.querySelectorAll(
+            ".mode-button"
+        );
+
+
+    buttons.forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const mode =
+                        button.dataset.mode;
+
+
+                    trayectoriaMode =
+                        mode;
+
+
+                    buttons.forEach(
+                        item => {
+
+                            item.classList.toggle(
+                                "active",
+                                item === button
+                            );
+
+                        }
+                    );
+
+
+                    const trajectoryView =
+                        document.getElementById(
+                            "trajectory-view"
+                        );
+
+                    const projectionView =
+                        document.getElementById(
+                            "projection-view"
+                        );
+
+
+                    if (
+                        trajectoryView &&
+                        projectionView
+                    ) {
+
+                        const isTrajectory =
+                            mode ===
+                            "trayectoria";
+
+
+                        trajectoryView.hidden =
+                            !isTrajectory;
+
+                        projectionView.hidden =
+                            isTrajectory;
+
+
+                        trajectoryView.classList.toggle(
+                            "active",
+                            isTrajectory
+                        );
+
+                        projectionView.classList.toggle(
+                            "active",
+                            !isTrajectory
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   24. NAVEGACIÓN DE TRAYECTORIA
+========================================================= */
+
+function renderTrayectoriaNavigation() {
+
+    const container =
+        document.getElementById(
+            "trayectoria-navigation"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    ETAPAS_TRAYECTORIA.forEach(
+        (stage, index) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type = "button";
+
+            button.textContent =
+                stage;
+
+
+            button.className =
+                index === trayectoriaStageIndex
+                    ? "active"
+                    : "";
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    trayectoriaStageIndex =
+                        index;
+
+                    renderTrayectoriaNavigation();
+                    renderTrayectoriaStage();
+
+                }
+            );
+
+
+            container.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   25. NAVEGACIÓN DE PROYECCIÓN
+========================================================= */
+
+function renderProjectionNavigation() {
+
+    const container =
+        document.getElementById(
+            "projection-navigation"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    ETAPAS_PROYECCION.forEach(
+        (stage, index) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type = "button";
+
+            button.textContent =
+                stage;
+
+
+            button.className =
+                index === projectionStageIndex
+                    ? "active"
+                    : "";
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    projectionStageIndex =
+                        index;
+
+                    renderProjectionNavigation();
+                    renderProjectionStage();
+
+                }
+            );
+
+
+            container.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   26. REGISTROS DEL EJERCICIO 02
+========================================================= */
+
+function getTrajectoryRecords(
+    stage
+) {
+
+    return trayectoriaData.filter(
+        record => {
+
+            const value =
+                normalizeText(
+                    record.momento
+                );
+
+
+            const target =
+                normalizeText(
+                    stage
+                );
+
+
+            if (value === target) {
+                return true;
+            }
+
+
+            /*
+               Algunas variantes previsibles del nombre
+               de las etapas.
+            */
+
+            const aliases = {
+
+                "lo que genera": [
+                    "genera",
+                    "lo que genera",
+                    "qué genera",
+                    "que genera"
+                ],
+
+                "lo que moviliza": [
+                    "moviliza",
+                    "lo que moviliza"
+                ],
+
+                "lo que transforma": [
+                    "transforma",
+                    "lo que transforma"
+                ],
+
+                "lo que permanece": [
+                    "permanece",
+                    "lo que permanece"
+                ],
+
+                "punto de partida": [
+                    "punto de partida",
+                    "inicio"
+                ],
+
+                "descubrimientos": [
+                    "descubrimientos",
+                    "descubrimiento"
+                ],
+
+                "mantener": [
+                    "mantener"
+                ],
+
+                "transformar": [
+                    "transformar"
+                ],
+
+                "explorar": [
+                    "explorar"
+                ]
+
+            };
+
+
+            const possible =
+                aliases[target] || [];
+
+
+            return possible.some(
+                alias =>
+                    value ===
+                    normalizeText(alias)
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   27. RENDER DE UNA ETAPA DEL EJERCICIO 02
+========================================================= */
+
+function renderTrayectoriaStage() {
+
+    const stage =
+        ETAPAS_TRAYECTORIA[
+            trayectoriaStageIndex
+        ];
+
+
+    renderTrajectoryExplorer({
+        stage,
+        titleId:
+            "trayectoria-title",
+        countId:
+            "trayectoria-count",
+        themesId:
+            "trayectoria-themes",
+        detailId:
+            "trayectoria-detail"
+    });
+
+}
+
+
+function renderProjectionStage() {
+
+    const stage =
+        ETAPAS_PROYECCION[
+            projectionStageIndex
+        ];
+
+
+    renderTrajectoryExplorer({
+        stage,
+        titleId:
+            "projection-title",
+        countId:
+            "projection-count",
+        themesId:
+            "projection-themes",
+        detailId:
+            "projection-detail"
+    });
+
+}
+
+
+/* =========================================================
+   28. EXPLORADOR DEL EJERCICIO 02
+========================================================= */
+
+function renderTrajectoryExplorer({
+    stage,
+    titleId,
+    countId,
+    themesId,
+    detailId
+}) {
+
+    const records =
+        getTrajectoryRecords(
+            stage
+        );
+
+
+    const themeNames =
+        unique(
+            records.map(
+                record =>
+                    record.tema
+            )
+        );
+
+
+    const themes =
+        themeNames.map(
+            name =>
+                combineThemeRecords(
+                    name,
+                    records.filter(
+                        record =>
+                            normalizeText(
+                                record.tema
+                            ) ===
+                            normalizeText(
+                                name
+                            )
+                    )
+                )
+        );
+
+
+    setText(
+        titleId,
+        stage
+    );
+
+
+    setText(
+        countId,
+        themes.length === 1
+            ? "1 hallazgo identificado"
+            : `${themes.length} hallazgos identificados`
+    );
+
+
+    const themesContainer =
+        document.getElementById(
+            themesId
+        );
+
+    const detailContainer =
+        document.getElementById(
+            detailId
+        );
+
+
+    if (
+        !themesContainer ||
+        !detailContainer
+    ) {
+        return;
+    }
+
+
+    themesContainer.innerHTML = "";
+
+
+    if (!themes.length) {
+
+        detailContainer.innerHTML = `
+
+            <h3>
+                ${escapeHTML(stage)}
+            </h3>
+
+            <p>
+                No se encontraron registros asociados
+                a esta etapa.
+            </p>
+
+        `;
+
+        return;
+    }
+
+
+    themes.forEach(
+        (theme, index) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.textContent =
+                theme.tema;
+
+
+            button.className =
+                index === 0
+                    ? "active"
+                    : "";
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    themesContainer
+                        .querySelectorAll(
+                            "button"
+                        )
+                        .forEach(
+                            item =>
+                                item.classList.remove(
+                                    "active"
+                                )
+                        );
+
+
+                    button.classList.add(
+                        "active"
+                    );
+
+
+                    renderStandardFinding(
+                        detailContainer,
+                        theme
+                    );
+
+                }
+            );
+
+
+            themesContainer.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    renderStandardFinding(
+        detailContainer,
+        themes[0]
+    );
+
+}
+
+
+/* =========================================================
+   29. HALLAZGO ESTÁNDAR DEL EJERCICIO 02
+========================================================= */
+
+function renderStandardFinding(
+    container,
+    theme
+) {
+
+    const stats = [];
+
+
+    if (
+        theme.frecuencia !== "" &&
+        theme.frecuencia !== null &&
+        theme.frecuencia !== undefined
+    ) {
+
+        stats.push(
+            `<span>${escapeHTML(theme.frecuencia)} aportes</span>`
+        );
+
+    }
+
+
+    if (
+        theme.docentes !== "" &&
+        theme.docentes !== null &&
+        theme.docentes !== undefined
+    ) {
+
+        stats.push(
+            `<span>${escapeHTML(theme.docentes)} docentes</span>`
+        );
+
+    }
+
+
+    container.innerHTML = `
+
+        <p class="section-label">
+            Hallazgo
+        </p>
+
+        <h3>
+            ${escapeHTML(theme.tema)}
+        </h3>
+
+        ${
+            theme.lectura
+                ? `
+                    <p>
+                        ${escapeHTML(theme.lectura)}
+                    </p>
+                `
+                : ""
+        }
+
+        ${
+            stats.length
+                ? `
+                    <div class="finding-stats">
+                        ${stats.join("")}
+                    </div>
+                `
+                : ""
+        }
+
+        ${
+            theme.cita
+                ? `
+                    <blockquote>
+                        “${escapeHTML(theme.cita)}”
+                    </blockquote>
+                `
+                : ""
+        }
+
+    `;
+
+}
+
+
+/* =========================================================
+   30. INICIALIZACIÓN GENERAL
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        initializeMainNavigation();
+        initializeExerciseNavigation();
+
+        loadData();
+
+    }
+);
