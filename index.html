@@ -302,7 +302,7 @@
                 </div>
 
 
-                <!-- =================================================
+                                <!-- =================================================
                      EJERCICIO 01
                      CARTOGRAFÍA DEL RECORRIDO PEDAGÓGICO
                 ================================================== -->
@@ -374,51 +374,47 @@
                         aria-live="polite"
                     >
 
-                        <!-- Número decorativo del capítulo -->
-
-                        <div
-                            id="story-number"
-                            class="story-number"
-                            aria-hidden="true"
-                        >
-                            01
-                        </div>
-
-
                         <!-- =========================================
                              PRESENTACIÓN DEL MOMENTO
                         ========================================== -->
 
                         <header class="story-chapter-header">
 
-                            <div class="story-chapter-index">
+                            <div class="story-chapter-meta">
 
-                                <span id="story-step-number">
-                                    01
+                                <div class="story-chapter-index">
+
+                                    <span id="story-step-number">
+                                        01
+                                    </span>
+
+                                    <span aria-hidden="true">
+                                        /
+                                    </span>
+
+                                    <span id="story-step-total">
+                                        04
+                                    </span>
+
+                                </div>
+
+
+                                <span
+                                    class="story-meta-divider"
+                                    aria-hidden="true"
+                                >
+                                    ·
                                 </span>
 
-                                <span aria-hidden="true">
-                                    /
-                                </span>
 
-                                <span id="story-step-total">
-                                    04
-                                </span>
+                                <p
+                                    id="story-moment-label"
+                                    class="story-moment-label"
+                                >
+                                    Antes
+                                </p>
 
                             </div>
-
-
-                            <p
-                                id="story-moment-label"
-                                class="story-moment-label"
-                            >
-                                Antes
-                            </p>
-
-
-                            <h3 id="recorrido-title">
-                                Antes
-                            </h3>
 
 
                             <p
@@ -433,12 +429,14 @@
 
 
                         <!-- =========================================
-                             CONTENIDO DEL MOMENTO
+                             HALLAZGOS DEL MOMENTO
                         ========================================== -->
 
                         <div class="story-content">
 
-                            <!-- Contexto -->
+                            <!-- =====================================
+                                 ÍNDICE DE TEMAS
+                            ====================================== -->
 
                             <aside class="story-finding-context">
 
@@ -446,22 +444,44 @@
                                     En este momento
                                 </p>
 
+
                                 <p
                                     id="recorrido-count"
                                     class="story-theme-count"
                                 >
-                                    Temas identificados
+                                    Temas
                                 </p>
+
 
                                 <p class="story-context-description">
                                     Explora los hallazgos que configuran
                                     este momento de la experiencia.
                                 </p>
 
+
+                                <nav
+                                    class="story-theme-menu"
+                                    aria-label="Temas del momento seleccionado"
+                                >
+
+                                    <div
+                                        id="recorrido-themes"
+                                        class="story-theme-list"
+                                    >
+                                        <!--
+                                            app.js genera aquí
+                                            los temas del momento.
+                                        -->
+                                    </div>
+
+                                </nav>
+
                             </aside>
 
 
-                            <!-- Hallazgo activo -->
+                            <!-- =====================================
+                                 HALLAZGO ACTIVO
+                            ====================================== -->
 
                             <div class="story-finding-main">
 
@@ -479,92 +499,83 @@
                                     -->
                                 </div>
 
+
+                                <!-- =================================
+                                     NAVEGACIÓN ENTRE HALLAZGOS
+                                ================================== -->
+
+                                <div class="story-theme-navigation">
+
+                                    <button
+                                        id="story-prev-theme"
+                                        class="story-arrow-button"
+                                        type="button"
+                                    >
+
+                                        <span aria-hidden="true">
+                                            ←
+                                        </span>
+
+                                        <span>
+                                            Hallazgo anterior
+                                        </span>
+
+                                    </button>
+
+
+                                    <!--
+                                        Se conservan ocultos estos valores
+                                        para que app.js pueda seguir
+                                        actualizándolos sin mostrar el
+                                        contador visualmente.
+                                    -->
+
+                                    <div
+                                        class="story-progress"
+                                        hidden
+                                        aria-hidden="true"
+                                    >
+
+                                        <span
+                                            id="story-theme-current"
+                                            class="story-progress-current"
+                                        >
+                                            1
+                                        </span>
+
+                                        <span>
+                                            de
+                                        </span>
+
+                                        <span
+                                            id="story-theme-total"
+                                            class="story-progress-total"
+                                        >
+                                            1
+                                        </span>
+
+                                    </div>
+
+
+                                    <button
+                                        id="story-next-theme"
+                                        class="story-arrow-button"
+                                        type="button"
+                                    >
+
+                                        <span>
+                                            Siguiente hallazgo
+                                        </span>
+
+                                        <span aria-hidden="true">
+                                            →
+                                        </span>
+
+                                    </button>
+
+                                </div>
+
                             </div>
-
-                        </div>
-
-
-                        <!-- =========================================
-                             ÍNDICE DE TEMAS
-                        ========================================== -->
-
-                        <div class="story-theme-index">
-
-                            <p class="story-small-label">
-                                Temas de este momento
-                            </p>
-
-                            <div
-                                id="recorrido-themes"
-                                class="story-theme-list"
-                                aria-label="Temas del momento seleccionado"
-                            >
-                                <!--
-                                    app.js generará aquí los temas
-                                    como opciones navegables.
-                                -->
-                            </div>
-
-                        </div>
-
-
-                        <!-- =========================================
-                             NAVEGACIÓN ENTRE HALLAZGOS
-                        ========================================== -->
-
-                        <div class="story-theme-navigation">
-
-                            <button
-                                id="story-prev-theme"
-                                class="story-arrow-button"
-                                type="button"
-                            >
-                                <span aria-hidden="true">
-                                    ←
-                                </span>
-
-                                <span>
-                                    Hallazgo anterior
-                                </span>
-                            </button>
-
-
-                            <div class="story-progress">
-
-                                <span
-                                    id="story-theme-current"
-                                    class="story-progress-current"
-                                >
-                                    1
-                                </span>
-
-                                <span>
-                                    de
-                                </span>
-
-                                <span
-                                    id="story-theme-total"
-                                    class="story-progress-total"
-                                >
-                                    1
-                                </span>
-
-                            </div>
-
-
-                            <button
-                                id="story-next-theme"
-                                class="story-arrow-button"
-                                type="button"
-                            >
-                                <span>
-                                    Siguiente hallazgo
-                                </span>
-
-                                <span aria-hidden="true">
-                                    →
-                                </span>
-                            </button>
 
                         </div>
 
