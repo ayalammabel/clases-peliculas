@@ -1,3 +1,1955 @@
+
+/* =========================================================
+   CLASES DE PELÍCULA
+   Visualización cualitativa
+========================================================= */
+
+
+/* =========================================================
+   01. VARIABLES
+========================================================= */
+
+:root {
+    --purple-dark: #35185f;
+    --purple: #58328c;
+    --purple-medium: #7654a5;
+    --purple-light: #eee8f6;
+    --purple-soft: #f7f4fa;
+
+    --yellow: #f1c84b;
+    --yellow-soft: #fbf4d8;
+
+    --text: #29252f;
+    --text-soft: #6f6977;
+
+    --white: #ffffff;
+    --background: #faf9fb;
+
+    --border: #e5e0e9;
+    --border-dark: #d5cddd;
+
+    --max-width: 1240px;
+
+    --radius-small: 8px;
+    --radius: 16px;
+    --radius-large: 26px;
+
+    --transition: 180ms ease;
+}
+
+
+/* =========================================================
+   02. RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    line-height: 1.5;
+}
+
+button {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible {
+    outline: 3px solid rgba(241, 200, 75, 0.55);
+    outline-offset: 3px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   03. ENCABEZADO
+========================================================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+}
+
+.header-container {
+    width: min(calc(100% - 48px), var(--max-width));
+    min-height: 72px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 32px;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 0;
+    border: 0;
+    background: transparent;
+
+    color: var(--purple-dark);
+    cursor: pointer;
+}
+
+.brand-mark {
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+    background: var(--yellow);
+}
+
+.brand-name {
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-link {
+    position: relative;
+
+    padding: 10px 14px;
+
+    border: 0;
+    background: transparent;
+
+    color: var(--text-soft);
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition:
+        color var(--transition),
+        background var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--purple-dark);
+}
+
+.nav-link.active {
+    color: var(--purple-dark);
+}
+
+.nav-link.active::after {
+    content: "";
+
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 2px;
+
+    height: 2px;
+
+    border-radius: 10px;
+    background: var(--purple);
+}
+
+
+/* =========================================================
+   04. ESTRUCTURA GENERAL
+========================================================= */
+
+.app-main {
+    min-height: calc(100vh - 72px);
+}
+
+.app-view {
+    width: 100%;
+}
+
+.content-container {
+    width: min(calc(100% - 48px), var(--max-width));
+    margin: 0 auto;
+
+    padding: 64px 0 96px;
+}
+
+.section-label,
+.exercise-kicker,
+.eyebrow,
+.story-nav-label,
+.story-small-label {
+    margin: 0;
+
+    color: var(--purple);
+
+    font-size: 0.72rem;
+    font-weight: 800;
+
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   05. INICIO
+========================================================= */
+
+.hero-container {
+    width: min(calc(100% - 48px), var(--max-width));
+    min-height: 560px;
+
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+
+    gap: 70px;
+
+    padding: 70px 0 54px;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.eyebrow {
+    margin-bottom: 20px;
+}
+
+.hero-content h1 {
+    margin: 0;
+
+    color: var(--purple-dark);
+
+    font-size: clamp(4rem, 8vw, 7rem);
+    line-height: 0.87;
+
+    letter-spacing: -0.065em;
+}
+
+.hero-lead {
+    max-width: 580px;
+
+    margin: 32px 0 0;
+
+    color: var(--text-soft);
+
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    line-height: 1.7;
+}
+
+.primary-button {
+    margin-top: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+
+    min-height: 48px;
+    padding: 0 22px;
+
+    border: 0;
+    border-radius: 999px;
+
+    background: var(--purple-dark);
+    color: var(--white);
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform var(--transition),
+        background var(--transition);
+}
+
+.primary-button:hover {
+    background: var(--purple);
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   06. VISUAL DE PORTADA
+========================================================= */
+
+.hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 0;
+}
+
+.visual-frame {
+    position: relative;
+
+    width: min(100%, 480px);
+    aspect-ratio: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.film-line {
+    position: absolute;
+
+    border: 1px solid rgba(88, 50, 140, 0.23);
+    border-radius: 50%;
+}
+
+.film-line-1 {
+    width: 100%;
+    height: 100%;
+}
+
+.film-line-2 {
+    width: 76%;
+    height: 76%;
+}
+
+.film-line-3 {
+    width: 50%;
+    height: 50%;
+
+    border-color: rgba(241, 200, 75, 0.85);
+}
+
+.visual-message {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+
+    color: var(--purple-dark);
+
+    font-weight: 700;
+    line-height: 1.55;
+}
+
+.visual-message span:nth-child(2) {
+    color: var(--purple-medium);
+}
+
+.visual-message span:nth-child(3) {
+    color: var(--text-soft);
+}
+
+
+/* =========================================================
+   07. INTRODUCCIÓN HOME
+========================================================= */
+
+.home-intro {
+    width: min(calc(100% - 48px), var(--max-width));
+
+    margin: 0 auto 80px;
+
+    padding: 48px 0;
+
+    border-top: 1px solid var(--border);
+
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+
+    gap: 70px;
+}
+
+.home-intro h2 {
+    max-width: 700px;
+
+    margin: 10px 0 0;
+
+    color: var(--purple-dark);
+
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.08;
+
+    letter-spacing: -0.04em;
+}
+
+.home-intro > p {
+    margin: 24px 0 0;
+
+    color: var(--text-soft);
+
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+/* =========================================================
+   08. DOCENTES · ENCABEZADO
+========================================================= */
+
+.docentes-heading {
+    display: block;
+    max-width: 820px;
+    margin: 0 0 36px;
+    padding: 0;
+}
+
+.docentes-heading .section-label {
+    margin-bottom: 14px;
+}
+
+.docentes-heading h1 {
+    max-width: 780px;
+    margin: 0;
+    color: var(--purple-dark);
+    font-size: clamp(2.5rem, 4vw, 3.6rem);
+    line-height: 1.02;
+    font-weight: 750;
+    letter-spacing: -0.045em;
+}
+
+.docentes-intro {
+    max-width: 620px;
+    margin: 18px 0 0;
+    color: var(--text-soft);
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   09. DOCENTES · NAVEGACIÓN ENTRE LECTURAS
+========================================================= */
+
+.exercise-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px;
+    margin: 0 0 46px;
+    padding: 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.exercise-tab {
+    position: relative;
+    min-width: 0;
+    padding: 0 0 18px;
+    border: 0;
+    background: transparent;
+    color: var(--text-soft);
+    text-align: left;
+    cursor: pointer;
+}
+
+.exercise-tab::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 0;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--purple);
+    transition: width var(--transition);
+}
+
+.exercise-tab.active::after {
+    width: 100%;
+}
+
+.tab-content {
+    display: block;
+    min-width: 0;
+}
+
+.tab-content strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #77717d;
+    font-size: 1rem;
+    line-height: 1.3;
+    font-weight: 650;
+    transition: color var(--transition);
+}
+
+.tab-content small {
+    display: block;
+    color: #99929e;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.exercise-tab.active .tab-content strong {
+    color: var(--purple-dark);
+    font-weight: 750;
+}
+
+.exercise-tab.active .tab-content small {
+    color: #756e7c;
+}
+
+.exercise-tab:hover .tab-content strong {
+    color: var(--purple);
+}
+
+/* =========================================================
+   10. PANELES DE EJERCICIOS
+========================================================= */
+
+.exercise-panel {
+    border-top: 1px solid var(--border);
+    padding-top: 42px;
+}
+
+.exercise-heading {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+
+    gap: 60px;
+
+    margin-bottom: 44px;
+}
+
+.exercise-heading h2 {
+    max-width: 700px;
+
+    margin: 8px 0 0;
+
+    color: var(--purple-dark);
+
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.08;
+
+    letter-spacing: -0.04em;
+}
+
+.exercise-heading > p {
+    max-width: 440px;
+
+    margin: 22px 0 0;
+
+    color: var(--text-soft);
+
+    line-height: 1.7;
+}
+
+/* =========================================================
+   21. EJERCICIO 02 · SELECTOR INTERNO
+========================================================= */
+
+.trajectory-mode-selector {
+    display: inline-flex;
+
+    margin-bottom: 30px;
+    padding: 4px;
+
+    border: 1px solid var(--border);
+    border-radius: 999px;
+
+    background: var(--white);
+}
+
+.mode-button {
+    min-height: 40px;
+
+    padding: 0 20px;
+
+    border: 0;
+    border-radius: 999px;
+
+    background: transparent;
+    color: var(--text-soft);
+
+    font-size: 0.86rem;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.mode-button.active {
+    background: var(--purple-dark);
+    color: var(--white);
+}
+
+
+/* =========================================================
+   22. EJERCICIO 02 · NAVEGACIÓN
+========================================================= */
+
+.trajectory-navigation {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-bottom: 22px;
+}
+
+.trajectory-navigation button {
+    min-height: 42px;
+
+    padding: 8px 15px;
+
+    border: 1px solid var(--border);
+    border-radius: 999px;
+
+    background: var(--white);
+    color: var(--text-soft);
+
+    font-size: 0.8rem;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.trajectory-navigation button:hover {
+    border-color: var(--purple-medium);
+    color: var(--purple-dark);
+}
+
+.trajectory-navigation button.active {
+    border-color: var(--purple);
+    background: var(--purple-light);
+    color: var(--purple-dark);
+}
+
+
+/* =========================================================
+   23. EXPLORADOR CUALITATIVO
+   EJERCICIO 02
+========================================================= */
+
+.qualitative-explorer {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
+
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-large);
+
+    background: var(--white);
+}
+
+.themes-panel {
+    padding: 32px;
+
+    border-right: 1px solid var(--border);
+    background: var(--purple-soft);
+}
+
+.explorer-heading h3 {
+    margin: 8px 0 5px;
+
+    color: var(--purple-dark);
+
+    font-size: 1.65rem;
+    line-height: 1.1;
+}
+
+.explorer-heading > p:last-child {
+    margin: 0;
+
+    color: var(--text-soft);
+
+    font-size: 0.82rem;
+}
+
+.theme-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-top: 26px;
+}
+
+.theme-list button {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    background: transparent;
+    color: var(--text);
+
+    text-align: left;
+
+    font-size: 0.87rem;
+    line-height: 1.35;
+
+    cursor: pointer;
+
+    transition:
+        background var(--transition),
+        border-color var(--transition);
+}
+
+.theme-list button:hover {
+    background: var(--white);
+}
+
+.theme-list button.active {
+    border-color: var(--border-dark);
+    background: var(--white);
+
+    color: var(--purple-dark);
+    font-weight: 700;
+}
+
+.finding-detail {
+    min-width: 0;
+    min-height: 400px;
+
+    padding: 48px clamp(32px, 5vw, 64px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.finding-detail h3,
+.finding-detail h4 {
+    margin: 0;
+
+    color: var(--purple-dark);
+
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    line-height: 1.1;
+
+    letter-spacing: -0.035em;
+}
+
+.finding-detail > p {
+    margin: 20px 0 0;
+
+    color: var(--text);
+
+    line-height: 1.8;
+}
+
+.finding-detail blockquote {
+    margin: 28px 0 0;
+    padding-left: 22px;
+
+    border-left: 3px solid var(--yellow);
+
+    color: var(--purple-dark);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.08rem;
+    font-style: italic;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   24. ACERCA DEL ESTUDIO
+========================================================= */
+
+.about-view {
+    width: min(calc(100% - 48px), 940px);
+
+    margin: 0 auto;
+
+    padding: 88px 0 100px;
+}
+
+.about-content {
+    padding: clamp(34px, 6vw, 68px);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-large);
+
+    background: var(--white);
+}
+
+.about-content h1 {
+    max-width: 700px;
+
+    margin: 10px 0 0;
+
+    color: var(--purple-dark);
+
+    font-size: clamp(2.7rem, 6vw, 4.7rem);
+    line-height: 0.98;
+
+    letter-spacing: -0.055em;
+}
+
+.about-lead {
+    max-width: 700px;
+
+    margin: 27px 0 45px;
+
+    color: var(--text-soft);
+
+    font-size: 1.08rem;
+    line-height: 1.75;
+}
+
+.about-note {
+    display: grid;
+    grid-template-columns: 55px minmax(0, 1fr);
+
+    gap: 20px;
+
+    padding: 25px 0;
+
+    border-top: 1px solid var(--border);
+}
+
+.about-number {
+    color: var(--purple-medium);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
+.about-note strong {
+    color: var(--purple-dark);
+}
+
+.about-note p {
+    max-width: 650px;
+
+    margin: 8px 0 0;
+
+    color: var(--text-soft);
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   25. TRANSICIONES
+========================================================= */
+
+.app-view.active,
+.exercise-panel.active,
+.trajectory-mode.active {
+    animation: revealView 280ms ease both;
+}
+
+@keyframes revealView {
+
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   26. RESPONSIVE · TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .hero-container,
+    .page-heading,
+    .exercise-heading,
+    .home-intro {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .hero-container {
+        min-height: auto;
+
+        padding-top: 60px;
+    }
+
+    .hero-visual {
+        max-width: 430px;
+        margin: 10px auto 0;
+    }
+
+    .exercise-selector {
+        grid-template-columns: 1fr;
+    }
+
+    .story-finding {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .qualitative-explorer {
+        grid-template-columns: 1fr;
+    }
+
+    .themes-panel {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+}
+
+
+/* =========================================================
+   27. RESPONSIVE · MÓVIL
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .header-container {
+        width: min(calc(100% - 28px), var(--max-width));
+        min-height: 64px;
+
+        gap: 10px;
+    }
+
+    .brand-name {
+        display: none;
+    }
+
+    .main-nav {
+        gap: 0;
+    }
+
+    .nav-link {
+        padding: 9px 8px;
+        font-size: 0.78rem;
+    }
+
+    .nav-link.active::after {
+        left: 8px;
+        right: 8px;
+    }
+
+    .content-container,
+    .hero-container,
+    .home-intro {
+        width: min(calc(100% - 28px), var(--max-width));
+    }
+
+    .content-container {
+        padding-top: 42px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(3.5rem, 18vw, 5.2rem);
+    }
+
+    .hero-container {
+        gap: 40px;
+    }
+
+    .home-intro {
+        margin-bottom: 50px;
+    }
+
+    .page-heading h1 {
+        font-size: clamp(2.6rem, 13vw, 3.8rem);
+    }
+
+    .exercise-tab {
+        padding: 18px;
+    }
+
+    .story-nav-wrapper {
+        top: 64px;
+
+        padding: 14px 12px 16px;
+    }
+
+    .story-nav-label {
+        text-align: center;
+    }
+
+    .journey-navigation button {
+        padding: 0 2px;
+    }
+
+    .journey-navigation button span:first-child {
+        font-size: 0.62rem;
+    }
+
+    .journey-navigation button span:last-child {
+        font-size: 0.69rem;
+    }
+
+    .story-chapter {
+        min-height: auto;
+
+        padding: 55px 22px 32px;
+
+        border-radius: 20px;
+    }
+
+    .story-number {
+        top: 28px;
+        right: 4%;
+
+        font-size: 9rem;
+    }
+
+    .story-decoration-one {
+        top: 64px;
+    }
+
+    .story-chapter-header {
+        margin-bottom: 42px;
+    }
+
+    .story-chapter-header h3 {
+        font-size: clamp(3rem, 18vw, 4.4rem);
+    }
+
+    .story-finding {
+        padding: 30px 0;
+    }
+
+    .story-theme-navigation {
+        grid-template-columns: 1fr auto 1fr;
+        gap: 8px;
+    }
+
+    .story-arrow-button {
+        font-size: 0.78rem;
+    }
+
+    .story-next-chapter {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .story-next-button {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .trajectory-mode-selector {
+        display: flex;
+        width: 100%;
+    }
+
+    .mode-button {
+        flex: 1;
+    }
+
+    .trajectory-navigation {
+        flex-wrap: nowrap;
+
+        overflow-x: auto;
+
+        padding-bottom: 7px;
+    }
+
+    .trajectory-navigation button {
+        flex: 0 0 auto;
+    }
+
+    .themes-panel,
+    .finding-detail {
+        padding: 27px 22px;
+    }
+
+    .about-view {
+        width: min(calc(100% - 28px), 940px);
+
+        padding: 55px 0;
+    }
+
+    .about-content {
+        padding: 30px 23px;
+    }
+
+}
+
+
+/* =========================================================
+   28. MOVIMIENTO REDUCIDO
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
+
+/* =========================================================
+   CARTOGRAFÍA DEL RECORRIDO · AJUSTE NARRATIVO
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   NAVEGACIÓN SUPERIOR DEL RECORRIDO
+--------------------------------------------------------- */
+
+.story-nav-wrapper {
+    position: sticky;
+    top: 72px;
+    z-index: 40;
+
+    margin: 28px 0 24px;
+    padding: 20px 26px 23px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(12px);
+}
+
+
+.story-nav-label {
+    margin-bottom: 18px;
+}
+
+
+.journey-navigation {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 0;
+}
+
+
+.journey-navigation::before {
+    content: "";
+
+    position: absolute;
+
+    left: 12.5%;
+    right: 12.5%;
+    top: 19px;
+
+    height: 2px;
+
+    background: #d8d0df;
+}
+
+
+.journey-navigation button {
+    position: relative;
+    z-index: 2;
+
+    min-width: 0;
+
+    padding: 0 8px;
+
+    border: 0;
+    background: transparent;
+
+    color: var(--text-soft);
+
+    cursor: pointer;
+}
+
+
+.journey-navigation button::before {
+    content: "";
+
+    display: block;
+
+    width: 16px;
+    height: 16px;
+
+    margin: 11px auto 9px;
+
+    border: 3px solid var(--white);
+    border-radius: 50%;
+
+    background: #d5cddd;
+
+    box-shadow: 0 0 0 2px #d5cddd;
+
+    transition:
+        background var(--transition),
+        box-shadow var(--transition),
+        transform var(--transition);
+}
+
+
+.journey-navigation button:hover::before {
+    transform: scale(1.12);
+}
+
+
+.journey-navigation button.active {
+    color: var(--purple-dark);
+}
+
+
+.journey-navigation button.active::before {
+    background: var(--yellow);
+
+    box-shadow: 0 0 0 3px var(--purple);
+}
+
+
+.journey-navigation button span {
+    display: block;
+}
+
+
+.journey-navigation button span:first-child {
+    color: inherit;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+}
+
+
+.journey-navigation button span:last-child {
+    margin-top: 3px;
+
+    color: inherit;
+
+    font-size: 0.86rem;
+    font-weight: 700;
+}
+
+
+/* ---------------------------------------------------------
+   CONTENEDOR DEL CAPÍTULO
+--------------------------------------------------------- */
+
+.story-chapter {
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 0;
+
+    margin-top: 24px;
+    padding: 54px 72px 46px;
+
+    border: 1px solid #e8e3ec;
+    border-radius: 28px;
+
+    background: #ffffff;
+}
+
+
+/* ---------------------------------------------------------
+   ELIMINAMOS DECORACIONES DE LA VERSIÓN ANTERIOR
+--------------------------------------------------------- */
+
+.story-number,
+.story-decoration,
+.story-decoration-one,
+.story-decoration-two,
+.story-theme-dots {
+    display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   ENCABEZADO DEL MOMENTO
+--------------------------------------------------------- */
+
+.story-chapter-header {
+    position: relative;
+    z-index: 1;
+
+    max-width: 800px;
+
+    margin: 0 auto;
+    padding: 0 20px 46px;
+
+    text-align: center;
+}
+
+
+.story-chapter-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-bottom: 22px;
+}
+
+
+.story-chapter-index {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+
+    margin: 0;
+
+    color: var(--text-soft);
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+}
+
+
+.story-meta-divider {
+    color: #b5aebc;
+
+    font-size: 0.9rem;
+}
+
+
+.story-moment-label {
+    margin: 0;
+
+    color: var(--purple);
+
+    font-size: 0.78rem;
+    font-weight: 800;
+
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+
+.story-introduction {
+    max-width: 690px;
+
+    margin: 0 auto;
+
+    color: #756f7d;
+
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+
+/* ---------------------------------------------------------
+   CONTENIDO DEL MOMENTO
+--------------------------------------------------------- */
+
+.story-content {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    grid-template-columns: 235px minmax(0, 1fr);
+
+    gap: 58px;
+
+    max-width: 980px;
+
+    margin: 0 auto;
+    padding: 44px 0 38px;
+
+    border-top: 1px solid #ebe7ef;
+}
+
+
+/* ---------------------------------------------------------
+   COLUMNA IZQUIERDA · TEMAS
+--------------------------------------------------------- */
+
+.story-finding-context {
+    min-width: 0;
+    padding-top: 3px;
+}
+
+
+.story-small-label {
+    margin: 0 0 10px;
+
+    color: var(--purple);
+
+    font-size: 12px;
+    line-height: 1.4;
+
+    font-weight: 800;
+
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+
+.story-theme-count {
+    margin: 0;
+
+    color: var(--purple-dark);
+
+    font-size: 22px;
+    line-height: 1.2;
+
+    font-weight: 750;
+}
+
+
+.story-context-description {
+    margin: 9px 0 0;
+
+    color: #7b7581;
+
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+
+/* ---------------------------------------------------------
+   LISTA DE TEMAS CONECTADA AL BLOQUE
+--------------------------------------------------------- */
+
+.story-theme-menu {
+    margin-top: 25px;
+}
+
+
+.story-theme-list {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+
+/* línea vertical sutil que relaciona los temas */
+
+.story-theme-list::before {
+    content: "";
+
+    position: absolute;
+
+    top: 12px;
+    bottom: 12px;
+    left: 5px;
+
+    width: 1px;
+
+    background: #ded7e5;
+}
+
+
+.story-theme-list button {
+    appearance: none;
+
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+
+    padding: 10px 10px 10px 23px;
+
+    border: 0;
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #77717c;
+
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.35;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+/* pequeño nodo de cada tema */
+
+.story-theme-list button::before {
+    content: "";
+
+    position: absolute;
+
+    left: 1px;
+    top: 50%;
+
+    width: 9px;
+    height: 9px;
+
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+
+    background: #d8d0df;
+
+    box-shadow: 0 0 0 1px #d8d0df;
+
+    transform: translateY(-50%);
+}
+
+
+.story-theme-list button:hover {
+    background: #faf8fc;
+
+    color: var(--purple);
+}
+
+
+.story-theme-list button.active {
+    background: var(--purple-soft);
+
+    color: var(--purple-dark);
+
+    font-weight: 700;
+}
+
+
+.story-theme-list button.active::before {
+    background: var(--yellow);
+
+    box-shadow: 0 0 0 2px var(--purple);
+}
+
+
+/* ---------------------------------------------------------
+   HALLAZGO PRINCIPAL
+--------------------------------------------------------- */
+
+.story-finding-main {
+    min-width: 0;
+}
+
+
+.story-finding-detail {
+    min-height: 280px;
+}
+
+
+.story-finding-detail .finding-kicker {
+    margin: 0 0 14px;
+
+    color: var(--purple);
+
+    font-size: 12px;
+    line-height: 1.4;
+
+    font-weight: 800;
+
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+
+.story-finding-detail h4 {
+    max-width: 760px;
+
+    margin: 0;
+
+    color: var(--purple-dark);
+
+    font-size: clamp(30px, 3.1vw, 44px);
+    line-height: 1.08;
+
+    font-weight: 750;
+
+    letter-spacing: -0.035em;
+}
+
+
+.story-finding-detail .finding-text {
+    max-width: 760px;
+
+    margin: 20px 0 0;
+
+    color: #353039;
+
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+
+/* ---------------------------------------------------------
+   FRECUENCIAS
+--------------------------------------------------------- */
+
+.story-stats {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 22px;
+}
+
+
+.story-stats span {
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 32px;
+
+    padding: 6px 13px;
+
+    border: 1px solid #e6deed;
+    border-radius: 999px;
+
+    background: #f7f4fa;
+
+    color: var(--purple-dark);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* ---------------------------------------------------------
+   CITA
+--------------------------------------------------------- */
+
+.story-finding-detail blockquote {
+    position: relative;
+
+    max-width: 760px;
+
+    margin: 28px 0 0;
+    padding: 6px 0 6px 24px;
+
+    border-left: 3px solid var(--yellow);
+}
+
+
+.story-finding-detail blockquote p {
+    margin: 0;
+
+    color: var(--purple-dark);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 20px;
+    font-style: italic;
+
+    line-height: 1.55;
+}
+
+
+/* ---------------------------------------------------------
+   NAVEGACIÓN ENTRE HALLAZGOS
+--------------------------------------------------------- */
+
+.story-theme-navigation {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    gap: 24px;
+
+    margin-top: 30px;
+    padding-top: 24px;
+
+    border-top: 1px solid #ebe7ef;
+}
+
+
+.story-arrow-button {
+    appearance: none;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 9px;
+
+    width: fit-content;
+
+    padding: 10px 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--purple-dark);
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.story-arrow-button:last-child {
+    justify-self: end;
+}
+
+
+.story-arrow-button:hover:not(:disabled) {
+    color: var(--purple-medium);
+}
+
+
+.story-arrow-button:disabled {
+    color: #d4ceda;
+
+    cursor: default;
+}
+
+
+.story-progress {
+    display: none;
+}
+
+
+/* ---------------------------------------------------------
+   CONTINUAR RECORRIDO
+--------------------------------------------------------- */
+
+.story-next-chapter {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 32px;
+
+    max-width: 980px;
+
+    margin: 0 auto;
+    padding: 30px 0 4px;
+
+    border-top: 1px solid #ebe7ef;
+}
+
+
+.story-next-description {
+    max-width: 560px;
+
+    margin: 0;
+
+    color: #77717c;
+
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+
+.story-next-button {
+    appearance: none;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 22px;
+
+    min-width: 150px;
+
+    padding: 14px 20px;
+
+    border: 1px solid var(--purple-medium);
+    border-radius: 999px;
+
+    background: #ffffff;
+
+    color: var(--purple-dark);
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.story-next-button:hover {
+    background: var(--purple);
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   RESPONSIVE · CARTOGRAFÍA
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .story-chapter {
+        padding:
+            48px
+            36px
+            38px;
+    }
+
+
+    .story-content {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+
+    .story-finding-context {
+        padding-bottom: 28px;
+
+        border-bottom: 1px solid var(--border);
+    }
+
+
+    .story-context-description {
+        max-width: 440px;
+    }
+
+
+    .story-theme-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        gap: 7px;
+
+        margin-top: 20px;
+    }
+
+
+    .story-theme-list::before {
+        display: none;
+    }
+
+
+    .story-theme-list button {
+        padding: 11px 13px;
+
+        border: 1px solid var(--border);
+    }
+
+
+    .story-theme-list button::before {
+        display: none;
+    }
+
+
+    .story-theme-list button.active {
+        border-color: var(--purple-medium);
+    }
+
+}
+
+
+@media (max-width: 640px) {
+
+    .story-nav-wrapper {
+        top: 64px;
+
+        padding:
+            15px
+            12px
+            17px;
+    }
+
+
+    .journey-navigation button {
+        padding: 0 2px;
+    }
+
+
+    .journey-navigation button::before {
+        width: 14px;
+        height: 14px;
+    }
+
+
+    .journey-navigation button span:first-child {
+        font-size: 0.62rem;
+    }
+
+
+    .journey-navigation button span:last-child {
+        font-size: 0.69rem;
+    }
+
+
+    .story-chapter {
+        padding:
+            40px
+            22px
+            30px;
+
+        border-radius: 22px;
+    }
+
+
+    .story-chapter-header {
+        padding:
+            0
+            0
+            34px;
+    }
+
+
+    .story-chapter-meta {
+        margin-bottom: 18px;
+    }
+
+
+    .story-introduction {
+        font-size: 16px;
+    }
+
+
+    .story-content {
+        padding:
             32px
             0;
     }
@@ -126,3 +2078,12 @@
         gap: 0;
         margin-bottom: 38px;
     }
+
+    .exercise-tab {
+        padding: 15px 0;
+    }
+
+    .exercise-tab.active::after {
+        width: 76px;
+    }
+}
