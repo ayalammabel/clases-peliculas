@@ -2719,3 +2719,191 @@ button:focus-visible {
     }
 
 }
+
+/* =========================================================
+   DOCENTES · NAVEGACIÓN ENTRE RESULTADOS
+========================================================= */
+
+
+/* Contenedor */
+
+.exercise-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 42px;
+
+    margin-top: 38px;
+    margin-bottom: 54px;
+
+    padding: 0;
+
+    border-bottom: 1px solid var(--border);
+
+    background: transparent;
+}
+
+
+/* Cada opción */
+
+.exercise-tab {
+    position: relative;
+
+    display: block;
+
+    min-height: 0;
+
+    padding: 0 0 22px;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    background: transparent !important;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+/* Eliminamos cualquier decoración anterior */
+
+.exercise-tab::before {
+    display: none !important;
+}
+
+
+/* Línea de selección */
+
+.exercise-tab::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -1px;
+
+    width: 100%;
+    height: 2px;
+
+    background: transparent;
+
+    transition: background-color 0.2s ease;
+}
+
+
+.exercise-tab.active::after {
+    background: var(--purple);
+}
+
+
+/* Contenido */
+
+.exercise-tab .tab-content {
+    display: block;
+}
+
+
+.exercise-tab .tab-content strong {
+    display: block;
+
+    margin: 0 0 8px;
+
+    color: #77717c;
+
+    font-size: 17px;
+    line-height: 1.3;
+
+    font-weight: 700;
+
+    transition: color 0.2s ease;
+}
+
+
+.exercise-tab .tab-content small {
+    display: block;
+
+    color: #96909b;
+
+    font-size: 13px;
+    line-height: 1.4;
+
+    font-weight: 500;
+}
+
+
+/* Seleccionada */
+
+.exercise-tab.active .tab-content strong {
+    color: var(--purple-dark);
+}
+
+
+.exercise-tab.active .tab-content small {
+    color: #716a78;
+}
+
+
+/* Hover */
+
+.exercise-tab:hover .tab-content strong {
+    color: var(--purple);
+}
+
+
+/* =========================================================
+   ENCABEZADO DEL RESULTADO ACTIVO
+========================================================= */
+
+.exercise-heading {
+    padding-top: 0;
+}
+
+
+.exercise-heading h2 {
+    margin-top: 0;
+}
+
+
+/* Ya no utilizamos "Ejercicio 01 / 02" */
+
+.exercise-kicker {
+    display: none;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .exercise-selector {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+
+        margin-top: 30px;
+        margin-bottom: 42px;
+    }
+
+
+    .exercise-tab {
+        padding: 18px 0;
+    }
+
+
+    .exercise-tab::after {
+        width: 52px;
+    }
+
+
+    .exercise-tab.active::after {
+        background: var(--purple);
+    }
+
+}
