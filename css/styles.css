@@ -2239,10 +2239,6 @@ button:focus-visible {
     .docentes-heading {
         max-width: 720px;
     }
-
-    .exercise-selector {
-        gap: 28px;
-    }
 }
 
 @media (max-width: 700px) {
