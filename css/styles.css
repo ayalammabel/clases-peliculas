@@ -302,6 +302,90 @@ button:focus-visible {
     transform: translateY(-2px);
 }
 
+/* =====================================================
+   MENÚ DESPLEGABLE · DOCENTES
+   ===================================================== */
+
+.nav-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-dropdown-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-dropdown-arrow {
+    font-size: 18px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.nav-dropdown.is-open .nav-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* Contenedor del submenú */
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    z-index: 100;
+
+    width: 260px;
+    padding: 8px;
+
+    background: #ffffff;
+    border: 1px solid #e7e1ed;
+    border-radius: 12px;
+
+    box-shadow: 0 12px 30px rgba(45, 20, 80, 0.12);
+}
+
+.nav-dropdown-menu[hidden] {
+    display: none !important;
+}
+
+/* Opciones */
+
+.nav-dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 14px 16px;
+
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+
+    color: var(--purple-dark);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.nav-dropdown-item + .nav-dropdown-item {
+    border-top: 1px solid #eee9f2;
+}
+
+.nav-dropdown-item:hover,
+.nav-dropdown-item:focus-visible {
+    background: #f3edf8;
+    outline: none;
+}
+
+.nav-dropdown-item.active {
+    background: #f0e9f7;
+    color: var(--purple-dark);
+}
+
 
 /* =========================================================
    06. VISUAL DE PORTADA
