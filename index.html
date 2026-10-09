@@ -55,13 +55,47 @@
                     Inicio
                 </button>
 
-                <button
-                    class="nav-link view-link"
-                    type="button"
-                    data-view="docentes"
-                >
-                    Docentes
-                </button>
+                <!-- Menú desplegable de Docentes -->
+                <div class="nav-dropdown">
+                
+                    <button
+                        class="nav-link view-link nav-dropdown-trigger"
+                        type="button"
+                        data-view="docentes"
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                        aria-controls="docentes-submenu"
+                    >
+                        Docentes
+                        <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span>
+                    </button>
+                
+                    <div
+                        id="docentes-submenu"
+                        class="nav-dropdown-menu"
+                        aria-label="Resultados de docentes"
+                        hidden
+                    >
+                
+                        <button
+                            class="nav-dropdown-item"
+                            type="button"
+                            data-exercise="recorrido"
+                        >
+                            Cartografía del recorrido
+                        </button>
+                
+                        <button
+                            class="nav-dropdown-item"
+                            type="button"
+                            data-exercise="trayectoria"
+                        >
+                            Mapa de trayectoria
+                        </button>
+                
+                    </div>
+                
+                </div>
 
                 <button
                     class="nav-link view-link"
