@@ -161,18 +161,20 @@ function normalizeRecord(record) {
         raw: record,
 
         momento: firstValue(
-            record,
-            [
-                "momento",
-                "Momento",
-                "submomento",
-                "Submomento",
-                "etapa",
-                "Etapa",
-                "categoria",
-                "Categoría"
-            ]
-        ),
+             record,
+             [
+                 "momento",
+                 "Momento",
+                 "submomento",
+                 "Submomento",
+                 "etapa",
+                 "Etapa",
+                 "componente",
+                 "Componente",
+                 "categoria",
+                 "Categoría"
+             ]
+         ),
 
         tema: firstValue(
             record,
