@@ -2251,18 +2251,24 @@ button:focus-visible {
     }
 
     .exercise-selector {
-        grid-template-columns: 1fr;
-        gap: 0;
-        margin-bottom: 38px;
-    }
-
-    .exercise-tab {
-        padding: 15px 0;
-    }
-
-    .exercise-tab.active::after {
-        width: 76px;
-    }
+       grid-template-columns: 1fr;
+       gap: 12px;
+       margin-bottom: 24px;
+   }
+   
+   .exercise-tab {
+       min-height: 76px;
+       padding: 20px 22px;
+   }
+   
+   .exercise-tab::after {
+       left: 22px;
+       right: 22px;
+   }
+   
+   .exercise-tab.active::after {
+       width: auto;
+   }
 }
 
 /* =========================================================
