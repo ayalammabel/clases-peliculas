@@ -366,76 +366,74 @@ function renderDataError() {
 /* =========================================================
    06. NAVEGACIÓN PRINCIPAL
 ========================================================= */
-
 function initializeMainNavigation() {
 
-    const links =
-        document.querySelectorAll(".view-link");
+    const links = document.querySelectorAll(".view-link");
 
+    const dropdown = document.querySelector(".nav-dropdown");
+    const trigger = document.querySelector(".nav-dropdown-trigger");
+    const menu = document.getElementById("docentes-submenu");
+
+    function closeDropdown() {
+        if (!dropdown || !trigger || !menu) return;
+
+        dropdown.classList.remove("is-open");
+        trigger.setAttribute("aria-expanded", "false");
+        menu.hidden = true;
+    }
 
     links.forEach(link => {
 
-        link.addEventListener(
-            "click",
-            () => {
+        link.addEventListener("click", () => {
 
-                const target =
-                    link.dataset.view;
+            // El botón Docentes abre o cierra el submenú
+            if (link.classList.contains("nav-dropdown-trigger")) {
 
-                showView(target);
+                const isOpen = !menu.hidden;
 
-                window.location.hash =
-                    target;
+                if (isOpen) {
+                    closeDropdown();
+                } else {
+                    menu.hidden = false;
+                    dropdown.classList.add("is-open");
+                    trigger.setAttribute("aria-expanded", "true");
+                }
 
+                return;
             }
-        );
+
+            // Inicio y Acerca del estudio conservan su funcionamiento
+            const target = link.dataset.view;
+
+            closeDropdown();
+            showView(target);
+
+            window.location.hash = target;
+
+        });
 
     });
 
+    // Cerrar al hacer clic fuera del menú
+    document.addEventListener("click", event => {
 
-    window.addEventListener(
-        "hashchange",
-        () => {
-
-            const target =
-                window.location.hash
-                    .replace("#", "");
-
-            if (
-                [
-                    "inicio",
-                    "docentes",
-                    "acerca"
-                ].includes(target)
-            ) {
-                showView(target);
-            }
-
+        if (dropdown && !dropdown.contains(event.target)) {
+            closeDropdown();
         }
-    );
 
+    });
 
-    const initial =
-        window.location.hash
-            .replace("#", "");
+    // Cerrar con Escape
+    document.addEventListener("keydown", event => {
 
+        if (event.key === "Escape") {
+            closeDropdown();
+            trigger?.focus();
+        }
 
-    if (
-        [
-            "inicio",
-            "docentes",
-            "acerca"
-        ].includes(initial)
-    ) {
-        showView(initial);
-    }
-
-    else {
-        showView("inicio");
-    }
+    });
 
 }
-
 
 function showView(target) {
 
