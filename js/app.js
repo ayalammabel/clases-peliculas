@@ -382,36 +382,6 @@ function initializeMainNavigation() {
         menu.hidden = true;
     }
 
-   // Navegación entre los resultados de docentes
-   document.querySelectorAll(
-       "#docentes-submenu [data-target]"
-   ).forEach(option => {
-   
-       option.addEventListener("click", () => {
-   
-           const target = option.dataset.target;
-   
-           document.querySelectorAll(
-               "[data-exercise-panel]"
-           ).forEach(panel => {
-   
-               const active =
-                   panel.dataset.exercisePanel === target;
-   
-               panel.hidden = !active;
-               panel.classList.toggle("active", active);
-   
-           });
-   
-           closeDropdown();
-           showView("docentes");
-   
-           window.location.hash = "docentes";
-   
-       });
-   
-   });
-
     links.forEach(link => {
 
         link.addEventListener("click", () => {
