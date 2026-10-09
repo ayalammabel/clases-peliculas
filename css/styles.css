@@ -1143,17 +1143,41 @@ button:focus-visible {
         flex: 1;
     }
 
-    .trajectory-navigation {
-        flex-wrap: nowrap;
-
-        overflow-x: auto;
-
-        padding-bottom: 7px;
-    }
-
-    .trajectory-navigation button {
-        flex: 0 0 auto;
-    }
+    .trajectory-map {
+    padding: 24px 18px;
+   }
+   
+   .trajectory-map-heading {
+       display: block;
+   }
+   
+   .trajectory-map-description {
+       margin-top: 12px;
+   }
+   
+   .trajectory-map-canvas {
+       height: auto;
+       margin-top: 22px;
+   }
+   
+   .trajectory-map-path {
+       display: none;
+   }
+   
+   .trajectory-navigation {
+       position: static;
+       display: grid;
+       grid-template-columns: repeat(2, minmax(0, 1fr));
+       gap: 12px;
+   }
+   
+   .trajectory-navigation button,
+   .trajectory-navigation button:nth-child(n) {
+       position: static;
+       width: 100%;
+       min-height: 68px;
+       transform: none;
+   }
 
     .themes-panel,
     .finding-detail {
