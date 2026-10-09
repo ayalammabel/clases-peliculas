@@ -435,6 +435,24 @@ function initializeMainNavigation() {
 
 }
 
+function showExercise(target) {
+
+    document
+        .querySelectorAll("[data-exercise-panel]")
+        .forEach(panel => {
+
+            const active =
+                panel.dataset.exercisePanel === target;
+
+            panel.hidden = !active;
+
+            panel.classList.toggle("active", active);
+
+        });
+
+}
+
+
 function showView(target) {
 
     const panels =
