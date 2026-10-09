@@ -2247,3 +2247,45 @@ button:focus-visible {
         width: 76px;
     }
 }
+
+/* =========================================================
+   PROYECCIÓN · TRES DIMENSIONES
+========================================================= */
+
+.projection-navigation {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 30px 0;
+}
+
+.projection-navigation button {
+    position: static;
+    width: 100%;
+    min-height: 105px;
+    padding: 24px;
+
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    background: var(--white);
+    color: var(--purple-dark);
+
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: left;
+
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.projection-navigation button:hover {
+    border-color: var(--purple-medium);
+    background: var(--purple-light);
+}
+
+.projection-navigation button.active {
+    border-color: var(--purple);
+    background: var(--purple-light);
+    color: var(--purple-dark);
+}
