@@ -227,6 +227,7 @@ function normalizeRecord(record) {
             [
                 "frecuencia",
                 "Frecuencia",
+               "frecuenciaGrupos",
                 "aportes",
                 "Aportes",
                 "numero_aportes",
