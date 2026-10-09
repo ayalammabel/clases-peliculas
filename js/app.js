@@ -477,6 +477,24 @@ function showView(target) {
 
 }
 
+function showDocentesExercise(target) {
+
+    document
+        .querySelectorAll("[data-exercise-panel]")
+        .forEach(panel => {
+
+            const active =
+                panel.dataset.exercisePanel === target;
+
+            panel.hidden = !active;
+
+            panel.classList.toggle("active", active);
+
+        });
+
+    showView("docentes");
+
+}
 
 /* =========================================================
    07. SELECTOR DE EJERCICIOS
