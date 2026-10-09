@@ -545,6 +545,60 @@ function initializeExerciseNavigation() {
 
 }
 
+function initializeDocentesDropdown() {
+
+    const options = document.querySelectorAll(
+        "#docentes-submenu .nav-dropdown-item"
+    );
+
+    options.forEach(option => {
+
+        option.addEventListener("click", () => {
+
+            const target = option.dataset.exercise;
+
+            // Mostrar la vista Docentes
+            showView("docentes");
+
+            window.location.hash = "docentes";
+
+            // Reutilizar los botones de navegación existentes
+            const exerciseTab = document.querySelector(
+                `.exercise-tab[data-target="${target}"]`
+            );
+
+            if (exerciseTab) {
+                exerciseTab.click();
+            }
+
+            // Actualizar opción seleccionada
+            options.forEach(item => {
+                item.classList.toggle(
+                    "active",
+                    item === option
+                );
+            });
+
+            // Cerrar el desplegable
+            const dropdown = document.querySelector(".nav-dropdown");
+            const trigger = document.querySelector(".nav-dropdown-trigger");
+            const menu = document.getElementById("docentes-submenu");
+
+            dropdown?.classList.remove("is-open");
+
+            if (trigger) {
+                trigger.setAttribute("aria-expanded", "false");
+            }
+
+            if (menu) {
+                menu.hidden = true;
+            }
+
+        });
+
+    });
+
+}
 
 /* =========================================================
    08. CARTOGRAFÍA DEL RECORRIDO
