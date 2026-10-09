@@ -2194,6 +2194,7 @@ document.addEventListener(
 
         initializeMainNavigation();
         initializeExerciseNavigation();
+        initializeDocentesDropdown();
 
         loadData();
 
