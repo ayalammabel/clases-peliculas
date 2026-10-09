@@ -191,20 +191,21 @@ function normalizeRecord(record) {
         ),
 
         lectura: firstValue(
-            record,
-            [
-                "lectura",
-                "Lectura",
-                "interpretacion",
-                "Interpretación",
-                "descripcion",
-                "Descripción",
-                "sintesis",
-                "Síntesis",
-                "analisis",
-                "Análisis"
-            ]
-        ),
+             record,
+             [
+                 "lectura",
+                 "Lectura",
+                 "lecturaInterpretativa",
+                 "interpretacion",
+                 "Interpretación",
+                 "descripcion",
+                 "Descripción",
+                 "sintesis",
+                 "Síntesis",
+                 "analisis",
+                 "Análisis"
+             ]
+         ),
 
         cita: firstValue(
             record,
