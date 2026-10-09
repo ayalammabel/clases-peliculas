@@ -598,16 +598,24 @@ function initializeDocentesDropdown() {
 
             window.location.hash = "docentes";
 
-            // Reutilizar los botones de navegación existentes
-            const exerciseTab = document.querySelector(
-                `.exercise-tab[data-target="${target}"]`
-            );
-
-            if (exerciseTab) {
-                exerciseTab.click();
-            }
-
-            // Actualizar opción seleccionada
+            // Mostrar únicamente el resultado seleccionado
+            document.querySelectorAll(
+                "[data-exercise-panel]"
+            ).forEach(panel => {
+            
+                const active =
+                    panel.dataset.exercisePanel === target;
+            
+                panel.hidden = !active;
+            
+                panel.classList.toggle(
+                    "active",
+                    active
+                );
+            
+            });
+          
+           // Actualizar opción seleccionada
             options.forEach(item => {
                 item.classList.toggle(
                     "active",
