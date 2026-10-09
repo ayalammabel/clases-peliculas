@@ -1770,7 +1770,8 @@ function getTrajectoryRecords(
                     "genera",
                     "lo que genera",
                     "qué genera",
-                    "que genera"
+                    "que genera",
+                    "clases de película genera en los estudiantes"
                 ],
 
                 "lo que moviliza": [
@@ -2067,7 +2068,7 @@ function renderStandardFinding(
     ) {
 
         stats.push(
-            `<span>${escapeHTML(theme.frecuencia)} aportes</span>`
+            `<span>${escapeHTML(theme.frecuencia)} grupos</span>`
         );
 
     }
