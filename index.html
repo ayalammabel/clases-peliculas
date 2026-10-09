@@ -678,10 +678,59 @@
                         class="trajectory-mode active"
                     >
 
-                        <div
-                            id="trayectoria-navigation"
-                            class="trajectory-navigation"
-                        ></div>
+                       <!-- =============================================
+                             MAPA VISUAL DE TRAYECTORIA
+                             Seis estaciones conectadas
+                        ============================================== -->
+                        
+                        <div class="trajectory-map">
+                        
+                            <div class="trajectory-map-heading">
+                        
+                                <p class="section-label">
+                                    RECORRIDO DE LA EXPERIENCIA
+                                </p>
+                        
+                                <p class="trajectory-map-description">
+                                    Selecciona una estación para explorar
+                                    los hallazgos de cada etapa.
+                                </p>
+                        
+                            </div>
+                        
+                            <div class="trajectory-map-canvas">
+                        
+                                <!-- Camino visual entre las estaciones -->
+                                <svg
+                                    class="trajectory-map-path"
+                                    viewBox="0 0 1000 440"
+                                    preserveAspectRatio="none"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M 115 95
+                                           C 350 95, 650 95, 850 95
+                                           C 1030 95, 1030 220, 850 220
+                                           C 650 220, 350 220, 150 220
+                                           C -30 220, -30 355, 150 355
+                                           C 350 355, 650 355, 850 355"
+                                        fill="none"
+                                        stroke="#DDD3E9"
+                                        stroke-width="7"
+                                        stroke-linecap="round"
+                                    />
+                                </svg>
+                        
+                                <!-- JavaScript insertará las seis estaciones -->
+                                <div
+                                    id="trayectoria-navigation"
+                                    class="trajectory-navigation trajectory-map-stations"
+                                    aria-label="Estaciones del mapa de trayectoria"
+                                ></div>
+                        
+                            </div>
+                        
+                        </div>
 
 
                         <div class="qualitative-explorer">
