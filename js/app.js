@@ -1093,70 +1093,129 @@ function updateStoryChapterHeader(
    14. HALLAZGO ACTIVO
 ========================================================= */
 
+
 function renderStoryFinding(theme) {
 
-    const container =
-        document.getElementById(
-            "recorrido-detail"
-        );
-
+    const container = document.getElementById(
+        "recorrido-detail"
+    );
 
     if (!container) {
         return;
     }
 
+    // 1. Estadísticas del hallazgo
 
     const stats = [];
-
 
     if (
         theme.frecuencia !== "" &&
         theme.frecuencia !== null &&
         theme.frecuencia !== undefined
     ) {
-
         stats.push(
             `<span>${escapeHTML(theme.frecuencia)} aportes</span>`
         );
-
     }
-
 
     if (
         theme.docentes !== "" &&
         theme.docentes !== null &&
         theme.docentes !== undefined
     ) {
-
         stats.push(
             `<span>${escapeHTML(theme.docentes)} docentes</span>`
         );
-
     }
 
+    const statsHTML = stats.length
+        ? `
+            <div class="story-stats">
+                ${stats.join("")}
+            </div>
+        `
+        : "";
 
-    const readingHTML =
-        theme.lectura
-            ? `
-                <p class="finding-text">
-                    ${escapeHTML(theme.lectura)}
+    // 2. Lectura interpretativa
+
+    const readingHTML = theme.lectura
+        ? `
+            <p class="finding-text">
+                ${escapeHTML(theme.lectura)}
+            </p>
+        `
+        : "";
+
+    // 3. Recuperar testimonios originales
+
+    const testimonios = Array.isArray(theme.testimonios)
+        ? theme.testimonios.filter(
+            item =>
+                item &&
+                String(item.texto ?? "").trim()
+        )
+        : [];
+
+    // 4. Construir carrusel de testimonios
+
+    // Si no hay testimonios, se conserva
+    // la cita representativa original.
+
+    const quoteHTML = testimonios.length
+        ? `
+            <div class="story-testimonios">
+
+                <p class="story-testimonio-label">
+                    TESTIMONIOS DE DOCENTES
                 </p>
-            `
-            : "";
 
+                <blockquote class="story-testimonio-quote">
 
-    const statsHTML =
-        stats.length
-            ? `
-                <div class="story-stats">
-                    ${stats.join("")}
+                    <p class="story-testimonio-texto">
+                        “${escapeHTML(testimonios[0].texto)}”
+                    </p>
+
+                    <footer class="story-testimonio-id">
+                        Transcripción
+                        ${escapeHTML(
+                            testimonios[0].idTranscripcion ?? ""
+                        )}
+                    </footer>
+
+                </blockquote>
+
+                <div class="story-testimonio-controls">
+
+                    <button
+                        type="button"
+                        class="story-testimonio-prev"
+                        aria-label="Testimonio anterior"
+                        disabled
+                    >
+                        ← Anterior
+                    </button>
+
+                    <span
+                        class="story-testimonio-counter"
+                        aria-live="polite"
+                    >
+                        1 de ${testimonios.length}
+                    </span>
+
+                    <button
+                        type="button"
+                        class="story-testimonio-next"
+                        aria-label="Testimonio siguiente"
+                        ${testimonios.length === 1 ? "disabled" : ""}
+                    >
+                        Siguiente →
+                    </button>
+
                 </div>
-            `
-            : "";
 
-
-    const quoteHTML =
-        theme.cita
+            </div>
+        `
+        : theme.cita
             ? `
                 <blockquote>
                     <p>
@@ -1166,6 +1225,7 @@ function renderStoryFinding(theme) {
             `
             : "";
 
+    // 5. Mostrar el hallazgo
 
     container.innerHTML = `
 
@@ -1184,6 +1244,70 @@ function renderStoryFinding(theme) {
         ${quoteHTML}
 
     `;
+
+    // 6. Activar navegación del carrusel
+
+    if (testimonios.length) {
+
+        let index = 0;
+
+        const texto = container.querySelector(
+            ".story-testimonio-texto"
+        );
+
+        const identificador = container.querySelector(
+            ".story-testimonio-id"
+        );
+
+        const contador = container.querySelector(
+            ".story-testimonio-counter"
+        );
+
+        const anterior = container.querySelector(
+            ".story-testimonio-prev"
+        );
+
+        const siguiente = container.querySelector(
+            ".story-testimonio-next"
+        );
+
+        function mostrarTestimonio() {
+
+            const item = testimonios[index];
+
+            texto.textContent = `“${item.texto}”`;
+
+            identificador.textContent =
+                `Transcripción ${item.idTranscripcion ?? ""}`;
+
+            contador.textContent =
+                `${index + 1} de ${testimonios.length}`;
+
+            anterior.disabled = index === 0;
+
+            siguiente.disabled =
+                index === testimonios.length - 1;
+        }
+
+        anterior.addEventListener("click", () => {
+
+            if (index > 0) {
+                index--;
+                mostrarTestimonio();
+            }
+
+        });
+
+        siguiente.addEventListener("click", () => {
+
+            if (index < testimonios.length - 1) {
+                index++;
+                mostrarTestimonio();
+            }
+
+        });
+
+    }
 
 }
 
