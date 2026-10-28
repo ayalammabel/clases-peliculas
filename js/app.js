@@ -927,13 +927,16 @@ function combineThemeRecords(
 
 
     return {
-        tema: themeName,
-        lectura,
-        cita,
-        frecuencia,
-        docentes,
-        raw: principal.raw
-    };
+    tema: themeName,
+    lectura,
+    cita,
+    frecuencia,
+    docentes,
+    testimonios: records.flatMap(
+        record => record.testimonios || []
+    ),
+    raw: principal.raw
+   };
 
 }
 
