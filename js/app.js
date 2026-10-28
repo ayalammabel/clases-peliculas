@@ -2141,22 +2141,34 @@ function renderTrajectoryExplorer({
         );
 
 
-    const themes =
-        themeNames.map(
-            name =>
-                combineThemeRecords(
-                    name,
-                    records.filter(
-                        record =>
-                            normalizeText(
-                                record.tema
-                            ) ===
-                            normalizeText(
-                                name
-                            )
-                    )
-                )
-        );
+    
+   const themes = themeNames.map(name => {
+   
+       const matchingRecords = records.filter(
+           record =>
+               normalizeText(record.tema) === normalizeText(name)
+       );
+   
+       const theme = combineThemeRecords(name, matchingRecords);
+   
+       // Buscar los aportes originales de este hallazgo
+       theme.testimonios = aportesMomento2Data.filter(aporte => {
+   
+           const mismoHallazgo =
+               normalizeText(aporte.hallazgo) === normalizeText(name);
+   
+           const mismoComponente =
+               normalizeText(aporte.componente) ===
+               normalizeText(matchingRecords[0]?.momento);
+   
+           return mismoHallazgo && mismoComponente;
+   
+       });
+   
+       return theme;
+   
+   });
+
 
 
     setText(
