@@ -10,7 +10,8 @@
 
 const DATA_PATHS = {
     recorrido: "data/docentes-recorrido.json",
-    trayectoria: "data/docentes-trayectoria.json"
+    trayectoria: "data/docentes-trayectoria.json",
+    aportesMomento2: "data/docentes-aportes-momento2.json"
 };
 
 
