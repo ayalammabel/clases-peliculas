@@ -2446,3 +2446,49 @@ button:focus-visible {
     color: var(--purple-dark);
     font-weight: 750;
 }
+
+
+/* ==========================================
+   MAPA DE TRAYECTORIA · VERSIÓN COMPACTA
+   ========================================== */
+
+.trajectory-map {
+    margin: 20px 0 24px;
+    padding: 22px 30px 18px;
+}
+
+.trajectory-map-canvas {
+    height: 290px;
+    margin-top: 12px;
+}
+
+.trajectory-navigation button {
+    width: 135px;
+    height: 90px;
+    padding-top: 65px;
+    font-size: 12px;
+}
+
+.trajectory-navigation button::before {
+    width: 45px;
+    height: 45px;
+}
+
+.trajectory-navigation button::after {
+    top: 8px;
+    width: 27px;
+    height: 27px;
+}
+
+/* Mantener la distribución en móviles */
+@media (max-width: 650px) {
+    .trajectory-map-canvas {
+        height: auto;
+    }
+
+    .trajectory-navigation button {
+        height: auto;
+        min-height: 90px;
+    }
+}
+
