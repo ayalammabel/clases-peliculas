@@ -2583,3 +2583,77 @@ button:focus-visible {
     }
 }
 
+/* =========================================================
+   MOMENTO 2 - CARRUSEL DE APORTES ORIGINALES
+   ========================================================= */
+
+/* Controles de navegación */
+#trayectoria-detail .story-testimonio-controls,
+#projection-detail .story-testimonio-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+}
+
+/* Botones anterior y siguiente */
+#trayectoria-detail .story-testimonio-controls button,
+#projection-detail .story-testimonio-controls button {
+    background: #ffffff;
+    color: #37175f;
+    border: 1px solid #d8cce7;
+    border-radius: 30px;
+    padding: 11px 20px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+/* Efecto al pasar el cursor */
+#trayectoria-detail .story-testimonio-controls button:hover:not(:disabled),
+#projection-detail .story-testimonio-controls button:hover:not(:disabled) {
+    background: #f2eafa;
+    border-color: #7653a0;
+}
+
+/* Botones desactivados */
+#trayectoria-detail .story-testimonio-controls button:disabled,
+#projection-detail .story-testimonio-controls button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+/* Contador de aportes */
+#trayectoria-detail .story-testimonio-counter,
+#projection-detail .story-testimonio-counter {
+    color: #6c6177;
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 55px;
+    text-align: center;
+}
+
+/* Separación entre el aporte y los controles */
+#trayectoria-detail .story-testimonio-quote,
+#projection-detail .story-testimonio-quote {
+    margin-bottom: 0;
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 600px) {
+    #trayectoria-detail .story-testimonio-controls,
+    #projection-detail .story-testimonio-controls {
+        gap: 10px;
+    }
+
+    #trayectoria-detail .story-testimonio-controls button,
+    #projection-detail .story-testimonio-controls button {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+}
+
