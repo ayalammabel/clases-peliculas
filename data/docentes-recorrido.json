@@ -3,168 +3,1245 @@
     "submomento": "Antes",
     "tema": "Preparación pedagógica",
     "lectura": "La experiencia se prepara desde el aula mediante cartillas, talleres, contextualizaciones, tráileres y conversaciones que acercan al grupo a la película y al sentido de la actividad.",
-    "frecuencia": 14,
-    "numeroDocentes": 13,
-    "citaRepresentativa": "Antes de cada sesión, incluyendo la primera, se realizó el trabajo recomendado con las cartillas."
+    "frecuencia": 12,
+    "numeroDocentes": 11,
+    "citaRepresentativa": "Antes de cada sesión, incluyendo la primera, se realizó el trabajo recomendado con las cartillas.",
+    "testimonios": [
+      {
+        "idTranscripcion": "A001",
+        "idDocente": 1,
+        "texto": "Cuando nos enteramos del proyecto todos los estudiantes demostraron gran interés. Desde la clase de español se abrió el espacio para socializar los objetivos del proyecto y realizar la lectura de la cartilla tal como se nos indicó. Este primer momento no resultó complicado ya que se manejó durante la clase."
+      },
+      {
+        "idTranscripcion": "A005",
+        "idDocente": 4,
+        "texto": "Se realizó un taller con los estudiantes que participan en la actividad. Allí se trabajó la cartilla de película, se contextualizó sobre el espacio de la Cinemateca, las películas que se habían visto, haciendo énfasis en que fueran de producción colombiana. Expectativas altas por la experiencia de ir a una sala de cine."
+      },
+      {
+        "idTranscripcion": "A008",
+        "idDocente": 5,
+        "texto": "Se socializó la información de la película. No se tenía conocimiento de cómo se iba a desarrollar la actividad. En el primer encuentro se hizo un taller sobre la película; en los otros encuentros solamente se compartió la información vía WhatsApp."
+      },
+      {
+        "idTranscripcion": "A009",
+        "idDocente": 6,
+        "texto": "Se realizó un taller contextualizando a los estudiantes sobre los filmes] que se iban a tener, cuál era su objetivo. Desde el cineclub se brindó la información a la institución. Dificultad: hacerlo los días necesarios para desplazamientos al lugar. Facilitador: conocimiento y recurso, conociemientos anteriores."
+      },
+      {
+        "idTranscripcion": "A010",
+        "idDocente": 7,
+        "texto": "Se fue comentando a los estudiantes del proyecto con la Cinemateca para abrir los ojos. Se llevaron a cabo graficos, dibujos con ellos. A los docentes se les pidió que les capacito sobre las dinamicas durante todo un día."
+      },
+      {
+        "idTranscripcion": "A011",
+        "idDocente": 8,
+        "texto": "Conversatorio sobre qué es la Cinemateca, qué encuentran allí, diferencia entre el cine comercial y el cine de la cinemateca."
+      },
+      {
+        "idTranscripcion": "A012",
+        "idDocente": 8,
+        "texto": "Leímos algunos apartes de la cartilla sobre las películas programadas. Se realizaron proyecciones del tráiler. Se realizaron gráficas/dibujos."
+      },
+      {
+        "idTranscripcion": "A016",
+        "idDocente": 9,
+        "texto": "Hicimos el análisis del póster de la película y la lectura de las primeras páginas de la cartilla. Ellos tienen experiencia en cineforos, por lo que hablamos de la importancia de ser participativos en el espacio."
+      },
+      {
+        "idTranscripcion": "A017",
+        "idDocente": 10,
+        "texto": "Se presenta ante los estudiantes frente a un posible amor al cine. La dificultad primordial es el tiempo de la institución con el de la Cinemateca; sin embargo, se realizó un taller sobre el cine desde una experiencia."
+      },
+      {
+        "idTranscripcion": "A022",
+        "idDocente": 12,
+        "texto": "Antes de venir a la Cinemateca vimos el tráiler de la película y leímos la cartilla parcialmente (sinopsis)."
+      },
+      {
+        "idTranscripcion": "A023",
+        "idDocente": 14,
+        "texto": "Debido a que era la tercera vez que participamos, se reconocían las estrategias y los enfoques. Se realizaron talleres de conversación sobre cada sesión con los estudiantes. La creación de productos se nos complicó un poco."
+      },
+      {
+        "idTranscripcion": "A025",
+        "idDocente": 15,
+        "texto": "Antes de cada sesión, incluyendo la primera, se realizó el trabajo recomendado con las cartillas."
+      }
+    ]
   },
   {
     "submomento": "Antes",
     "tema": "Expectativas e interés",
     "lectura": "Antes de asistir aparecen expectativas asociadas con conocer la Cinemateca, acercarse al cine y fortalecer procesos formativos mediante una experiencia distinta a la habitual.",
-    "frecuencia": 9,
-    "numeroDocentes": 8,
-    "citaRepresentativa": "La expectativa que tenía era lograr formación para el grupo en lo audiovisual y acercarlos a la experiencia del cine."
+    "frecuencia": 12,
+    "numeroDocentes": 9,
+    "citaRepresentativa": "La expectativa que tenía era lograr formación para el grupo en lo audiovisual y acercarlos a la experiencia del cine.",
+    "testimonios": [
+      {
+        "idTranscripcion": "A001",
+        "idDocente": 1,
+        "texto": "Cuando nos enteramos del proyecto todos los estudiantes demostraron gran interés. Desde la clase de español se abrió el espacio para socializar los objetivos del proyecto y realizar la lectura de la cartilla tal como se nos indicó. Este primer momento no resultó complicado ya que se manejó durante la clase."
+      },
+      {
+        "idTranscripcion": "A003",
+        "idDocente": 3,
+        "texto": "Los estudiantes que participaron habían tenido formación previa en lenguaje cinematográfico y desde la filosofía, formación desde la estética y la poética. Como docente sabía sobre la experiencia de volver a las salas de cine y observar cine colombiano. Había expectativas sobre los posibles pedagogicas de la experiencia."
+      },
+      {
+        "idTranscripcion": "A005",
+        "idDocente": 4,
+        "texto": "Se realizó un taller con los estudiantes que participan en la actividad. Allí se trabajó la cartilla de película, se contextualizó sobre el espacio de la Cinemateca, las películas que se habían visto, haciendo énfasis en que fueran de producción colombiana. Expectativas altas por la experiencia de ir a una sala de cine."
+      },
+      {
+        "idTranscripcion": "A007",
+        "idDocente": 5,
+        "texto": "La expectativa que tenía era lograr formación para el grupo en lo audiovisual y acercarlos a la experiencia del cine. El colegio facilitó la participación. Lo difícil fue el transporte."
+      },
+      {
+        "idTranscripcion": "A013",
+        "idDocente": 9,
+        "texto": "No conocíamos mucho del proyecto, por lo que teníamos la expectativa de tener una experiencia de cineforo. Sabíamos que habría un taller y no sería solo ver. Sin embargo, no pensábamos que habría trabajo en equipo con otros colegios."
+      },
+      {
+        "idTranscripcion": "A014",
+        "idDocente": 9,
+        "texto": "Esperaba que esta actividad nos motivara a consumir más productos audiovisuales de forma más autónoma y crítica, y así fue. Fue una invitación a interactuar con otros colegios y se relacionaron de forma positiva, lo cual también se logró evidenciar un poco."
+      },
+      {
+        "idTranscripcion": "A017",
+        "idDocente": 10,
+        "texto": "Se presenta ante los estudiantes frente a un posible amor al cine. La dificultad primordial es el tiempo de la institución con el de la Cinemateca; sin embargo, se realizó un taller sobre el cine desde una experiencia."
+      },
+      {
+        "idTranscripcion": "A018",
+        "idDocente": 11,
+        "texto": "Experiencia previa 9no, sin acercamiento al centro historico, la intención de los chicos facilito la gestión de recursos lo dificulto."
+      },
+      {
+        "idTranscripcion": "A019",
+        "idDocente": 12,
+        "texto": "Poder visitar y que los estudiantes pudieran conocer la Cinemateca, así como ver cine colombiano."
+      },
+      {
+        "idTranscripcion": "A020",
+        "idDocente": 12,
+        "texto": "Conocía el programa y me interesó porque era para ver cine colombiano. En mis clases de Ciencias Sociales me interesa mostrar cine colombiano."
+      },
+      {
+        "idTranscripcion": "A021",
+        "idDocente": 12,
+        "texto": "Muy poco, yo y algunos estudiantes conocían la Cinemateca, pero no el proyecto articulado con los colegios. El colegio tiene un énfasis en comunicación y trabajamos producción sonora y audiovisual como contenido y programas radiales. Los y las estudiantes se enamoraron del cine y las historias colombianas."
+      },
+      {
+        "idTranscripcion": "A026",
+        "idDocente": 15,
+        "texto": "En el momento de comenzar con el ejercicio teníamos un cineclub y parecia interesante complementar el ejercicio con las sesiones que ofrecía el proyecto. Además de fortalecer competencias."
+      }
+    ]
   },
   {
     "submomento": "Antes",
     "tema": "Acercamiento previo al cine y la Cinemateca",
     "lectura": "Los puntos de partida son diversos: algunos grupos ya tenían experiencias con cineclubes o lenguaje audiovisual, mientras otros conocían poco la Cinemateca o el proyecto.",
     "frecuencia": 13,
-    "numeroDocentes": 10,
-    "citaRepresentativa": "Muy poco, yo y algunos estudiantes conocían la Cinemateca, pero no el proyecto articulado con los colegios."
+    "numeroDocentes": 9,
+    "citaRepresentativa": "Muy poco, yo y algunos estudiantes conocían la Cinemateca, pero no el proyecto articulado con los colegios.",
+    "testimonios": [
+      {
+        "idTranscripcion": "A003",
+        "idDocente": 3,
+        "texto": "Los estudiantes que participaron habían tenido formación previa en lenguaje cinematográfico y desde la filosofía, formación desde la estética y la poética. Como docente sabía sobre la experiencia de volver a las salas de cine y observar cine colombiano. Había expectativas sobre los posibles pedagogicas de la experiencia."
+      },
+      {
+        "idTranscripcion": "A005",
+        "idDocente": 4,
+        "texto": "Se realizó un taller con los estudiantes que participan en la actividad. Allí se trabajó la cartilla de película, se contextualizó sobre el espacio de la Cinemateca, las películas que se habían visto, haciendo énfasis en que fueran de producción colombiana. Expectativas altas por la experiencia de ir a una sala de cine."
+      },
+      {
+        "idTranscripcion": "A009",
+        "idDocente": 6,
+        "texto": "Se realizó un taller contextualizando a los estudiantes sobre los filmes] que se iban a tener, cuál era su objetivo. Desde el cineclub se brindó la información a la institución. Dificultad: hacerlo los días necesarios para desplazamientos al lugar. Facilitador: conocimiento y recurso, conociemientos anteriores."
+      },
+      {
+        "idTranscripcion": "A011",
+        "idDocente": 8,
+        "texto": "Conversatorio sobre qué es la Cinemateca, qué encuentran allí, diferencia entre el cine comercial y el cine de la cinemateca."
+      },
+      {
+        "idTranscripcion": "A013",
+        "idDocente": 9,
+        "texto": "No conocíamos mucho del proyecto, por lo que teníamos la expectativa de tener una experiencia de cineforo. Sabíamos que habría un taller y no sería solo ver. Sin embargo, no pensábamos que habría trabajo en equipo con otros colegios."
+      },
+      {
+        "idTranscripcion": "A014",
+        "idDocente": 9,
+        "texto": "Esperaba que esta actividad nos motivara a consumir más productos audiovisuales de forma más autónoma y crítica, y así fue. Fue una invitación a interactuar con otros colegios y se relacionaron de forma positiva, lo cual también se logró evidenciar un poco."
+      },
+      {
+        "idTranscripcion": "A016",
+        "idDocente": 9,
+        "texto": "Hicimos el análisis del póster de la película y la lectura de las primeras páginas de la cartilla. Ellos tienen experiencia en cineforos, por lo que hablamos de la importancia de ser participativos en el espacio."
+      },
+      {
+        "idTranscripcion": "A018",
+        "idDocente": 11,
+        "texto": "Experiencia previa 9no, sin acercamiento al centro historico, la intención de los chicos facilito la gestión de recursos lo dificulto."
+      },
+      {
+        "idTranscripcion": "A019",
+        "idDocente": 12,
+        "texto": "Poder visitar y que los estudiantes pudieran conocer la Cinemateca, así como ver cine colombiano."
+      },
+      {
+        "idTranscripcion": "A020",
+        "idDocente": 12,
+        "texto": "Conocía el programa y me interesó porque era para ver cine colombiano. En mis clases de Ciencias Sociales me interesa mostrar cine colombiano."
+      },
+      {
+        "idTranscripcion": "A021",
+        "idDocente": 12,
+        "texto": "Muy poco, yo y algunos estudiantes conocían la Cinemateca, pero no el proyecto articulado con los colegios. El colegio tiene un énfasis en comunicación y trabajamos producción sonora y audiovisual como contenido y programas radiales. Los y las estudiantes se enamoraron del cine y las historias colombianas."
+      },
+      {
+        "idTranscripcion": "A023",
+        "idDocente": 14,
+        "texto": "Debido a que era la tercera vez que participamos, se reconocían las estrategias y los enfoques. Se realizaron talleres de conversación sobre cada sesión con los estudiantes. La creación de productos se nos complicó un poco."
+      },
+      {
+        "idTranscripcion": "A026",
+        "idDocente": 15,
+        "texto": "En el momento de comenzar con el ejercicio teníamos un cineclub y parecia interesante complementar el ejercicio con las sesiones que ofrecía el proyecto. Además de fortalecer competencias."
+      }
+    ]
   },
   {
     "submomento": "Antes",
     "tema": "Logística y acceso",
     "lectura": "El transporte, los desplazamientos, las fechas y los tiempos institucionales aparecen como condiciones que pueden dificultar la participación.",
-    "frecuencia": 7,
-    "numeroDocentes": 7,
-    "citaRepresentativa": "Fue necesario solicitar apoyo de transporte y establecer planes logísticos."
+    "frecuencia": 8,
+    "numeroDocentes": 8,
+    "citaRepresentativa": "Fue necesario solicitar apoyo de transporte y establecer planes logísticos.",
+    "testimonios": [
+      {
+        "idTranscripcion": "A004",
+        "idDocente": 3,
+        "texto": "La dificultad que tuvo nuestra institución en un inicio fueron los desplazamientos, ya que nuestra institución se encuentra ubicada en el barrio Usminia de la localidad de Usme. Fue necesario solicitar apoyo de transporte y establecer planes logísticos."
+      },
+      {
+        "idTranscripcion": "A006",
+        "idDocente": 4,
+        "texto": "Uno de los factores que dificultó la participación fue la falta de transporte por parte de la institución. Tiempos de encuentro. Se tuvieron los permisos por parte de la institución para la participación."
+      },
+      {
+        "idTranscripcion": "A007",
+        "idDocente": 5,
+        "texto": "La expectativa que tenía era lograr formación para el grupo en lo audiovisual y acercarlos a la experiencia del cine. El colegio facilitó la participación. Lo difícil fue el transporte."
+      },
+      {
+        "idTranscripcion": "A009",
+        "idDocente": 6,
+        "texto": "Se realizó un taller contextualizando a los estudiantes sobre los filmes] que se iban a tener, cuál era su objetivo. Desde el cineclub se brindó la información a la institución. Dificultad: hacerlo los días necesarios para desplazamientos al lugar. Facilitador: conocimiento y recurso, conociemientos anteriores."
+      },
+      {
+        "idTranscripcion": "A015",
+        "idDocente": 9,
+        "texto": "La única dificultad fue la de concretar las fechas, pues los cursos van a otras sedes y el jueves es el único día que 9.º, 10.º y 11.º están en la sede Centro. Sin embargo, no fue un problema mayor. Se logró dar una solución a esto."
+      },
+      {
+        "idTranscripcion": "A017",
+        "idDocente": 10,
+        "texto": "Se presenta ante los estudiantes frente a un posible amor al cine. La dificultad primordial es el tiempo de la institución con el de la Cinemateca; sin embargo, se realizó un taller sobre el cine desde una experiencia."
+      },
+      {
+        "idTranscripcion": "A018",
+        "idDocente": 11,
+        "texto": "Experiencia previa 9no, sin acercamiento al centro historico, la intención de los chicos facilito la gestión de recursos lo dificulto."
+      },
+      {
+        "idTranscripcion": "A027",
+        "idDocente": 15,
+        "texto": "El transporte. Estamos en un lugar alejado, no siempre es sencillo."
+      }
+    ]
   },
   {
     "submomento": "Antes",
     "tema": "Articulación y apoyo institucional",
     "lectura": "La participación requiere coordinación entre docentes, colegio y proyecto; los permisos, espacios de clase y apoyos institucionales facilitan la preparación y asistencia.",
-    "frecuencia": 12,
-    "numeroDocentes": 10,
-    "citaRepresentativa": "El colegio facilitó la participación."
+    "frecuencia": 10,
+    "numeroDocentes": 8,
+    "citaRepresentativa": "El colegio facilitó la participación.",
+    "testimonios": [
+      {
+        "idTranscripcion": "A004",
+        "idDocente": 3,
+        "texto": "La dificultad que tuvo nuestra institución en un inicio fueron los desplazamientos, ya que nuestra institución se encuentra ubicada en el barrio Usminia de la localidad de Usme. Fue necesario solicitar apoyo de transporte y establecer planes logísticos."
+      },
+      {
+        "idTranscripcion": "A006",
+        "idDocente": 4,
+        "texto": "Uno de los factores que dificultó la participación fue la falta de transporte por parte de la institución. Tiempos de encuentro. Se tuvieron los permisos por parte de la institución para la participación."
+      },
+      {
+        "idTranscripcion": "A007",
+        "idDocente": 5,
+        "texto": "La expectativa que tenía era lograr formación para el grupo en lo audiovisual y acercarlos a la experiencia del cine. El colegio facilitó la participación. Lo difícil fue el transporte."
+      },
+      {
+        "idTranscripcion": "A008",
+        "idDocente": 5,
+        "texto": "Se socializó la información de la película. No se tenía conocimiento de cómo se iba a desarrollar la actividad. En el primer encuentro se hizo un taller sobre la película; en los otros encuentros solamente se compartió la información vía WhatsApp."
+      },
+      {
+        "idTranscripcion": "A009",
+        "idDocente": 6,
+        "texto": "Se realizó un taller contextualizando a los estudiantes sobre los filmes] que se iban a tener, cuál era su objetivo. Desde el cineclub se brindó la información a la institución. Dificultad: hacerlo los días necesarios para desplazamientos al lugar. Facilitador: conocimiento y recurso, conociemientos anteriores."
+      },
+      {
+        "idTranscripcion": "A010",
+        "idDocente": 7,
+        "texto": "Se fue comentando a los estudiantes del proyecto con la Cinemateca para abrir los ojos. Se llevaron a cabo graficos, dibujos con ellos. A los docentes se les pidió que les capacito sobre las dinamicas durante todo un día."
+      },
+      {
+        "idTranscripcion": "A015",
+        "idDocente": 9,
+        "texto": "La única dificultad fue la de concretar las fechas, pues los cursos van a otras sedes y el jueves es el único día que 9.º, 10.º y 11.º están en la sede Centro. Sin embargo, no fue un problema mayor. Se logró dar una solución a esto."
+      },
+      {
+        "idTranscripcion": "A021",
+        "idDocente": 12,
+        "texto": "Muy poco, yo y algunos estudiantes conocían la Cinemateca, pero no el proyecto articulado con los colegios. El colegio tiene un énfasis en comunicación y trabajamos producción sonora y audiovisual como contenido y programas radiales. Los y las estudiantes se enamoraron del cine y las historias colombianas."
+      },
+      {
+        "idTranscripcion": "A024",
+        "idDocente": 15,
+        "texto": "Antes de empezar teníamos un conocimiento dado en los correos electrónicos sobre la iniciativa."
+      },
+      {
+        "idTranscripcion": "A026",
+        "idDocente": 15,
+        "texto": "En el momento de comenzar con el ejercicio teníamos un cineclub y parecia interesante complementar el ejercicio con las sesiones que ofrecía el proyecto. Además de fortalecer competencias."
+      }
+    ]
   },
   {
     "submomento": "Durante",
     "tema": "Mediación y dinámicas",
     "lectura": "Las actividades, talleres y recursos utilizados por mediadores ayudan a dinamizar la experiencia, orientar la lectura de las películas y favorecer la participación.",
-    "frecuencia": 13,
+    "frecuencia": 14,
     "numeroDocentes": 11,
-    "citaRepresentativa": "El hecho de que los mediadores fueran dinámicos y utilizaran recursos cercanos a ellos, sin dejar de lado lo académico."
+    "citaRepresentativa": "El hecho de que los mediadores fueran dinámicos y utilizaran recursos cercanos a ellos, sin dejar de lado lo académico.",
+    "testimonios": [
+      {
+        "idTranscripcion": "D001",
+        "idDocente": 1,
+        "texto": "Las dinámicas prebvias a la película generaron expectativas y prepararon a los estudiantes para prestar atención al desarrollo de la produccion cinematografica."
+      },
+      {
+        "idTranscripcion": "D003",
+        "idDocente": 2,
+        "texto": "La relación directa con los personajes (lo común). Asombro, dudas, tristeza, tranquilidad de la nada. Las actividades previas y después (preguntas) (dinámicas). Colaboración (ausencia) de otros docentes para que la actividad sea más significativa."
+      },
+      {
+        "idTranscripcion": "D005",
+        "idDocente": 4,
+        "texto": "Las actividades previas y posteriores a la proyección de las películas, que generaban interés y permitían interactuar y escuchar a los demás participantes. Emociones: sorpresa. Reconocerse en historias."
+      },
+      {
+        "idTranscripcion": "D006",
+        "idDocente": 4,
+        "texto": "Actividades posteriores que invitaban a la reflexión y la creatividad. Detonantes culturales."
+      },
+      {
+        "idTranscripcion": "D007",
+        "idDocente": 4,
+        "texto": "Romper el hielo. Timidez."
+      },
+      {
+        "idTranscripcion": "D008",
+        "idDocente": 5,
+        "texto": "El grupo fue receptivo y respondio a las actividades. Especialmente en los momentos de socialización. Las reacciones estuvieron apoyadas en las películas que generaban sorpresa. La participación se logro por las actividades propuestas: el balón de tela."
+      },
+      {
+        "idTranscripcion": "D010",
+        "idDocente": 6,
+        "texto": "La dinamización antes de la proyección y los mediadores. Guía específica en cada película y contexto en la comunicación, debido a particularidades."
+      },
+      {
+        "idTranscripcion": "D011",
+        "idDocente": 6,
+        "texto": "La facilitación de ideas y conocimiento al interior de la película. Ubicación localizada, comparación con la vida de los personajes, donde hacía énfasis explicado por el mediador. Durante la mediación lograron que los estudiantes participaran activamente y generaran la integración de los estudiantes de las maestras."
+      },
+      {
+        "idTranscripcion": "D012",
+        "idDocente": 7,
+        "texto": "llamo mucho la atención las películas y cortos que observaron. Por medio de los talleres pude socializar las tematicas. Positivo los juegos que se refalizarón en los procesos."
+      },
+      {
+        "idTranscripcion": "D014",
+        "idDocente": 8,
+        "texto": "Los dinamizadores se mostraron cercanos, alegres, expectativas, disposición y buena actitud en los estudiantes. Durante la película se sintieron emoción, incertidumbre, tristeza, alegría, empatía."
+      },
+      {
+        "idTranscripcion": "D017",
+        "idDocente": 9,
+        "texto": "El hecho de que los mediadores fueran dinámicos y utilizaran recursos cercanos a ellos, sin dejar de lado lo académico."
+      },
+      {
+        "idTranscripcion": "D020",
+        "idDocente": 11,
+        "texto": "Los talleres."
+      },
+      {
+        "idTranscripcion": "D023",
+        "idDocente": 12,
+        "texto": "Algunas preguntas de la cartilla. Asistir a cine por primera vez. Las actividades después de la proyección generaron pronto más allá de Bosa. Miedo por salir de la localidad, pero expectativa. Alegría por salir con sus compañeros y otros aspectos. La cercanía de las historias facilitó el proceso de desarrollo por los estudiantes. El transporte en algunos casos"
+      },
+      {
+        "idTranscripcion": "D028",
+        "idDocente": 15,
+        "texto": "Me parecieron muy interesantes los momentos de los foros que los chicos se pudieron comentar, debatir, expresar sus puntos de vista. Las dinámicas facilitaron la participación con respeto y aprender a convivir en espacios con otros colegios. Las sesiones permitieron identificar diferentes comportamientos de acuerdo con ideas muy interesantes de algunos chicos; no se expresan en las clases."
+      }
+    ]
   },
   {
     "submomento": "Durante",
     "tema": "Emociones e identificación con las historias",
     "lectura": "Las películas movilizan sorpresa, tristeza, alegría, empatía y reconocimiento de situaciones cercanas a los contextos de los estudiantes.",
-    "frecuencia": 14,
+    "frecuencia": 18,
     "numeroDocentes": 12,
-    "citaRepresentativa": "La mayoría se sintieron identificados con las historias y otros quedaron muy afligidos por lo que sucedía con los personajes."
+    "citaRepresentativa": "La mayoría se sintieron identificados con las historias y otros quedaron muy afligidos por lo que sucedía con los personajes.",
+    "testimonios": [
+      {
+        "idTranscripcion": "D001",
+        "idDocente": 1,
+        "texto": "Las dinámicas prebvias a la película generaron expectativas y prepararon a los estudiantes para prestar atención al desarrollo de la produccion cinematografica."
+      },
+      {
+        "idTranscripcion": "D002",
+        "idDocente": 1,
+        "texto": "Para todas resultó muy motivante el conocimiento del espacio como la Cinemateca, ya que muchas no la conocían (es más, ni siquiera sabían de su existencia). También el nombre del proyecto generó gran expectativa, ya que el cine pocas veces se involucra en sus procesos de aprendizaje. Cuando se vieron las peliculas los estudiantes tuvieron un momento de shock ya que no era la clase de peliculas que ellos estan acostumbrados a ver. La mayoria se sintieron identificados con las historias y otros quedaron muy aflijidos por lo que sucedía con los personajes."
+      },
+      {
+        "idTranscripcion": "D003",
+        "idDocente": 2,
+        "texto": "La relación directa con los personajes (lo común). Asombro, dudas, tristeza, tranquilidad de la nada. Las actividades previas y después (preguntas) (dinámicas). Colaboración (ausencia) de otros docentes para que la actividad sea más significativa."
+      },
+      {
+        "idTranscripcion": "D004",
+        "idDocente": 3,
+        "texto": "Las situaciones relacionadas a experiencias violentas fueron significativamente llamativas, a su vez algunas situaciones más cercanas a su contexto inmediato. Las relaciones facilitadas por los funcionarios de la Cinemateca permitió y promovió un espacio de diálogo y comparación con estudiantes de otros colegios."
+      },
+      {
+        "idTranscripcion": "D005",
+        "idDocente": 4,
+        "texto": "Las actividades previas y posteriores a la proyección de las películas, que generaban interés y permitían interactuar y escuchar a los demás participantes. Emociones: sorpresa. Reconocerse en historias."
+      },
+      {
+        "idTranscripcion": "D007",
+        "idDocente": 4,
+        "texto": "Romper el hielo. Timidez."
+      },
+      {
+        "idTranscripcion": "D008",
+        "idDocente": 5,
+        "texto": "El grupo fue receptivo y respondio a las actividades. Especialmente en los momentos de socialización. Las reacciones estuvieron apoyadas en las películas que generaban sorpresa. La participación se logro por las actividades propuestas: el balón de tela."
+      },
+      {
+        "idTranscripcion": "D009",
+        "idDocente": 5,
+        "texto": "Se generó una timidez al principio del grupo en el momento de aprender."
+      },
+      {
+        "idTranscripcion": "D011",
+        "idDocente": 6,
+        "texto": "La facilitación de ideas y conocimiento al interior de la película. Ubicación localizada, comparación con la vida de los personajes, donde hacía énfasis explicado por el mediador. Durante la mediación lograron que los estudiantes participaran activamente y generaran la integración de los estudiantes de las maestras."
+      },
+      {
+        "idTranscripcion": "D014",
+        "idDocente": 8,
+        "texto": "Los dinamizadores se mostraron cercanos, alegres, expectativas, disposición y buena actitud en los estudiantes. Durante la película se sintieron emoción, incertidumbre, tristeza, alegría, empatía."
+      },
+      {
+        "idTranscripcion": "D016",
+        "idDocente": 9,
+        "texto": "Las reacciones fueron positivas, pues se trabajaron aspectos positivos o negativos principalmente por la trama, pues era, en su mayoría, cercana a sus temas de interés."
+      },
+      {
+        "idTranscripcion": "D018",
+        "idDocente": 10,
+        "texto": "Lo que llamó la atención principalmente de mis estudiantes fue participar en una actividad diferente donde tuvieron que interactuar con otras personas y no era fácil para ellos, aunque ha sido una sola vez asistida, pero ellos fue una experiencia fenomenal. Pero con un poco difícil el proceso comunicativo a nivel docente."
+      },
+      {
+        "idTranscripcion": "D019",
+        "idDocente": 11,
+        "texto": "Momentos → los estrenos fueron fuertes. Reacciones → emocionales, desbordamiento de emociones."
+      },
+      {
+        "idTranscripcion": "D022",
+        "idDocente": 12,
+        "texto": "Estaban muy contentos de la salida. Durante las visitas les fue progresivamente más fácil hablar en público."
+      },
+      {
+        "idTranscripcion": "D023",
+        "idDocente": 12,
+        "texto": "Algunas preguntas de la cartilla. Asistir a cine por primera vez. Las actividades después de la proyección generaron pronto más allá de Bosa. Miedo por salir de la localidad, pero expectativa. Alegría por salir con sus compañeros y otros aspectos. La cercanía de las historias facilitó el proceso de desarrollo por los estudiantes. El transporte en algunos casos"
+      },
+      {
+        "idTranscripcion": "D024",
+        "idDocente": 12,
+        "texto": "En general les gustaron las películas y les llamó la atención que los finales fuesen abiertos."
+      },
+      {
+        "idTranscripcion": "D025",
+        "idDocente": 14,
+        "texto": "Lo que mayor cercanía generó es la relación que los estudiantes tienen con las temáticas de los audiovisuales. Muchos de los vínculos vistos son compartidos o conocidos."
+      },
+      {
+        "idTranscripcion": "D027",
+        "idDocente": 14,
+        "texto": "En la última sesión, debido a ser uno de los cortometrajes, tuvo una cercanía en la institución, se ve un mayor impacto."
+      }
+    ]
   },
   {
     "submomento": "Durante",
     "tema": "Participación, diálogo y reflexión",
     "lectura": "La experiencia abre espacios para opinar, debatir, hablar en público y expresar puntos de vista que no siempre aparecen en el aula.",
-    "frecuencia": 11,
-    "numeroDocentes": 9,
-    "citaRepresentativa": "Los chicos pudieron comentar, debatir, expresar sus puntos de vista."
+    "frecuencia": 13,
+    "numeroDocentes": 10,
+    "citaRepresentativa": "Los chicos pudieron comentar, debatir, expresar sus puntos de vista.",
+    "testimonios": [
+      {
+        "idTranscripcion": "D003",
+        "idDocente": 2,
+        "texto": "La relación directa con los personajes (lo común). Asombro, dudas, tristeza, tranquilidad de la nada. Las actividades previas y después (preguntas) (dinámicas). Colaboración (ausencia) de otros docentes para que la actividad sea más significativa."
+      },
+      {
+        "idTranscripcion": "D004",
+        "idDocente": 3,
+        "texto": "Las situaciones relacionadas a experiencias violentas fueron significativamente llamativas, a su vez algunas situaciones más cercanas a su contexto inmediato. Las relaciones facilitadas por los funcionarios de la Cinemateca permitió y promovió un espacio de diálogo y comparación con estudiantes de otros colegios."
+      },
+      {
+        "idTranscripcion": "D005",
+        "idDocente": 4,
+        "texto": "Las actividades previas y posteriores a la proyección de las películas, que generaban interés y permitían interactuar y escuchar a los demás participantes. Emociones: sorpresa. Reconocerse en historias."
+      },
+      {
+        "idTranscripcion": "D006",
+        "idDocente": 4,
+        "texto": "Actividades posteriores que invitaban a la reflexión y la creatividad. Detonantes culturales."
+      },
+      {
+        "idTranscripcion": "D008",
+        "idDocente": 5,
+        "texto": "El grupo fue receptivo y respondio a las actividades. Especialmente en los momentos de socialización. Las reacciones estuvieron apoyadas en las películas que generaban sorpresa. La participación se logro por las actividades propuestas: el balón de tela."
+      },
+      {
+        "idTranscripcion": "D009",
+        "idDocente": 5,
+        "texto": "Se generó una timidez al principio del grupo en el momento de aprender."
+      },
+      {
+        "idTranscripcion": "D011",
+        "idDocente": 6,
+        "texto": "La facilitación de ideas y conocimiento al interior de la película. Ubicación localizada, comparación con la vida de los personajes, donde hacía énfasis explicado por el mediador. Durante la mediación lograron que los estudiantes participaran activamente y generaran la integración de los estudiantes de las maestras."
+      },
+      {
+        "idTranscripcion": "D012",
+        "idDocente": 7,
+        "texto": "llamo mucho la atención las películas y cortos que observaron. Por medio de los talleres pude socializar las tematicas. Positivo los juegos que se refalizarón en los procesos."
+      },
+      {
+        "idTranscripcion": "D015",
+        "idDocente": 9,
+        "texto": "Para los estudiantes fue interesante interactuar con otros colegios y opinar sobre la película."
+      },
+      {
+        "idTranscripcion": "D016",
+        "idDocente": 9,
+        "texto": "Las reacciones fueron positivas, pues se trabajaron aspectos positivos o negativos principalmente por la trama, pues era, en su mayoría, cercana a sus temas de interés."
+      },
+      {
+        "idTranscripcion": "D018",
+        "idDocente": 10,
+        "texto": "Lo que llamó la atención principalmente de mis estudiantes fue participar en una actividad diferente donde tuvieron que interactuar con otras personas y no era fácil para ellos, aunque ha sido una sola vez asistida, pero ellos fue una experiencia fenomenal. Pero con un poco difícil el proceso comunicativo a nivel docente."
+      },
+      {
+        "idTranscripcion": "D022",
+        "idDocente": 12,
+        "texto": "Estaban muy contentos de la salida. Durante las visitas les fue progresivamente más fácil hablar en público."
+      },
+      {
+        "idTranscripcion": "D028",
+        "idDocente": 15,
+        "texto": "Me parecieron muy interesantes los momentos de los foros que los chicos se pudieron comentar, debatir, expresar sus puntos de vista. Las dinámicas facilitaron la participación con respeto y aprender a convivir en espacios con otros colegios. Las sesiones permitieron identificar diferentes comportamientos de acuerdo con ideas muy interesantes de algunos chicos; no se expresan en las clases."
+      }
+    ]
   },
   {
     "submomento": "Durante",
     "tema": "Encuentro con otros y experiencia cultural",
     "lectura": "La salida a la Cinemateca y la interacción con estudiantes de otros colegios amplían la experiencia más allá de la proyección de la película.",
     "frecuencia": 8,
-    "numeroDocentes": 8,
-    "citaRepresentativa": "Para los estudiantes fue interesante interactuar con otros colegios y opinar sobre la película."
+    "numeroDocentes": 7,
+    "citaRepresentativa": "Para los estudiantes fue interesante interactuar con otros colegios y opinar sobre la película.",
+    "testimonios": [
+      {
+        "idTranscripcion": "D002",
+        "idDocente": 1,
+        "texto": "Para todas resultó muy motivante el conocimiento del espacio como la Cinemateca, ya que muchas no la conocían (es más, ni siquiera sabían de su existencia). También el nombre del proyecto generó gran expectativa, ya que el cine pocas veces se involucra en sus procesos de aprendizaje. Cuando se vieron las peliculas los estudiantes tuvieron un momento de shock ya que no era la clase de peliculas que ellos estan acostumbrados a ver. La mayoria se sintieron identificados con las historias y otros quedaron muy aflijidos por lo que sucedía con los personajes."
+      },
+      {
+        "idTranscripcion": "D004",
+        "idDocente": 3,
+        "texto": "Las situaciones relacionadas a experiencias violentas fueron significativamente llamativas, a su vez algunas situaciones más cercanas a su contexto inmediato. Las relaciones facilitadas por los funcionarios de la Cinemateca permitió y promovió un espacio de diálogo y comparación con estudiantes de otros colegios."
+      },
+      {
+        "idTranscripcion": "D015",
+        "idDocente": 9,
+        "texto": "Para los estudiantes fue interesante interactuar con otros colegios y opinar sobre la película."
+      },
+      {
+        "idTranscripcion": "D018",
+        "idDocente": 10,
+        "texto": "Lo que llamó la atención principalmente de mis estudiantes fue participar en una actividad diferente donde tuvieron que interactuar con otras personas y no era fácil para ellos, aunque ha sido una sola vez asistida, pero ellos fue una experiencia fenomenal. Pero con un poco difícil el proceso comunicativo a nivel docente."
+      },
+      {
+        "idTranscripcion": "D021",
+        "idDocente": 11,
+        "texto": "Convivencia entre colegios."
+      },
+      {
+        "idTranscripcion": "D022",
+        "idDocente": 12,
+        "texto": "Estaban muy contentos de la salida. Durante las visitas les fue progresivamente más fácil hablar en público."
+      },
+      {
+        "idTranscripcion": "D023",
+        "idDocente": 12,
+        "texto": "Algunas preguntas de la cartilla. Asistir a cine por primera vez. Las actividades después de la proyección generaron pronto más allá de Bosa. Miedo por salir de la localidad, pero expectativa. Alegría por salir con sus compañeros y otros aspectos. La cercanía de las historias facilitó el proceso de desarrollo por los estudiantes. El transporte en algunos casos"
+      },
+      {
+        "idTranscripcion": "D028",
+        "idDocente": 15,
+        "texto": "Me parecieron muy interesantes los momentos de los foros que los chicos se pudieron comentar, debatir, expresar sus puntos de vista. Las dinámicas facilitaron la participación con respeto y aprender a convivir en espacios con otros colegios. Las sesiones permitieron identificar diferentes comportamientos de acuerdo con ideas muy interesantes de algunos chicos; no se expresan en las clases."
+      }
+    ]
   },
   {
     "submomento": "Durante",
     "tema": "Condiciones logísticas",
     "lectura": "Persisten dificultades relacionadas con transporte, refrigerio y posibilidades de asistencia en horarios diferentes a los habituales.",
-    "frecuencia": 3,
-    "numeroDocentes": 3,
-    "citaRepresentativa": "Complicaciones en términos de transporte y refrigerio."
+    "frecuencia": 2,
+    "numeroDocentes": 2,
+    "citaRepresentativa": "Complicaciones en términos de transporte y refrigerio.",
+    "testimonios": [
+      {
+        "idTranscripcion": "D013",
+        "idDocente": 8,
+        "texto": "Las dificultades se centraron en lograr cumplir con el número de estudiantes que se plantearon, porque no es posible garantizar transporte para estudiantes y docentes en horarios diferentes de lo habitual."
+      },
+      {
+        "idTranscripcion": "D026",
+        "idDocente": 14,
+        "texto": "Complicaciones en términos de transporte y refrigerio."
+      }
+    ]
   },
   {
     "submomento": "Después",
     "tema": "Conversación y reflexión posterior",
     "lectura": "Después de las funciones, las películas continúan mediante conversatorios, debates, comentarios y reflexiones sobre las historias y sus vínculos con distintas realidades.",
-    "frecuencia": 15,
-    "numeroDocentes": 12,
-    "citaRepresentativa": "Siempre se genera un conversatorio (reflexión y posturas críticas)."
+    "frecuencia": 18,
+    "numeroDocentes": 13,
+    "citaRepresentativa": "Siempre se genera un conversatorio (reflexión y posturas críticas).",
+    "testimonios": [
+      {
+        "idTranscripcion": "P001",
+        "idDocente": 1,
+        "texto": "Se abrieron varios espacios para socializar las películas, debates, mesas redondas, elaboración de material audiovisual con las ideas, opiniones, etc."
+      },
+      {
+        "idTranscripcion": "P002",
+        "idDocente": 2,
+        "texto": "Siempre se genera un conversatorio (reflexión y posturas críticas). Muchas que abordan las distintas realidades. El tiempo en clase se hace más corto cuando se problematiza."
+      },
+      {
+        "idTranscripcion": "P003",
+        "idDocente": 4,
+        "texto": "No se retomó la película; sin embargo, en otros espacios sí se siguió conversando sobre las historias y lo que estas generan."
+      },
+      {
+        "idTranscripcion": "P005",
+        "idDocente": 5,
+        "texto": "Se retomaron algunas cosas de forma esporádica, con algunos, no en grupo."
+      },
+      {
+        "idTranscripcion": "P006",
+        "idDocente": 5,
+        "texto": "Sí, individuales. Teniendo los temas que abordaron las películas."
+      },
+      {
+        "idTranscripcion": "P007",
+        "idDocente": 5,
+        "texto": "Sí, la socialización principalmente se dio por tiempos."
+      },
+      {
+        "idTranscripcion": "P008",
+        "idDocente": 6,
+        "texto": "Se realizó un post-taller en cada función y la reflexión posterior en cada sesión llevaron comentarios sobre cada película."
+      },
+      {
+        "idTranscripcion": "P010",
+        "idDocente": 7,
+        "texto": "Sí se retomó posteriormente y de las películas con actividades de español, propuestas culturales, historias y reflexiones."
+      },
+      {
+        "idTranscripcion": "P011",
+        "idDocente": 7,
+        "texto": "En algunas clases de sociales se realizaron talleres, actividades y reflexiones de las temáticas."
+      },
+      {
+        "idTranscripcion": "P013",
+        "idDocente": 8,
+        "texto": "Se retomó la cartilla, se realizaron conversatorios sobre las temáticas de la película. Se realizaron textos sobre diferentes personajes, se escribieron murales."
+      },
+      {
+        "idTranscripcion": "P017",
+        "idDocente": 9,
+        "texto": "Los estudiantes hablaron o representaron constantemente temas, situaciones o personajes."
+      },
+      {
+        "idTranscripcion": "P019",
+        "idDocente": 10,
+        "texto": "Realizamos un debate frente a los diferentes cursos contando la experiencia vivida a los compañeros que no asistieron por medio de la sensibilización."
+      },
+      {
+        "idTranscripcion": "P021",
+        "idDocente": 11,
+        "texto": "Conversaciones: ¿cuándo vuelven a ir?"
+      },
+      {
+        "idTranscripcion": "P023",
+        "idDocente": 12,
+        "texto": "Sí, en especial temas, metodologías. Con algunos cursos surgen conversaciones después de la visita a la Cinemateca. De igual manera, cuando se trabajan las cartillas. Las películas nos permiten abordar temas y explicaciones desde el conocimiento en común."
+      },
+      {
+        "idTranscripcion": "P024",
+        "idDocente": 12,
+        "texto": "Fue interesante escuchar su experiencia (de los estudiantes) de llegar a la Cinemateca y de las percepciones sobre las películas que fueron una sorpresa para ellos porque no sabían que había ese tipo de cine colombiano (“Los Nadie”, “La Jauría”)."
+      },
+      {
+        "idTranscripcion": "P025",
+        "idDocente": 14,
+        "texto": "Las conversaciones que se tuvieron fueron de corte informal, no netamente académicas."
+      },
+      {
+        "idTranscripcion": "P027",
+        "idDocente": 15,
+        "texto": "La participación en los grupos durante las sesiones este año o los años anteriores han dejado reflexiones interesantes."
+      },
+      {
+        "idTranscripcion": "P030",
+        "idDocente": 15,
+        "texto": "Reconocimiento de historias y espacios similares a los que habitan y reflexión sobre estos."
+      }
+    ]
   },
   {
     "submomento": "Después",
     "tema": "Actividades y producciones posteriores",
     "lectura": "Algunos docentes prolongan la experiencia mediante talleres y producciones como materiales audiovisuales, Padlet, murales, afiches y textos.",
     "frecuencia": 8,
-    "numeroDocentes": 5,
-    "citaRepresentativa": "Se retomó la cartilla, se realizaron conversatorios sobre las temáticas de la película. Se realizaron textos sobre diferentes personajes, se escribieron murales."
+    "numeroDocentes": 6,
+    "citaRepresentativa": "Se retomó la cartilla, se realizaron conversatorios sobre las temáticas de la película. Se realizaron textos sobre diferentes personajes, se escribieron murales.",
+    "testimonios": [
+      {
+        "idTranscripcion": "P001",
+        "idDocente": 1,
+        "texto": "Se abrieron varios espacios para socializar las películas, debates, mesas redondas, elaboración de material audiovisual con las ideas, opiniones, etc."
+      },
+      {
+        "idTranscripcion": "P008",
+        "idDocente": 6,
+        "texto": "Se realizó un post-taller en cada función y la reflexión posterior en cada sesión llevaron comentarios sobre cada película."
+      },
+      {
+        "idTranscripcion": "P010",
+        "idDocente": 7,
+        "texto": "Sí se retomó posteriormente y de las películas con actividades de español, propuestas culturales, historias y reflexiones."
+      },
+      {
+        "idTranscripcion": "P011",
+        "idDocente": 7,
+        "texto": "En algunas clases de sociales se realizaron talleres, actividades y reflexiones de las temáticas."
+      },
+      {
+        "idTranscripcion": "P012",
+        "idDocente": 8,
+        "texto": "Padlet. Get ready with me. Murals. Afiches."
+      },
+      {
+        "idTranscripcion": "P013",
+        "idDocente": 8,
+        "texto": "Se retomó la cartilla, se realizaron conversatorios sobre las temáticas de la película. Se realizaron textos sobre diferentes personajes, se escribieron murales."
+      },
+      {
+        "idTranscripcion": "P017",
+        "idDocente": 9,
+        "texto": "Los estudiantes hablaron o representaron constantemente temas, situaciones o personajes."
+      },
+      {
+        "idTranscripcion": "P019",
+        "idDocente": 10,
+        "texto": "Realizamos un debate frente a los diferentes cursos contando la experiencia vivida a los compañeros que no asistieron por medio de la sensibilización."
+      }
+    ]
   },
   {
     "submomento": "Después",
     "tema": "Articulación con el aula y áreas",
     "lectura": "Las películas y sus temáticas se retoman en clases y áreas como español y ciencias sociales, aunque la posibilidad de articulación varía entre docentes y disciplinas.",
-    "frecuencia": 8,
+    "frecuencia": 9,
     "numeroDocentes": 7,
-    "citaRepresentativa": "En algunas clases de sociales se realizaron talleres, actividades y reflexiones de las temáticas."
+    "citaRepresentativa": "En algunas clases de sociales se realizaron talleres, actividades y reflexiones de las temáticas.",
+    "testimonios": [
+      {
+        "idTranscripcion": "P002",
+        "idDocente": 2,
+        "texto": "Siempre se genera un conversatorio (reflexión y posturas críticas). Muchas que abordan las distintas realidades. El tiempo en clase se hace más corto cuando se problematiza."
+      },
+      {
+        "idTranscripcion": "P004",
+        "idDocente": 4,
+        "texto": "Sí, hay temáticas que hubiese querido trabajar (ver las películas) desde lo audiovisual, social, música."
+      },
+      {
+        "idTranscripcion": "P010",
+        "idDocente": 7,
+        "texto": "Sí se retomó posteriormente y de las películas con actividades de español, propuestas culturales, historias y reflexiones."
+      },
+      {
+        "idTranscripcion": "P011",
+        "idDocente": 7,
+        "texto": "En algunas clases de sociales se realizaron talleres, actividades y reflexiones de las temáticas."
+      },
+      {
+        "idTranscripcion": "P013",
+        "idDocente": 8,
+        "texto": "Se retomó la cartilla, se realizaron conversatorios sobre las temáticas de la película. Se realizaron textos sobre diferentes personajes, se escribieron murales."
+      },
+      {
+        "idTranscripcion": "P016",
+        "idDocente": 9,
+        "texto": "Los temas de las películas siempre son temas comunes en las diferentes áreas, por el aspecto social y artístico del colegio."
+      },
+      {
+        "idTranscripcion": "P018",
+        "idDocente": 9,
+        "texto": "Hubiera querido hacer muchos más proyectos con películas adecuadas a su edad."
+      },
+      {
+        "idTranscripcion": "P023",
+        "idDocente": 12,
+        "texto": "Sí, en especial temas, metodologías. Con algunos cursos surgen conversaciones después de la visita a la Cinemateca. De igual manera, cuando se trabajan las cartillas. Las películas nos permiten abordar temas y explicaciones desde el conocimiento en común."
+      },
+      {
+        "idTranscripcion": "P026",
+        "idDocente": 14,
+        "texto": "Siendo docente de matemáticas me habría gustado utilizar algo del material en clases."
+      }
+    ]
   },
   {
     "submomento": "Después",
     "tema": "Continuidad del vínculo con el cine",
     "lectura": "La experiencia sigue presente en conversaciones, nuevas visualizaciones y referencias posteriores a las películas y a la Cinemateca.",
-    "frecuencia": 14,
-    "numeroDocentes": 9,
-    "citaRepresentativa": "Algunos estudiantes lo buscan y vuelven a ver con sus familias."
+    "frecuencia": 6,
+    "numeroDocentes": 4,
+    "citaRepresentativa": "Algunos estudiantes lo buscan y vuelven a ver con sus familias.",
+    "testimonios": [
+      {
+        "idTranscripcion": "P014",
+        "idDocente": 8,
+        "texto": "Algunos estudiantes lo buscan y vuelven a ver con sus familias."
+      },
+      {
+        "idTranscripcion": "P021",
+        "idDocente": 11,
+        "texto": "Conversaciones: ¿cuándo vuelven a ir?"
+      },
+      {
+        "idTranscripcion": "P024",
+        "idDocente": 12,
+        "texto": "Fue interesante escuchar su experiencia (de los estudiantes) de llegar a la Cinemateca y de las percepciones sobre las películas que fueron una sorpresa para ellos porque no sabían que había ese tipo de cine colombiano (“Los Nadie”, “La Jauría”)."
+      },
+      {
+        "idTranscripcion": "P027",
+        "idDocente": 15,
+        "texto": "La participación en los grupos durante las sesiones este año o los años anteriores han dejado reflexiones interesantes."
+      },
+      {
+        "idTranscripcion": "P028",
+        "idDocente": 15,
+        "texto": "Los estudiantes tienen acceso a espacios que no conocen de su localidad."
+      },
+      {
+        "idTranscripcion": "P029",
+        "idDocente": 15,
+        "texto": "Identificación de estudiantes con potencial."
+      }
+    ]
   },
   {
     "submomento": "Después",
     "tema": "Pendientes y límites para la continuidad",
     "lectura": "No siempre es posible dar continuidad formal a la experiencia; aparecen falta de tiempo, actividades pendientes y deseos de profundizar o desarrollar nuevos proyectos.",
-    "frecuencia": 8,
+    "frecuencia": 9,
     "numeroDocentes": 7,
-    "citaRepresentativa": "Hubiera querido hacer muchos más proyectos con películas adecuadas a su edad."
+    "citaRepresentativa": "Hubiera querido hacer muchos más proyectos con películas adecuadas a su edad.",
+    "testimonios": [
+      {
+        "idTranscripcion": "P003",
+        "idDocente": 4,
+        "texto": "No se retomó la película; sin embargo, en otros espacios sí se siguió conversando sobre las historias y lo que estas generan."
+      },
+      {
+        "idTranscripcion": "P004",
+        "idDocente": 4,
+        "texto": "Sí, hay temáticas que hubiese querido trabajar (ver las películas) desde lo audiovisual, social, música."
+      },
+      {
+        "idTranscripcion": "P005",
+        "idDocente": 5,
+        "texto": "Se retomaron algunas cosas de forma esporádica, con algunos, no en grupo."
+      },
+      {
+        "idTranscripcion": "P007",
+        "idDocente": 5,
+        "texto": "Sí, la socialización principalmente se dio por tiempos."
+      },
+      {
+        "idTranscripcion": "P009",
+        "idDocente": 6,
+        "texto": "Referido a particularidades, no pudimos asistir a la función #2."
+      },
+      {
+        "idTranscripcion": "P015",
+        "idDocente": 8,
+        "texto": "Quedó pendiente Recorrido cultural."
+      },
+      {
+        "idTranscripcion": "P018",
+        "idDocente": 9,
+        "texto": "Hubiera querido hacer muchos más proyectos con películas adecuadas a su edad."
+      },
+      {
+        "idTranscripcion": "P022",
+        "idDocente": 11,
+        "texto": "Deseado trabajar: elegir una película."
+      },
+      {
+        "idTranscripcion": "P026",
+        "idDocente": 14,
+        "texto": "Siendo docente de matemáticas me habría gustado utilizar algo del material en clases."
+      }
+    ]
   },
   {
     "submomento": "Permanece",
     "tema": "Interés y acceso a otros cines",
     "lectura": "La experiencia deja interés por el cine colombiano y por acceder a películas, plataformas y espacios que antes eran menos conocidos.",
-    "frecuencia": 11,
+    "frecuencia": 10,
     "numeroDocentes": 6,
-    "citaRepresentativa": "Más interés en otro tipo de películas."
+    "citaRepresentativa": "Más interés en otro tipo de películas.",
+    "testimonios": [
+      {
+        "idTranscripcion": "M001",
+        "idDocente": 1,
+        "texto": "Más interés en otro tipo de películas."
+      },
+      {
+        "idTranscripcion": "M002",
+        "idDocente": 1,
+        "texto": "Visitar la Cinemateca."
+      },
+      {
+        "idTranscripcion": "M003",
+        "idDocente": 1,
+        "texto": "Exploración de RTVC Play."
+      },
+      {
+        "idTranscripcion": "M004",
+        "idDocente": 1,
+        "texto": "Interés por el cine colombiano."
+      },
+      {
+        "idTranscripcion": "M007",
+        "idDocente": 2,
+        "texto": "Las conversaciones son constantes, en algunos casos se plantean como ejemplos. Enriquecio el interes en el cine colombiano y nuestra realidad. Mostrar lo enriquecedor del cine como experiencia historica y replanteamiento de la realidad."
+      },
+      {
+        "idTranscripcion": "M015",
+        "idDocente": 6,
+        "texto": "Interés en la dirección Colombiana y en cine de la misma temática y referencia a la película."
+      },
+      {
+        "idTranscripcion": "M019",
+        "idDocente": 8,
+        "texto": "El interés por venir, el conocimiento sobre otros tipos de cine."
+      },
+      {
+        "idTranscripcion": "M021",
+        "idDocente": 9,
+        "texto": "Los chicos ven más y más películas en RTVC Play o Retina Latina. Son producciones que se mantienen en los trabajos de clase constantemente."
+      },
+      {
+        "idTranscripcion": "M023",
+        "idDocente": 9,
+        "texto": "Permanece la expectativa por ir a cine en grupo."
+      },
+      {
+        "idTranscripcion": "M025",
+        "idDocente": 12,
+        "texto": "Más acceso y facilidad al cine colombiano."
+      }
+    ]
   },
   {
     "submomento": "Permanece",
     "tema": "Cine como recurso pedagógico",
     "lectura": "Varios docentes reconocen el cine como una herramienta que puede enriquecer clases, discusiones y prácticas pedagógicas.",
-    "frecuencia": 10,
-    "numeroDocentes": 7,
-    "citaRepresentativa": "El cine como mediador pedagógico."
+    "frecuencia": 14,
+    "numeroDocentes": 8,
+    "citaRepresentativa": "El cine como mediador pedagógico.",
+    "testimonios": [
+      {
+        "idTranscripcion": "M005",
+        "idDocente": 1,
+        "texto": "Motivación para conformar un cineclub en el colegio."
+      },
+      {
+        "idTranscripcion": "M007",
+        "idDocente": 2,
+        "texto": "Las conversaciones son constantes, en algunos casos se plantean como ejemplos. Enriquecio el interes en el cine colombiano y nuestra realidad. Mostrar lo enriquecedor del cine como experiencia historica y replanteamiento de la realidad."
+      },
+      {
+        "idTranscripcion": "M008",
+        "idDocente": 4,
+        "texto": "El cine como mediador pedagógico."
+      },
+      {
+        "idTranscripcion": "M009",
+        "idDocente": 4,
+        "texto": "Sí se enriqueció la práctica pedagógica."
+      },
+      {
+        "idTranscripcion": "M010",
+        "idDocente": 4,
+        "texto": "No he usado hasta el momento el cine."
+      },
+      {
+        "idTranscripcion": "M014",
+        "idDocente": 5,
+        "texto": "Sí, usamos el cine como práctica en la creación audiovisual."
+      },
+      {
+        "idTranscripcion": "M018",
+        "idDocente": 7,
+        "texto": "Se implementó más el apoyo audiovisual para algunos temas de clase."
+      },
+      {
+        "idTranscripcion": "M021",
+        "idDocente": 9,
+        "texto": "Los chicos ven más y más películas en RTVC Play o Retina Latina. Son producciones que se mantienen en los trabajos de clase constantemente."
+      },
+      {
+        "idTranscripcion": "M022",
+        "idDocente": 9,
+        "texto": "La experiencia es importante, pues complementa las discusiones que tenemos. Además de permitir tener una experiencia distinta del cine respecto a la que se puede tener en un salón."
+      },
+      {
+        "idTranscripcion": "M026",
+        "idDocente": 12,
+        "texto": "Proyecciones en grupos y análisis de películas."
+      },
+      {
+        "idTranscripcion": "M027",
+        "idDocente": 12,
+        "texto": "Enriquece la práctica pedagógica porque aborda muchos temas del contexto social y cercano de los estudiantes."
+      },
+      {
+        "idTranscripcion": "M028",
+        "idDocente": 12,
+        "texto": "Usamos el cine constantemente porque hacemos cortometrajes, filminutos y documentales."
+      },
+      {
+        "idTranscripcion": "M029",
+        "idDocente": 14,
+        "texto": "Se queda la intención de usar el cine como herramienta pedagógica."
+      },
+      {
+        "idTranscripcion": "M030",
+        "idDocente": 14,
+        "texto": "Es necesario revisar las formas en que se pueden ligar ciertos audiovisuales con los contenidos disciplinares."
+      }
+    ]
   },
   {
     "submomento": "Permanece",
     "tema": "Producción y creación audiovisual",
     "lectura": "En algunos casos la experiencia se conecta con cineclubes y procesos de creación audiovisual como cortometrajes, filminutos, documentales o producción de textos cinematográficos.",
-    "frecuencia": 5,
-    "numeroDocentes": 5,
-    "citaRepresentativa": "Usamos el cine constantemente porque hacemos cortometrajes, filminutos y documentales."
+    "frecuencia": 4,
+    "numeroDocentes": 3,
+    "citaRepresentativa": "Usamos el cine constantemente porque hacemos cortometrajes, filminutos y documentales.",
+    "testimonios": [
+      {
+        "idTranscripcion": "M012",
+        "idDocente": 5,
+        "texto": "Sí, en un proyecto de producción audiovisual recordamos algunas apreciaciones de la película."
+      },
+      {
+        "idTranscripcion": "M014",
+        "idDocente": 5,
+        "texto": "Sí, usamos el cine como práctica en la creación audiovisual."
+      },
+      {
+        "idTranscripcion": "M020",
+        "idDocente": 8,
+        "texto": "Interés por la producción de textos cinematográficos."
+      },
+      {
+        "idTranscripcion": "M028",
+        "idDocente": 12,
+        "texto": "Usamos el cine constantemente porque hacemos cortometrajes, filminutos y documentales."
+      }
+    ]
   },
   {
     "submomento": "Permanece",
     "tema": "Continuidad de reflexiones y experiencias",
     "lectura": "Las películas siguen funcionando como referentes para conversaciones, reflexiones y experiencias posteriores dentro y fuera del aula.",
-    "frecuencia": 11,
-    "numeroDocentes": 7,
-    "citaRepresentativa": "Las conversaciones son constantes, en algunos casos se plantean como ejemplos."
+    "frecuencia": 7,
+    "numeroDocentes": 6,
+    "citaRepresentativa": "Las conversaciones son constantes, en algunos casos se plantean como ejemplos.",
+    "testimonios": [
+      {
+        "idTranscripcion": "M007",
+        "idDocente": 2,
+        "texto": "Las conversaciones son constantes, en algunos casos se plantean como ejemplos. Enriquecio el interes en el cine colombiano y nuestra realidad. Mostrar lo enriquecedor del cine como experiencia historica y replanteamiento de la realidad."
+      },
+      {
+        "idTranscripcion": "M012",
+        "idDocente": 5,
+        "texto": "Sí, en un proyecto de producción audiovisual recordamos algunas apreciaciones de la película."
+      },
+      {
+        "idTranscripcion": "M016",
+        "idDocente": 6,
+        "texto": "Continuar institucionalmente, que permita la apertura a espacios de diálogo."
+      },
+      {
+        "idTranscripcion": "M017",
+        "idDocente": 7,
+        "texto": "Se continuo la d¿reflexion de las peliculas y los cortos vistos."
+      },
+      {
+        "idTranscripcion": "M021",
+        "idDocente": 9,
+        "texto": "Los chicos ven más y más películas en RTVC Play o Retina Latina. Son producciones que se mantienen en los trabajos de clase constantemente."
+      },
+      {
+        "idTranscripcion": "M022",
+        "idDocente": 9,
+        "texto": "La experiencia es importante, pues complementa las discusiones que tenemos. Además de permitir tener una experiencia distinta del cine respecto a la que se puede tener en un salón."
+      },
+      {
+        "idTranscripcion": "M026",
+        "idDocente": 12,
+        "texto": "Proyecciones en grupos y análisis de películas."
+      }
+    ]
   },
   {
     "submomento": "Permanece",
     "tema": "Apertura a espacios y participación cultural",
     "lectura": "La experiencia despierta interés por regresar a la Cinemateca, conocer otros espacios de la ciudad y participar en nuevas experiencias culturales.",
-    "frecuencia": 6,
-    "numeroDocentes": 4,
-    "citaRepresentativa": "Motivación en visitar otros espacios de la ciudad y asistir a eventos culturales."
+    "frecuencia": 8,
+    "numeroDocentes": 6,
+    "citaRepresentativa": "Motivación en visitar otros espacios de la ciudad y asistir a eventos culturales.",
+    "testimonios": [
+      {
+        "idTranscripcion": "M002",
+        "idDocente": 1,
+        "texto": "Visitar la Cinemateca."
+      },
+      {
+        "idTranscripcion": "M005",
+        "idDocente": 1,
+        "texto": "Motivación para conformar un cineclub en el colegio."
+      },
+      {
+        "idTranscripcion": "M006",
+        "idDocente": 1,
+        "texto": "Motivación en visitar otros espacios de la ciudad y asistir a eventos culturales."
+      },
+      {
+        "idTranscripcion": "M013",
+        "idDocente": 5,
+        "texto": "La experiencia al permitir participar en un espacio real."
+      },
+      {
+        "idTranscripcion": "M016",
+        "idDocente": 6,
+        "texto": "Continuar institucionalmente, que permita la apertura a espacios de diálogo."
+      },
+      {
+        "idTranscripcion": "M019",
+        "idDocente": 8,
+        "texto": "El interés por venir, el conocimiento sobre otros tipos de cine."
+      },
+      {
+        "idTranscripcion": "M023",
+        "idDocente": 9,
+        "texto": "Permanece la expectativa por ir a cine en grupo."
+      },
+      {
+        "idTranscripcion": "M024",
+        "idDocente": 12,
+        "texto": "También participamos en el Festival de Cine Internacional de Bosa."
+      }
+    ]
   },
   {
     "submomento": "Permanece",
     "tema": "Condiciones para fortalecer la continuidad",
     "lectura": "También permanecen necesidades concretas para sostener la participación, especialmente transporte, alimentación y mejores posibilidades de articulación.",
-    "frecuencia": 3,
-    "numeroDocentes": 2,
-    "citaRepresentativa": "Convenios con el fin de facilitar las condiciones de transporte y alimentación."
+    "frecuencia": 4,
+    "numeroDocentes": 3,
+    "citaRepresentativa": "Convenios con el fin de facilitar las condiciones de transporte y alimentación.",
+    "testimonios": [
+      {
+        "idTranscripcion": "M011",
+        "idDocente": 5,
+        "texto": "Facilitaría el transporte."
+      },
+      {
+        "idTranscripcion": "M016",
+        "idDocente": 6,
+        "texto": "Continuar institucionalmente, que permita la apertura a espacios de diálogo."
+      },
+      {
+        "idTranscripcion": "M030",
+        "idDocente": 14,
+        "texto": "Es necesario revisar las formas en que se pueden ligar ciertos audiovisuales con los contenidos disciplinares."
+      },
+      {
+        "idTranscripcion": "M031",
+        "idDocente": 14,
+        "texto": "Convenios con el fin de facilitar las condiciones de transporte y alimentación."
+      }
+    ]
   }
 ]
