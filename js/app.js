@@ -2305,78 +2305,180 @@ function renderStandardFinding(
 ) {
 
     const stats = [];
+   
+   if (
+           theme.frecuencia !== "" &&
+           theme.frecuencia !== null &&
+           theme.frecuencia !== undefined
+       ) {
+           stats.push(
+               `<span>${escapeHTML(theme.frecuencia)} grupos</span>`
+           );
+       }
+   
+       if (
+           theme.docentes !== "" &&
+           theme.docentes !== null &&
+           theme.docentes !== undefined
+       ) {
+           stats.push(
+               `<span>${escapeHTML(theme.docentes)} docentes</span>`
+           );
+       }
+   
+       // Recuperar los aportes originales asociados al hallazgo
+       const aportes = Array.isArray(theme.testimonios)
+           ? theme.testimonios.filter(
+               item => item && String(item.texto ?? "").trim()
+           )
+           : [];
+   
+       const aportesHTML = aportes.length
+           ? `
+               <div class="story-testimonios">
+   
+                   <p class="story-testimonio-label">
+                       APORTES ORIGINALES DE LOS GRUPOS
+                   </p>
+   
+                   <blockquote class="story-testimonio-quote">
+   
+                       <p class="story-testimonio-texto">
+                           “${escapeHTML(aportes[0].texto)}”
+                       </p>
+   
+                       <footer class="story-testimonio-id">
+                           Grupo ${escapeHTML(aportes[0].grupo)}
+                       </footer>
+   
+                   </blockquote>
+   
+                   <div class="story-testimonio-controls">
+   
+                       <button
+                           type="button"
+                           class="story-testimonio-prev"
+                           disabled
+                       >
+                           ← Anterior
+                       </button>
+   
+                       <span
+                           class="story-testimonio-counter"
+                           aria-live="polite"
+                       >
+                           1 de ${aportes.length}
+                       </span>
+   
+                       <button
+                           type="button"
+                           class="story-testimonio-next"
+                           ${aportes.length === 1 ? "disabled" : ""}
+                       >
+                           Siguiente →
+                       </button>
+   
+                   </div>
+   
+               </div>
+           `
+           : "";
+   
+       container.innerHTML = `
+   
+           <p class="section-label">
+               Hallazgo
+           </p>
+   
+           <h3>
+               ${escapeHTML(theme.tema)}
+           </h3>
+   
+           ${
+               theme.lectura
+                   ? `<p>${escapeHTML(theme.lectura)}</p>`
+                   : ""
+           }
+   
+           ${
+               stats.length
+                   ? `
+                       <div class="finding-stats">
+                           ${stats.join("")}
+                       </div>
+                   `
+                   : ""
+           }
+   
+           ${aportesHTML}
+   
+       `;
+   
+       // Activar los controles del carrusel
+       if (aportes.length) {
+   
+           let index = 0;
+   
+           const texto = container.querySelector(
+               ".story-testimonio-texto"
+           );
+   
+           const grupo = container.querySelector(
+               ".story-testimonio-id"
+           );
+   
+           const contador = container.querySelector(
+               ".story-testimonio-counter"
+           );
+   
+           const anterior = container.querySelector(
+               ".story-testimonio-prev"
+           );
+   
+           const siguiente = container.querySelector(
+               ".story-testimonio-next"
+           );
+   
+           function mostrarAporte() {
+   
+               const aporte = aportes[index];
+   
+               texto.textContent = `“${aporte.texto}”`;
+   
+               grupo.textContent = `Grupo ${aporte.grupo}`;
+   
+               contador.textContent =
+                   `${index + 1} de ${aportes.length}`;
+   
+               anterior.disabled = index === 0;
+   
+               siguiente.disabled =
+                   index === aportes.length - 1;
+           }
+   
+           anterior.addEventListener("click", () => {
+   
+               if (index > 0) {
+                   index--;
+                   mostrarAporte();
+               }
+   
+           });
+   
+           siguiente.addEventListener("click", () => {
+   
+               if (index < aportes.length - 1) {
+                   index++;
+                   mostrarAporte();
+               }
+   
+           });
+   
+       }
+   
+   }
 
-
-    if (
-        theme.frecuencia !== "" &&
-        theme.frecuencia !== null &&
-        theme.frecuencia !== undefined
-    ) {
-
-        stats.push(
-            `<span>${escapeHTML(theme.frecuencia)} grupos</span>`
-        );
-
-    }
-
-
-    if (
-        theme.docentes !== "" &&
-        theme.docentes !== null &&
-        theme.docentes !== undefined
-    ) {
-
-        stats.push(
-            `<span>${escapeHTML(theme.docentes)} docentes</span>`
-        );
-
-    }
-
-
-    container.innerHTML = `
-
-        <p class="section-label">
-            Hallazgo
-        </p>
-
-        <h3>
-            ${escapeHTML(theme.tema)}
-        </h3>
-
-        ${
-            theme.lectura
-                ? `
-                    <p>
-                        ${escapeHTML(theme.lectura)}
-                    </p>
-                `
-                : ""
-        }
-
-        ${
-            stats.length
-                ? `
-                    <div class="finding-stats">
-                        ${stats.join("")}
-                    </div>
-                `
-                : ""
-        }
-
-        ${
-            theme.cita
-                ? `
-                    <blockquote>
-                        “${escapeHTML(theme.cita)}”
-                    </blockquote>
-                `
-                : ""
-        }
-
-    `;
-
-}
-
+   
 
 /* =========================================================
    29. INICIALIZACIÓN GENERAL
