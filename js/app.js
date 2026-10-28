@@ -62,6 +62,7 @@ const ETAPAS_PROYECCION = [
 
 let recorridoData = [];
 let trayectoriaData = [];
+let aportesMomento2Data = [];
 
 let recorridoMomentIndex = 0;
 let recorridoThemeIndex = 0;
