@@ -1,0 +1,357 @@
+
+[
+  {
+    "componente": "Punto de partida",
+    "hallazgo": "Cine como recurso pedagógico y formativo",
+    "grupo": "G1",
+    "texto": "Cine como formación humana."
+  },
+  {
+    "componente": "Punto de partida",
+    "hallazgo": "Cine como recurso pedagógico y formativo",
+    "grupo": "G2",
+    "texto": "Cine como apoyo en clase."
+  },
+  {
+    "componente": "Punto de partida",
+    "hallazgo": "Cine como recurso pedagógico y formativo",
+    "grupo": "G3",
+    "texto": "El cine como forma de establecer relaciones entre textos y vida cotidiana para generar debates."
+  },
+  {
+    "componente": "Punto de partida",
+    "hallazgo": "Cine como recurso pedagógico y formativo",
+    "grupo": "G4",
+    "texto": "Proyectos enfocados en la creación de productos relacionados con proyectos audiovisuales, creación de cortometrajes y clubes de cine."
+  },
+  {
+    "componente": "Punto de partida",
+    "hallazgo": "Interés y acercamiento al cine colombiano",
+    "grupo": "G1",
+    "texto": "Conocimiento del cine colombiano y experiencias previas vinculadas con audiovisuales y actividades pedagógicas. Cine comolombiano como conocimiento social."
+  },
+  {
+    "componente": "Punto de partida",
+    "hallazgo": "Interés y acercamiento al cine colombiano",
+    "grupo": "G2",
+    "texto": "Interés por el cine colombiano."
+  },
+  {
+    "componente": "Punto de partida",
+    "hallazgo": "Interés y acercamiento al cine colombiano",
+    "grupo": "G3",
+    "texto": "No conociamos mucho de cine, en comparación con la cinemateca o RTVC."
+  },
+  {
+    "componente": "Punto de partida",
+    "hallazgo": "Experiencias previas de creación audiovisual",
+    "grupo": "G4",
+    "texto": "Proyectos enfocados en la creación de productos relacionados con proyectos audiovisuales, creación de cortometrajes y clubes de cine."
+  },
+  {
+    "componente": "Descubrimientos",
+    "hallazgo": "Cine como herramienta pedagógica",
+    "grupo": "G1",
+    "texto": "Posibilidad de utilizar el cine nacional, como herramienta de apoyo al manejar temas complejos, pensamiento crítico, reflexión, participación y reconocimiento del contexto."
+  },
+  {
+    "componente": "Descubrimientos",
+    "hallazgo": "Cine como herramienta pedagógica",
+    "grupo": "G2",
+    "texto": "Nuevos conocimientos sobre cinematografía como herramienta pedagógica."
+  },
+  {
+    "componente": "Descubrimientos",
+    "hallazgo": "Cine como herramienta pedagógica",
+    "grupo": "G4",
+    "texto": "Desarrollo de diferentes habilidades comunicativas y del pensamiento crítico por medio del ejercicio de cine, la participación y el reconocimiento de su propio contexto."
+  },
+  {
+    "componente": "Descubrimientos",
+    "hallazgo": "Pensamiento crítico, reflexión y comprensión del contexto",
+    "grupo": "G1",
+    "texto": "pensamiento crítico, reflexión, participación y reconocimiento del contexto."
+  },
+  {
+    "componente": "Descubrimientos",
+    "hallazgo": "Pensamiento crítico, reflexión y comprensión del contexto",
+    "grupo": "G2",
+    "texto": "Pensamiento crítico respecto a las temáticas abordadas. Rompimiento de sesgos."
+  },
+  {
+    "componente": "Descubrimientos",
+    "hallazgo": "Pensamiento crítico, reflexión y comprensión del contexto",
+    "grupo": "G3",
+    "texto": "Comprensión de la realidad nacional."
+  },
+  {
+    "componente": "Descubrimientos",
+    "hallazgo": "Pensamiento crítico, reflexión y comprensión del contexto",
+    "grupo": "G4",
+    "texto": "Desarrollo de diferentes habilidades comunicativas y del pensamiento crítico por medio del ejercicio de cine, la participación y el reconocimiento de su propio contexto."
+  },
+  {
+    "componente": "Descubrimientos",
+    "hallazgo": "Nuevos aprendizajes sobre cine y audiovisual",
+    "grupo": "G2",
+    "texto": "Nuevos conocimientos sobre cinematografía como herramienta pedagógica."
+  },
+  {
+    "componente": "Descubrimientos",
+    "hallazgo": "Nuevos aprendizajes sobre cine y audiovisual",
+    "grupo": "G3",
+    "texto": "conocer más del cine y adquirir conocimientos técnicos."
+  },
+  {
+    "componente": "Descubrimientos",
+    "hallazgo": "Apertura a experiencias y espacios diferentes",
+    "grupo": "G2",
+    "texto": "Experiencia de espacios diferentes al colegio."
+  },
+  {
+    "componente": "Descubrimientos",
+    "hallazgo": "Apertura a experiencias y espacios diferentes",
+    "grupo": "G3",
+    "texto": "Pueden disfrutar y conectarse con el cine. Posibilidad de compartir y aprender, conocer más del cine y adquirir conocimientos técnicos."
+  },
+  {
+    "componente": "Lo que moviliza",
+    "hallazgo": "Emociones, sensibilidad e identificación",
+    "grupo": "G1",
+    "texto": "Cine con enfoque humano. Emociones asociadas con entusiasmo, reconocimiento, empatía, reflexión, curiosidad e identificación."
+  },
+  {
+    "componente": "Lo que moviliza",
+    "hallazgo": "Emociones, sensibilidad e identificación",
+    "grupo": "G2",
+    "texto": "Satisfacción, empatía, reflexión, conmover, sensibilidad y oportunidad."
+  },
+  {
+    "componente": "Lo que moviliza",
+    "hallazgo": "Emociones, sensibilidad e identificación",
+    "grupo": "G4",
+    "texto": "Docentes: entusiasmo por la participación de los estudiantes, entendiendo su realidad y su contexto cotidiano."
+  },
+  {
+    "componente": "Lo que moviliza",
+    "hallazgo": "Nuevas experiencias y socialización",
+    "grupo": "G3",
+    "texto": "Conocimiento, nuevas experiencias, espacios de socialización, estímulo hacia el cine, valor de romper con el aula regular, expectativa y socialización con otros colegios."
+  },
+  {
+    "componente": "Lo que moviliza",
+    "hallazgo": "Nuevas experiencias y socialización",
+    "grupo": "G4",
+    "texto": "Estudiantes: exploración de nuevos espacios con el fin de la libre expresión."
+  },
+  {
+    "componente": "Lo que moviliza",
+    "hallazgo": "Preguntas sobre la articulación con la escuela",
+    "grupo": "G2",
+    "texto": "¿Cómo aprovechar el espacio de la Cinemateca en la cotidianidad escolar? ¿Cómo puede el cine urbano ser herramienta de contextualización?"
+  },
+  {
+    "componente": "Clases de Película genera en los estudiantes",
+    "hallazgo": "Pensamiento crítico y lectura de la realidad",
+    "grupo": "G2",
+    "texto": "Pensamiento crítico por parte de los estudiantes."
+  },
+  {
+    "componente": "Clases de Película genera en los estudiantes",
+    "hallazgo": "Pensamiento crítico y lectura de la realidad",
+    "grupo": "G3",
+    "texto": "Empatía con la realidad vista en las películas. Reconocimiento del territorio de otra forma."
+  },
+  {
+    "componente": "Clases de Película genera en los estudiantes",
+    "hallazgo": "Apertura e interés por el cine",
+    "grupo": "G1",
+    "texto": "Disposición del cuerpo en el espacio y disposición al cine diferente a lo comercial."
+  },
+  {
+    "componente": "Clases de Película genera en los estudiantes",
+    "hallazgo": "Apertura e interés por el cine",
+    "grupo": "G4",
+    "texto": "Pasión por el cine"
+  },
+  {
+    "componente": "Clases de Película genera en los estudiantes",
+    "hallazgo": "Vínculos y reconocimiento de procesos",
+    "grupo": "G4",
+    "texto": "círculo social y reconocimiento de procesos académicos."
+  },
+  {
+    "componente": "Lo que transforma",
+    "hallazgo": "Pensamiento crítico, reflexión y diálogo",
+    "grupo": "G2",
+    "texto": "Rompimiento de estereotipos."
+  },
+  {
+    "componente": "Lo que transforma",
+    "hallazgo": "Pensamiento crítico, reflexión y diálogo",
+    "grupo": "G3",
+    "texto": "Se fomenta el pensamiento crítico, el debate y la reflexión."
+  },
+  {
+    "componente": "Lo que transforma",
+    "hallazgo": "Pensamiento crítico, reflexión y diálogo",
+    "grupo": "G4",
+    "texto": "Transformación asociada con análisis, motivación, diálogo, pensamiento crítico y aprendizaje extracurricular."
+  },
+  {
+    "componente": "Lo que transforma",
+    "hallazgo": "Cine y audiovisual como práctica pedagógica",
+    "grupo": "G2",
+    "texto": "Abordar técnicas audiovisuales. Inicio de semilleros a partir de lo aprendido."
+  },
+  {
+    "componente": "Lo que transforma",
+    "hallazgo": "Cine y audiovisual como práctica pedagógica",
+    "grupo": "G3",
+    "texto": "Se refuerza la idea del cine como herramienta pedagógica."
+  },
+  {
+    "componente": "Lo que transforma",
+    "hallazgo": "Cine y audiovisual como práctica pedagógica",
+    "grupo": "G4",
+    "texto": "aprendizaje extracurricular."
+  },
+  {
+    "componente": "Lo que transforma",
+    "hallazgo": "Expresión y habilidades comunicativas",
+    "grupo": "G1",
+    "texto": "Libertad de expresión de sentimientos, pensamientos y emociones."
+  },
+  {
+    "componente": "Lo que transforma",
+    "hallazgo": "Expresión y habilidades comunicativas",
+    "grupo": "G2",
+    "texto": "Mejoras en la producción escrita y oral."
+  },
+  {
+    "componente": "Lo que transforma",
+    "hallazgo": "Ruptura de la rutina y nuevos espacios de aprendizaje",
+    "grupo": "G1",
+    "texto": "Romper con la rutina. Interés en actividades relacionadas con el cine."
+  },
+  {
+    "componente": "Lo que transforma",
+    "hallazgo": "Ruptura de la rutina y nuevos espacios de aprendizaje",
+    "grupo": "G2",
+    "texto": "Nuevos espacios de mediación, reflexión y madurez."
+  },
+  {
+    "componente": "Lo que permanece",
+    "hallazgo": "Pensamiento crítico y apertura al diálogo",
+    "grupo": "G2",
+    "texto": "Pensamiento crítico por parte de los estudiantes hacia los escenarios y experiencias vividas."
+  },
+  {
+    "componente": "Lo que permanece",
+    "hallazgo": "Pensamiento crítico y apertura al diálogo",
+    "grupo": "G3",
+    "texto": "Apertura al diálogo sobre sus propias realidades."
+  },
+  {
+    "componente": "Lo que permanece",
+    "hallazgo": "Vínculo afectivo y curiosidad por el audiovisual",
+    "grupo": "G3",
+    "texto": "Amor por lo audiovisual. Disfrutar la experiencia del cine."
+  },
+  {
+    "componente": "Lo que permanece",
+    "hallazgo": "Vínculo afectivo y curiosidad por el audiovisual",
+    "grupo": "G4",
+    "texto": "Curiosidad por el formato y los personajes."
+  },
+  {
+    "componente": "Lo que permanece",
+    "hallazgo": "Reconocimiento de sí y de capacidades",
+    "grupo": "G1",
+    "texto": "Reconocimiento de habilidades de los estudiantes por parte de los docentes."
+  },
+  {
+    "componente": "Lo que permanece",
+    "hallazgo": "Reconocimiento de sí y de capacidades",
+    "grupo": "G4",
+    "texto": "Reconocimiento de sí mismos relacionado con los personajes de las películas."
+  },
+  {
+    "componente": "Mantener",
+    "hallazgo": "Continuidad del programa y su articulación",
+    "grupo": "G1",
+    "texto": "El programa Clases de Película y la gestión/articulación alrededor del proceso."
+  },
+  {
+    "componente": "Mantener",
+    "hallazgo": "Proyectos y espacios alternos vinculados con la experiencia",
+    "grupo": "G2",
+    "texto": "Proyectos y espacios alternos vinculados con la experiencia."
+  },
+  {
+    "componente": "Mantener",
+    "hallazgo": "Mediación y recursos pedagógicos",
+    "grupo": "G3",
+    "texto": "La iniciativa de la Cinemateca, el trabajo de los mediadores y las cartillas."
+  },
+  {
+    "componente": "Mantener",
+    "hallazgo": "Dinámicas de las sesiones",
+    "grupo": "G4",
+    "texto": "Las dinámicas que se realizan en las sesiones."
+  },
+  {
+    "componente": "Transformar",
+    "hallazgo": "Fortalecer participación y articulación",
+    "grupo": "G1",
+    "texto": "como conclusión una participación en un festival"
+  },
+  {
+    "componente": "Transformar",
+    "hallazgo": "Fortalecer participación y articulación",
+    "grupo": "G2",
+    "texto": "Fortalecer la participación de los estudiantes y la articulación entre instituciones."
+  },
+  {
+    "componente": "Transformar",
+    "hallazgo": "Ampliar el alcance y la frecuencia de participación",
+    "grupo": "G3",
+    "texto": "Ampliar cupos por colegio. Permitir la participación de grados menores, ajustando contenidos. Aumentar el número de visitas."
+  },
+  {
+    "componente": "Transformar",
+    "hallazgo": "Fortalecer condiciones de acceso",
+    "grupo": "G4",
+    "texto": "Buscar gestionar la colaboración con transporte y alimentación."
+  },
+  {
+    "componente": "Explorar",
+    "hallazgo": "Visibilización de proyectos de estudiantes",
+    "grupo": "G1",
+    "texto": "Nuevas posibilidades de exponer los proyectos propios de los estudiantes."
+  },
+  {
+    "componente": "Explorar",
+    "hallazgo": "Visibilización de proyectos de estudiantes",
+    "grupo": "G2",
+    "texto": "con mas colegios al moneto de exponer."
+  },
+  {
+    "componente": "Explorar",
+    "hallazgo": "Nuevas estrategias de articulación entre cine y educación",
+    "grupo": "G2",
+    "texto": "Nuevas estrategias y posibilidades para articular el cine con las prácticas educativas"
+  },
+  {
+    "componente": "Explorar",
+    "hallazgo": "Acercar la Cinemateca al colegio y gestionar transporte",
+    "grupo": "G3",
+    "texto": "Llevar la Cinemateca al colegio. Posibilidad de dialogar con la SED para gestionar transporte."
+  },
+  {
+    "componente": "Explorar",
+    "hallazgo": "Diversidad de géneros cinematográficos",
+    "grupo": "G4",
+    "texto": "Posibilidades de diferentes géneros dentro de las películas."
+  }
+]
