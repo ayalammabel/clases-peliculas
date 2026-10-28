@@ -311,10 +311,11 @@ async function loadData() {
 
     try {
 
-        const [recorridoRaw, trayectoriaRaw] =
+        const [recorridoRaw, trayectoriaRaw, aportesMomento2Raw] =
             await Promise.all([
                 loadJSON(DATA_PATHS.recorrido),
-                loadJSON(DATA_PATHS.trayectoria)
+                loadJSON(DATA_PATHS.trayectoria),
+               loadJSON(DATA_PATHS.aportesMomento2)
             ]);
 
 
@@ -326,6 +327,9 @@ async function loadData() {
         trayectoriaData =
             extractArray(trayectoriaRaw)
                 .map(normalizeRecord);
+
+       
+         aportesMomento2Data = extractArray(aportesMomento2Raw);
 
 
         initializeRecorrido();
