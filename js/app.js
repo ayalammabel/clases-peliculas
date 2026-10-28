@@ -236,12 +236,17 @@ function normalizeRecord(record) {
             ]
         ),
 
+       testimonios: Array.isArray(record.testimonios)
+          ? record.testimonios
+          : [],
+
         docentes: firstValue(
             record,
             [
                 "docentes",
                 "Docentes",
                 "numero_docentes",
+                "numeroDocentes",
                 "Número de docentes",
                 "N.º docentes",
                 "N° docentes",
