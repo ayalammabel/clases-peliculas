@@ -1,0 +1,277 @@
+[
+  {
+    "submomento": "Antes",
+    "tema": "Preparación de contenidos y metodologías",
+    "lectura": "La preparación incluye revisar películas y materiales, diseñar o ajustar metodologías y construir recursos para orientar las sesiones.",
+    "frecuencia": 3,
+    "numeroMediadores": 3,
+    "citaRepresentativa": "Revisar material audiovisual.",
+    "testimonios": [
+      {
+        "idTranscripcion": "MED-01-01",
+        "idMediador": 21,
+        "texto": "Creamos algunas hojas creativas en plataformas como “Padlet” para usar el día del encuentro. • Preparamos algunas mediaciones en grupo (de mediadores), pensándolas a partir de experiencias previas. • Hicimos contenido digital con algunas profes para que lxs chicxs trajeran alguna actividad de dibujo previas al encuentro."
+      },
+      {
+        "idTranscripcion": "MED-01-02",
+        "idMediador": 22,
+        "texto": "1. Revisar material audiovisual. 2. Revisar material/cartillas. 3. Metodología creación. 4. Analizar la metodología, sentirla, reflexionar, dudarla. 5. Encuentro con les compas mediadores, volver a revisar la metodología. 6. Ajustes previos. 7. Avivar el alma para la sesión."
+      },
+      {
+        "idTranscripcion": "MED-01-06",
+        "idMediador": 26,
+        "texto": "Antes del encuentro: • Prepararme bien antes de cada mediación, repasar los temas de la peli y, de ser necesario, repetirme la peli varias veces."
+      }
+    ]
+  },
+  {
+    "submomento": "Antes",
+    "tema": "Reconocimiento de los públicos y las condiciones del encuentro",
+    "lectura": "Algunos mediadores consideran las experiencias previas, los intereses de los estudiantes y las características del espacio para orientar la actividad.",
+    "frecuencia": 3,
+    "numeroMediadores": 3,
+    "citaRepresentativa": "Conocer a las y los chicos junto con sus tutores y profesores para conocer sus intereses más allá de la actividad.",
+    "testimonios": [
+      {
+        "idTranscripcion": "MED-01-01",
+        "idMediador": 21,
+        "texto": "Creamos algunas hojas creativas en plataformas como “Padlet” para usar el día del encuentro. • Preparamos algunas mediaciones en grupo (de mediadores), pensándolas a partir de experiencias previas. • Hicimos contenido digital con algunas profes para que lxs chicxs trajeran alguna actividad de dibujo previas al encuentro."
+      },
+      {
+        "idTranscripcion": "MED-01-04",
+        "idMediador": 24,
+        "texto": "Revisar qué tipo de lugar/disposición se va a realizar y con los alumnos, tipo de trabajo."
+      },
+      {
+        "idTranscripcion": "MED-01-05",
+        "idMediador": 25,
+        "texto": "Conocer a las y los chicos junto con sus tutores y profesores para conocer sus intereses más allá de la actividad."
+      }
+    ]
+  },
+  {
+    "submomento": "Antes",
+    "tema": "Curiosidad y condiciones de confianza",
+    "lectura": "La preparación también contempla una disposición personal y estrategias para despertar curiosidad y favorecer un espacio seguro; las menciones son distintas y no equivalen a una práctica uniforme.",
+    "frecuencia": 2,
+    "numeroMediadores": 2,
+    "citaRepresentativa": "Buscar despertar la curiosidad. • Intencionar el espacio como un lugar seguro.",
+    "testimonios": [
+      {
+        "idTranscripcion": "MED-01-02",
+        "idMediador": 22,
+        "texto": "1. Revisar material audiovisual. 2. Revisar material/cartillas. 3. Metodología creación. 4. Analizar la metodología, sentirla, reflexionar, dudarla. 5. Encuentro con les compas mediadores, volver a revisar la metodología. 6. Ajustes previos. 7. Avivar el alma para la sesión."
+      },
+      {
+        "idTranscripcion": "MED-01-03",
+        "idMediador": 23,
+        "texto": "Buscar despertar la curiosidad. • Intencionar el espacio como un lugar seguro. • Poner el soundtrack de la película."
+      }
+    ]
+  },
+  {
+    "submomento": "Primer contacto",
+    "tema": "Acercamiento y generación de confianza",
+    "lectura": "El saludo cercano y las actividades para romper el hielo se utilizan para reducir distancias y facilitar el primer encuentro con los estudiantes.",
+    "frecuencia": 4,
+    "numeroMediadores": 4,
+    "citaRepresentativa": "Una ruptura de hielo donde lxs estudiantes pudieran sentirse más cercanos a nosotros",
+    "testimonios": [
+      {
+        "idTranscripcion": "MED-02-02",
+        "idMediador": 22,
+        "texto": "Observar a los ojos y sonreír honestamente."
+      },
+      {
+        "idTranscripcion": "MED-02-04",
+        "idMediador": 24,
+        "texto": "1er contacto: • Un “rompe hielo”, que sirve como distractor/análisis de lo que se puede realizar."
+      },
+      {
+        "idTranscripcion": "MED-02-05",
+        "idMediador": 25,
+        "texto": "1er contacto: • Una ruptura de hielo donde lxs estudiantes pudieran sentirse más cercanos a nosotros y ver que es un espacio muy diferente al colegio."
+      },
+      {
+        "idTranscripcion": "MED-02-06",
+        "idMediador": 26,
+        "texto": "Primer contacto: • Analizar el comportamiento inicial de las estudiantes y analizar patrones, quiénes eran lxs más inquietos y los más calmados; iniciar con rompehielos para ver cómo respondían."
+      }
+    ]
+  },
+  {
+    "submomento": "Primer contacto",
+    "tema": "Observación inicial del grupo",
+    "lectura": "La observación de comportamientos y de las respuestas a las actividades permite obtener indicios para ajustar la mediación.",
+    "frecuencia": 2,
+    "numeroMediadores": 2,
+    "citaRepresentativa": "Analizar el comportamiento inicial de las estudiantes y analizar patrones",
+    "testimonios": [
+      {
+        "idTranscripcion": "MED-02-04",
+        "idMediador": 24,
+        "texto": "1er contacto: • Un “rompe hielo”, que sirve como distractor/análisis de lo que se puede realizar."
+      },
+      {
+        "idTranscripcion": "MED-02-06",
+        "idMediador": 26,
+        "texto": "Primer contacto: • Analizar el comportamiento inicial de las estudiantes y analizar patrones, quiénes eran lxs más inquietos y los más calmados; iniciar con rompehielos para ver cómo respondían."
+      }
+    ]
+  },
+  {
+    "submomento": "Primer contacto",
+    "tema": "Reconocimiento de roles y vínculos previos",
+    "lectura": "El contacto con docentes ayuda a situar el rol del mediador y, cuando ya existe una relación, el reencuentro puede expresar cercanía afectiva.",
+    "frecuencia": 2,
+    "numeroMediadores": 2,
+    "citaRepresentativa": "Me saludan y me dicen: “Te extrañé, profe”.",
+    "testimonios": [
+      {
+        "idTranscripcion": "MED-02-01",
+        "idMediador": 21,
+        "texto": "Nos dirigimos directo a los profes para que los estudiantes ya nos ubiquen como los “encargados” de la actividad del día."
+      },
+      {
+        "idTranscripcion": "MED-02-03",
+        "idMediador": 23,
+        "texto": "En una experiencia, varios estudiantes me contaban que vinieron a la Cinemateca. • Me saludan y me dicen: “Te extrañé, profe”."
+      }
+    ]
+  },
+  {
+    "submomento": "Durante",
+    "tema": "Adaptación e improvisación en la mediación",
+    "lectura": "La mediación requiere responder a situaciones no previstas y mantener apertura frente a los cambios, sin que improvisar implique falta de preparación.",
+    "frecuencia": 2,
+    "numeroMediadores": 2,
+    "citaRepresentativa": "Improvisar, no por no saber qué hacer. Improvisar para fluir.",
+    "testimonios": [
+      {
+        "idTranscripcion": "MED-03-01",
+        "idMediador": 21,
+        "texto": "Mucha bulla, hecha a propósito entre lxs estudiantes y todos los de la sala para “apropiarnos” de ella. Gritamos, como ejercicio. • Hubo un encuentro en el que tocó ponernos a hacer la tarea entre tod@s (estudiante y mediadorxs) porque el profe no les había dicho. • Anotación: “Perspectiva a los cambios”."
+      },
+      {
+        "idTranscripcion": "MED-03-02",
+        "idMediador": 22,
+        "texto": "Improvisar, no por no saber qué hacer. Improvisar para fluir. • Ser perceptiva a los cambios."
+      }
+    ]
+  },
+  {
+    "submomento": "Durante",
+    "tema": "Participación y apropiación del espacio",
+    "lectura": "Las dinámicas expresivas y la conversación buscan que los estudiantes participen activamente y sientan el espacio como propio.",
+    "frecuencia": 2,
+    "numeroMediadores": 2,
+    "citaRepresentativa": "Generar conversación donde lxs estudiantes se puedan tomar el espacio con su participación.",
+    "testimonios": [
+      {
+        "idTranscripcion": "MED-03-01",
+        "idMediador": 21,
+        "texto": "Mucha bulla, hecha a propósito entre lxs estudiantes y todos los de la sala para “apropiarnos” de ella. Gritamos, como ejercicio. • Hubo un encuentro en el que tocó ponernos a hacer la tarea entre tod@s (estudiante y mediadorxs) porque el profe no les había dicho. • Anotación: “Perspectiva a los cambios”."
+      },
+      {
+        "idTranscripcion": "MED-03-05",
+        "idMediador": 25,
+        "texto": "Generar conversación donde lxs estudiantes se puedan tomar el espacio con su participación."
+      }
+    ]
+  },
+  {
+    "submomento": "Durante",
+    "tema": "Relación entre cine, percepciones y experiencias personales",
+    "lectura": "Las intervenciones conectan las películas con las percepciones, los contextos y, en algunos casos, las experiencias dolorosas narradas por los participantes.",
+    "frecuencia": 2,
+    "numeroMediadores": 2,
+    "citaRepresentativa": "Destacar lo realizado, entendido por los alumnos, sus percepciones y el contexto de la obra, entendida en su realidad.",
+    "testimonios": [
+      {
+        "idTranscripcion": "MED-03-03",
+        "idMediador": 23,
+        "texto": "Varias personas habían sobre experiencias dolorosas en su vida y nos hablaban de cómo hacían una película sobre ello, utilizando el cine como herramienta de transformación."
+      },
+      {
+        "idTranscripcion": "MED-03-04",
+        "idMediador": 24,
+        "texto": "Durante: • Destacar lo realizado, entendido por los alumnos, sus percepciones y el contexto de la obra, entendida en su realidad."
+      }
+    ]
+  },
+  {
+    "submomento": "Inmediatamente después",
+    "tema": "Cierre, registro y aprendizaje para otras sesiones",
+    "lectura": "El cierre incluye tareas prácticas y registros de la actividad; algunas anotaciones se plantean expresamente como insumos para sesiones posteriores.",
+    "frecuencia": 3,
+    "numeroMediadores": 3,
+    "citaRepresentativa": "Anotar los procesos, dinámicas, para ser puestas en práctica en las demás sesiones.",
+    "testimonios": [
+      {
+        "idTranscripcion": "MED-04-01",
+        "idMediador": 21,
+        "texto": "Tomar una foto de todo el grupo y dejar las “tareas” claras."
+      },
+      {
+        "idTranscripcion": "MED-04-02",
+        "idMediador": 22,
+        "texto": "Revisar si hay basura. • Tomar agüita. • Llenar el Forms con la información de la sesión."
+      },
+      {
+        "idTranscripcion": "MED-04-04",
+        "idMediador": 24,
+        "texto": "Anotar los procesos, dinámicas, para ser puestas en práctica en las demás sesiones."
+      }
+    ]
+  },
+  {
+    "submomento": "Inmediatamente después",
+    "tema": "Retroalimentación e interés posterior de los estudiantes",
+    "lectura": "Las preguntas y opiniones estudiantiles permiten conocer cómo se recibió la experiencia y muestran interés por seguir explorando películas.",
+    "frecuencia": 2,
+    "numeroMediadores": 2,
+    "citaRepresentativa": "Conocer sus opiniones, saber cómo se sintieron respecto a las actividades y la película",
+    "testimonios": [
+      {
+        "idTranscripcion": "MED-04-03",
+        "idMediador": 23,
+        "texto": "Me preguntan lxs estudiantes sobre una película que mencioné en la sesión, para saber dónde se encuentra."
+      },
+      {
+        "idTranscripcion": "MED-04-05",
+        "idMediador": 25,
+        "texto": "Conocer sus opiniones, saber cómo se sintieron respecto a las actividades y la película, sobre todo saber si algo en ellxs cambió."
+      }
+    ]
+  },
+  {
+    "submomento": "Tiempo después",
+    "tema": "Aprendizajes que orientan futuras mediaciones",
+    "lectura": "Un mediador describe cómo las recomendaciones de los estudiantes y el conocimiento previo del grupo influyen en la preparación de encuentros posteriores.",
+    "frecuencia": 1,
+    "numeroMediadores": 1,
+    "citaRepresentativa": "Pensarse específicamente las actividades venideras acorde a lxs estudiantes que ya conocimos previamente.",
+    "testimonios": [
+      {
+        "idTranscripcion": "MED-05-01",
+        "idMediador": 21,
+        "texto": "Ver pelis recomendadas por lxs mismxs estudiantes. • Pensarse específicamente las actividades venideras acorde a lxs estudiantes que ya conocimos previamente. Conocimos su aura."
+      }
+    ]
+  },
+  {
+    "submomento": "Tiempo después",
+    "tema": "Vínculos afectivos y reflexiones sobre la propia trayectoria",
+    "lectura": "Una mediadora expresa melancolía ante la ausencia de estudiantes, afinidad territorial y el deseo de haber vivido experiencias semejantes en su escolaridad.",
+    "frecuencia": 1,
+    "numeroMediadores": 1,
+    "citaRepresentativa": "Añorar haber tenido estas experiencias en el colegio.",
+    "testimonios": [
+      {
+        "idTranscripcion": "MED-05-02",
+        "idMediador": 22,
+        "texto": "Sentir melancolía cuando lxs chiquis no regresan porque los castigan. • Darse cuenta que lxs chiquis con los que más conectas son de la localidad donde creciste. • Añorar haber tenido estas experiencias en el colegio."
+      }
+    ]
+  }
+]
