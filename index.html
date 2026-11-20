@@ -98,7 +98,17 @@
                 
                 </div>
 
-                <button class="nav-link view-link" type="button" data-view="mediadores">Mediadores</button>
+                <div class="nav-dropdown mediadores-dropdown">
+                    <button class="nav-link view-link mediadores-dropdown-trigger" type="button"
+                        data-view="mediadores" aria-expanded="false" aria-haspopup="true"
+                        aria-controls="mediadores-submenu">
+                        Mediadores <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span>
+                    </button>
+                    <div id="mediadores-submenu" class="nav-dropdown-menu" aria-label="Resultados de mediadores" hidden>
+                        <button class="nav-dropdown-item" type="button" data-medi-menu-exercise="recorrido">Cartografía de la mediación</button>
+                        <button class="nav-dropdown-item" type="button" data-medi-menu-exercise="trayectoria">Mapa de trayectoria</button>
+                    </div>
+                </div>
 
                 <button
                     class="nav-link view-link"
@@ -239,10 +249,6 @@
               <p class="section-label">Mediadores</p>
               <h1>La experiencia desde la mediación cultural</h1>
               <p>Explora las voces de quienes acompañan los encuentros de Clases de Película.</p>
-            </div>
-            <div class="medi-tabs" role="tablist" aria-label="Ejercicios de mediadores">
-              <button type="button" class="medi-tab is-active" data-medi-exercise="recorrido" role="tab" aria-selected="true">Cartografía de la mediación</button>
-              <button type="button" class="medi-tab" data-medi-exercise="trayectoria" role="tab" aria-selected="false">Mapa de trayectoria</button>
             </div>
             <div id="mediadores-content" aria-live="polite"><p>Cargando resultados de mediadores…</p></div>
           </div>
@@ -902,4 +908,5 @@
 </body>
 
 </html>
+
 
