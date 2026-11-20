@@ -1,3 +1,4 @@
+/* Vista independiente de Mediadores. No modifica los datos ni las funciones de Docentes. */
 (() => {
   const rootId = 'mediadores-content';
   const state = {exercise:'recorrido', mode:'Trayectoria', stage:0, finding:0, quote:0};
@@ -51,12 +52,34 @@
     el.querySelector('[data-medi-next]')?.addEventListener('click',()=>{state.quote++;render()});
   }
   document.addEventListener('DOMContentLoaded',()=>{
-    document.querySelectorAll('[data-medi-exercise]').forEach(b=>b.addEventListener('click',()=>{
-      state.exercise=b.dataset.mediExercise;state.stage=0;state.finding=0;state.quote=0;
-      document.querySelectorAll('[data-medi-exercise]').forEach(t=>{const a=t===b;t.classList.toggle('is-active',a);t.setAttribute('aria-selected',a)});
-      render();
+    const mediTrigger = document.querySelector('.mediadores-dropdown-trigger');
+    const mediMenu = document.getElementById('mediadores-submenu');
+    const mediDropdown = document.querySelector('.mediadores-dropdown');
+    function closeMediMenu(){
+      if(!mediMenu)return;
+      mediMenu.hidden=true;
+      mediDropdown?.classList.remove('is-open');
+      mediTrigger?.setAttribute('aria-expanded','false');
+    }
+    document.querySelectorAll('[data-medi-menu-exercise]').forEach(b=>b.addEventListener('click',()=>{
+      state.exercise=b.dataset.mediMenuExercise;
+      state.stage=0;state.finding=0;state.quote=0;
+      document.querySelectorAll('[data-medi-menu-exercise]').forEach(t=>t.classList.toggle('active',t===b));
+      closeMediMenu();
+      document.querySelectorAll('[data-view-panel]').forEach(panel=>{
+        const active=panel.dataset.viewPanel==='mediadores';
+        panel.hidden=!active;panel.classList.toggle('active',active);
+      });
+      document.querySelectorAll('.nav-link').forEach(t=>t.classList.toggle('active',t.dataset.view==='mediadores'));
+      document.querySelectorAll('#docentes-submenu .nav-dropdown-item').forEach(t=>t.classList.remove('active'));
+      window.location.hash='mediadores';
+      load();render();
+      window.scrollTo({top:0,behavior:'smooth'});
     }));
-    document.querySelector('[data-view="mediadores"].view-link')?.addEventListener('click',load);
+    document.addEventListener('click',e=>{
+      if(mediDropdown&&!mediDropdown.contains(e.target))closeMediMenu();
+    });
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMediMenu()});
     if(location.hash==='#mediadores')load();
   });
 })();
