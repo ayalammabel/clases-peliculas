@@ -399,6 +399,12 @@ function initializeMainNavigation() {
 
             // El botón Docentes abre o cierra el submenú
             if (link.classList.contains("nav-dropdown-trigger")) {
+                // Los dos desplegables son independientes: abrir uno cierra el otro.
+                const mediMenu = document.getElementById("mediadores-submenu");
+                const mediTrigger = document.querySelector(".mediadores-dropdown-trigger");
+                mediMenu && (mediMenu.hidden = true);
+                mediTrigger?.setAttribute("aria-expanded", "false");
+                document.querySelector(".mediadores-dropdown")?.classList.remove("is-open");
 
                 const isOpen = !menu.hidden;
 
@@ -413,10 +419,26 @@ function initializeMainNavigation() {
                 return;
             }
 
+            // El menú Mediadores tiene su propio desplegable, sin botones duplicados.
+            if (link.classList.contains("mediadores-dropdown-trigger")) {
+                closeDropdown();
+                const mediDropdown = document.querySelector(".mediadores-dropdown");
+                const mediMenu = document.getElementById("mediadores-submenu");
+                const open = mediMenu.hidden;
+                mediMenu.hidden = !open;
+                mediDropdown.classList.toggle("is-open", open);
+                link.setAttribute("aria-expanded", String(open));
+                return;
+            }
+
             // Inicio y Acerca del estudio conservan su funcionamiento
             const target = link.dataset.view;
 
             closeDropdown();
+            const mediMenu = document.getElementById("mediadores-submenu");
+            if (mediMenu) mediMenu.hidden = true;
+            document.querySelector(".mediadores-dropdown")?.classList.remove("is-open");
+            document.querySelector(".mediadores-dropdown-trigger")?.setAttribute("aria-expanded", "false");
             showView(target);
 
             window.location.hash = target;
@@ -2496,4 +2518,5 @@ document.addEventListener(
 
     }
 );
+
 
