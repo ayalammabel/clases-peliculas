@@ -1,0 +1,693 @@
+[
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 1,
+    "componente": "Punto de partida",
+    "hallazgo": "Experiencias previas de acercamiento al cine",
+    "frecuenciaAportes": 2,
+    "frecuenciaGrupos": 2,
+    "grupos": [],
+    "ideasAsociadas": [
+      "Unas mediaciones partieron de experiencias previas, expectativas e imaginarios culturales que se ven reflejados en el proceso.",
+      "En los cineclubes en los que pude participar: visión de roles, debates."
+    ],
+    "lecturaInterpretativa": "Las experiencias y expectativas previas, incluidos los cineclubes, forman parte de los puntos de partida de algunas mediaciones.",
+    "citaRepresentativa": "Unas mediaciones partieron de experiencias previas, expectativas e imaginarios culturales que se ven reflejados en el proceso.",
+    "testimonios": [
+      {
+        "idAporte": "MT-01-01-01",
+        "mapa": 1,
+        "idMediador": null,
+        "textoOriginal": "Unas mediaciones partieron de experiencias previas, expectativas e imaginarios culturales que se ven reflejados en el proceso.",
+        "texto": "Unas mediaciones partieron de experiencias previas, expectativas e imaginarios culturales que se ven reflejados en el proceso."
+      },
+      {
+        "idAporte": "MT-01-01-02",
+        "mapa": 2,
+        "idMediador": 28,
+        "textoOriginal": "En los cineclubes en los que pude participar: visión de roles, debates.",
+        "texto": "En los cineclubes en los que pude participar: visión de roles, debates."
+      }
+    ]
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 1,
+    "componente": "Punto de partida",
+    "hallazgo": "Primeras experiencias y trayectorias desde otros campos",
+    "frecuenciaAportes": 2,
+    "frecuenciaGrupos": 2,
+    "grupos": [],
+    "ideasAsociadas": [
+      "Otras, como primera experiencia.",
+      "Nula, yo hago mediación en literatura."
+    ],
+    "lecturaInterpretativa": "No todas las trayectorias comienzan en la mediación cinematográfica: aparecen primeras experiencias y recorridos provenientes de la literatura.",
+    "citaRepresentativa": "Otras, como primera experiencia.",
+    "testimonios": [
+      {
+        "idAporte": "MT-01-02-01",
+        "mapa": 1,
+        "idMediador": null,
+        "textoOriginal": "Otras, como primera experiencia.",
+        "texto": "Otras, como primera experiencia."
+      },
+      {
+        "idAporte": "MT-01-02-02",
+        "mapa": 2,
+        "idMediador": 22,
+        "textoOriginal": "Nula, yo hago mediación en literatura.",
+        "texto": "Nula, yo hago mediación en literatura."
+      }
+    ]
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 1,
+    "componente": "Punto de partida",
+    "hallazgo": "Cine como práctica cultural y de acceso",
+    "frecuenciaAportes": 2,
+    "frecuenciaGrupos": 2,
+    "grupos": [],
+    "ideasAsociadas": [
+      "A través de la democratización del cine.",
+      "En red, grabándolo y archivándolo."
+    ],
+    "lecturaInterpretativa": "Se mencionan formas de relación con el cine vinculadas con su democratización y con prácticas de registro, aunque uno de los aportes no permite precisar su alcance.",
+    "citaRepresentativa": "A través de la democratización del cine.",
+    "testimonios": [
+      {
+        "idAporte": "MT-01-03-01",
+        "mapa": 2,
+        "idMediador": 23,
+        "textoOriginal": "A través de la democratización del cine.",
+        "texto": "A través de la democratización del cine."
+      },
+      {
+        "idAporte": "MT-01-03-02",
+        "mapa": 2,
+        "idMediador": 21,
+        "textoOriginal": "En red, grabándolo y archivándolo.",
+        "texto": "En red, grabándolo y archivándolo."
+      }
+    ]
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 2,
+    "componente": "Descubrimientos",
+    "hallazgo": "Nuevas herramientas y enfoques pedagógicos",
+    "frecuenciaAportes": 3,
+    "frecuenciaGrupos": 3,
+    "grupos": [],
+    "ideasAsociadas": [
+      "La manera de abordar a los públicos, la accesibilidad y las herramientas particularmente pedagógicas en esta línea de cine.",
+      "Reafirmar la lengua como metodología de aprendizaje.",
+      "Nueva forma de pedagogía."
+    ],
+    "lecturaInterpretativa": "La experiencia abre o reafirma formas de abordar a los públicos y herramientas pedagógicas para la mediación.",
+    "citaRepresentativa": "La manera de abordar a los públicos, la accesibilidad y las herramientas particularmente pedagógicas en esta línea de cine.",
+    "testimonios": [
+      {
+        "idAporte": "MT-02-04-01",
+        "mapa": 1,
+        "idMediador": null,
+        "textoOriginal": "La manera de abordar a los públicos, la accesibilidad y las herramientas particularmente pedagógicas en esta línea de cine.",
+        "texto": "La manera de abordar a los públicos, la accesibilidad y las herramientas particularmente pedagógicas en esta línea de cine."
+      },
+      {
+        "idAporte": "MT-02-04-02",
+        "mapa": 2,
+        "idMediador": 22,
+        "textoOriginal": "Reafirmar la lengua como metodología de aprendizaje.",
+        "texto": "Reafirmar la lengua como metodología de aprendizaje."
+      },
+      {
+        "idAporte": "MT-02-04-03",
+        "mapa": 2,
+        "idMediador": 23,
+        "textoOriginal": "Nueva forma de pedagogía.",
+        "texto": "Nueva forma de pedagogía."
+      }
+    ]
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 2,
+    "componente": "Descubrimientos",
+    "hallazgo": "Desarrollo de una mirada crítica sobre el cine",
+    "frecuenciaAportes": 1,
+    "frecuenciaGrupos": 1,
+    "grupos": [],
+    "ideasAsociadas": [
+      "Que no hay una mirada crítica desde que aprendemos o empezamos a verlo."
+    ],
+    "lecturaInterpretativa": "Se cuestiona que la mirada crítica sobre el cine se desarrolle automáticamente desde los primeros acercamientos.",
+    "citaRepresentativa": "Que no hay una mirada crítica desde que aprendemos o empezamos a verlo.",
+    "testimonios": [
+      {
+        "idAporte": "MT-02-05-01",
+        "mapa": 2,
+        "idMediador": 21,
+        "textoOriginal": "Que no hay una mirada crítica desde que aprendemos o empezamos a verlo.",
+        "texto": "Que no hay una mirada crítica desde que aprendemos o empezamos a verlo."
+      }
+    ]
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 2,
+    "componente": "Descubrimientos",
+    "hallazgo": "Reconocimiento de los públicos y sus intereses",
+    "frecuenciaAportes": 1,
+    "frecuenciaGrupos": 1,
+    "grupos": [],
+    "ideasAsociadas": [
+      "Tener paciencia y me di cuenta de que yo, adolescente, sí tenía interés por el cine colombiano, y es positivo para ellos."
+    ],
+    "lecturaInterpretativa": "La mediación invita a reconocer los intereses de los estudiantes y a cultivar la paciencia en el encuentro.",
+    "citaRepresentativa": "Tener paciencia y me di cuenta de que yo, adolescente, sí tenía interés por el cine colombiano, y es positivo para ellos.",
+    "testimonios": [
+      {
+        "idAporte": "MT-02-06-01",
+        "mapa": 2,
+        "idMediador": 28,
+        "textoOriginal": "Tener paciencia y me di cuenta de que yo, adolescente, sí tenía interés por el cine colombiano, y es positivo para ellos.",
+        "texto": "Tener paciencia y me di cuenta de que yo, adolescente, sí tenía interés por el cine colombiano, y es positivo para ellos."
+      }
+    ]
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 3,
+    "componente": "Lo que moviliza",
+    "hallazgo": "Emociones y vínculos con los públicos",
+    "frecuenciaAportes": 3,
+    "frecuenciaGrupos": 3,
+    "grupos": [],
+    "ideasAsociadas": [
+      "Satisfacción → interacción con ellos.",
+      "Acumulación a dichos públicos.",
+      "Agradecimiento por un nuevo espacio."
+    ],
+    "lecturaInterpretativa": "La interacción y la posibilidad de contar con un nuevo espacio se asocian con satisfacción y agradecimiento; un aporte permanece ambiguo.",
+    "citaRepresentativa": "Satisfacción → interacción con ellos.",
+    "testimonios": [
+      {
+        "idAporte": "MT-03-07-01",
+        "mapa": 1,
+        "idMediador": null,
+        "textoOriginal": "Satisfacción → interacción con ellos.",
+        "texto": "Satisfacción → interacción con ellos."
+      },
+      {
+        "idAporte": "MT-03-07-02",
+        "mapa": 1,
+        "idMediador": null,
+        "textoOriginal": "Acumulación a dichos públicos.",
+        "texto": "Acumulación a dichos públicos."
+      },
+      {
+        "idAporte": "MT-03-07-03",
+        "mapa": 1,
+        "idMediador": null,
+        "textoOriginal": "Agradecimiento por un nuevo espacio.",
+        "texto": "Agradecimiento por un nuevo espacio."
+      }
+    ]
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 3,
+    "componente": "Lo que moviliza",
+    "hallazgo": "Acceso, identidad y posibilidades del cine",
+    "frecuenciaAportes": 4,
+    "frecuenciaGrupos": 4,
+    "grupos": [],
+    "ideasAsociadas": [
+      "Importancia, accesibilidad. Accesibilidad a la cultura dentro de algo que sea la cultura en general/abierto.",
+      "El cine sí se puede hacer.",
+      "Ciudadano cultural.",
+      "Identidad cultural."
+    ],
+    "lecturaInterpretativa": "Los aportes vinculan la experiencia con el acceso cultural, la identidad y las posibilidades de hacer cine.",
+    "citaRepresentativa": "Importancia, accesibilidad. Accesibilidad a la cultura dentro de algo que sea la cultura en general/abierto.",
+    "testimonios": [
+      {
+        "idAporte": "MT-03-08-01",
+        "mapa": 1,
+        "idMediador": null,
+        "textoOriginal": "Importancia, accesibilidad. Accesibilidad a la cultura dentro de algo que sea la cultura en general/abierto.",
+        "texto": "Importancia, accesibilidad. Accesibilidad a la cultura dentro de algo que sea la cultura en general/abierto."
+      },
+      {
+        "idAporte": "MT-03-08-02",
+        "mapa": 2,
+        "idMediador": 21,
+        "textoOriginal": "El cine sí se puede hacer.",
+        "texto": "El cine sí se puede hacer."
+      },
+      {
+        "idAporte": "MT-03-08-03",
+        "mapa": 2,
+        "idMediador": 22,
+        "textoOriginal": "Ciudadano cultural.",
+        "texto": "Ciudadano cultural."
+      },
+      {
+        "idAporte": "MT-03-08-04",
+        "mapa": 2,
+        "idMediador": 28,
+        "textoOriginal": "Identidad cultural.",
+        "texto": "Identidad cultural."
+      }
+    ]
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 3,
+    "componente": "Lo que moviliza",
+    "hallazgo": "Preguntas sobre el rol de la mediación",
+    "frecuenciaAportes": 3,
+    "frecuenciaGrupos": 3,
+    "grupos": [],
+    "ideasAsociadas": [
+      "¿Existe el mediador? • La creación del dispositivo.",
+      "¿De qué otras formas se puede llegar a los diferentes públicos?",
+      "¿Cuál es la posición en el cine?"
+    ],
+    "lecturaInterpretativa": "Surgen preguntas sobre el papel del mediador, los dispositivos y las formas de acercarse a distintos públicos.",
+    "citaRepresentativa": "¿Existe el mediador? • La creación del dispositivo.",
+    "testimonios": [
+      {
+        "idAporte": "MT-03-09-01",
+        "mapa": 2,
+        "idMediador": 21,
+        "textoOriginal": "¿Existe el mediador? • La creación del dispositivo.",
+        "texto": "¿Existe el mediador? • La creación del dispositivo."
+      },
+      {
+        "idAporte": "MT-03-09-02",
+        "mapa": 2,
+        "idMediador": 28,
+        "textoOriginal": "¿De qué otras formas se puede llegar a los diferentes públicos?",
+        "texto": "¿De qué otras formas se puede llegar a los diferentes públicos?"
+      },
+      {
+        "idAporte": "MT-03-09-03",
+        "mapa": 2,
+        "idMediador": 22,
+        "textoOriginal": "¿Cuál es la posición en el cine?",
+        "texto": "¿Cuál es la posición en el cine?"
+      }
+    ]
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 4,
+    "componente": "Lo que transforma",
+    "hallazgo": "Cambios en la práctica de mediación",
+    "frecuenciaAportes": 4,
+    "frecuenciaGrupos": 4,
+    "grupos": [],
+    "ideasAsociadas": [
+      "Entender la relación que tiene el audiovisual/cine con otros.",
+      "Interacción con el público y el contexto con los demás. → Reactivo, creativo y reflexivo.",
+      "Adaptarse a ese contexto de los estudiantes.",
+      "Ha mejorado mi caja de dispositivos."
+    ],
+    "lecturaInterpretativa": "Se describen ajustes de la práctica a partir de la interacción con los públicos, sus contextos y los dispositivos utilizados.",
+    "citaRepresentativa": "Entender la relación que tiene el audiovisual/cine con otros.",
+    "testimonios": [
+      {
+        "idAporte": "MT-04-10-01",
+        "mapa": 1,
+        "idMediador": null,
+        "textoOriginal": "Entender la relación que tiene el audiovisual/cine con otros.",
+        "texto": "Entender la relación que tiene el audiovisual/cine con otros."
+      },
+      {
+        "idAporte": "MT-04-10-02",
+        "mapa": 1,
+        "idMediador": null,
+        "textoOriginal": "Interacción con el público y el contexto con los demás. → Reactivo, creativo y reflexivo.",
+        "texto": "Interacción con el público y el contexto con los demás. → Reactivo, creativo y reflexivo."
+      },
+      {
+        "idAporte": "MT-04-10-03",
+        "mapa": 1,
+        "idMediador": null,
+        "textoOriginal": "Adaptarse a ese contexto de los estudiantes.",
+        "texto": "Adaptarse a ese contexto de los estudiantes."
+      },
+      {
+        "idAporte": "MT-04-10-04",
+        "mapa": 2,
+        "idMediador": 21,
+        "textoOriginal": "Ha mejorado mi caja de dispositivos.",
+        "texto": "Ha mejorado mi caja de dispositivos."
+      }
+    ]
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 4,
+    "componente": "Lo que transforma",
+    "hallazgo": "Ampliación de conocimientos y recursos cinematográficos",
+    "frecuenciaAportes": 4,
+    "frecuenciaGrupos": 4,
+    "grupos": [],
+    "ideasAsociadas": [
+      "He aumentado mi biblioteca de películas colombianas y del [ilegible] con mayor grado.",
+      "Entender cómo todas las cosas se conectan.",
+      "Aprender sobre otras aristas del cine y cómo ayudan a la cultura ciudadana.",
+      "Entender que el cine no solo tiene como función su realización, sino su distribución."
+    ],
+    "lecturaInterpretativa": "La experiencia amplía referentes sobre películas colombianas, conexiones del cine con otros ámbitos y su distribución.",
+    "citaRepresentativa": "He aumentado mi biblioteca de películas colombianas y del [ilegible] con mayor grado.",
+    "testimonios": [
+      {
+        "idAporte": "MT-04-11-01",
+        "mapa": 2,
+        "idMediador": 21,
+        "textoOriginal": "He aumentado mi biblioteca de películas colombianas y del [ilegible] con mayor grado.",
+        "texto": "He aumentado mi biblioteca de películas colombianas y del [ilegible] con mayor grado."
+      },
+      {
+        "idAporte": "MT-04-11-02",
+        "mapa": 2,
+        "idMediador": 22,
+        "textoOriginal": "Entender cómo todas las cosas se conectan.",
+        "texto": "Entender cómo todas las cosas se conectan."
+      },
+      {
+        "idAporte": "MT-04-11-03",
+        "mapa": 2,
+        "idMediador": 28,
+        "textoOriginal": "Aprender sobre otras aristas del cine y cómo ayudan a la cultura ciudadana.",
+        "texto": "Aprender sobre otras aristas del cine y cómo ayudan a la cultura ciudadana."
+      },
+      {
+        "idAporte": "MT-04-11-04",
+        "mapa": 2,
+        "idMediador": 23,
+        "textoOriginal": "Entender que el cine no solo tiene como función su realización, sino su distribución.",
+        "texto": "Entender que el cine no solo tiene como función su realización, sino su distribución."
+      }
+    ]
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 5,
+    "componente": "Lo que permanece",
+    "hallazgo": "Aprendizajes personales",
+    "frecuenciaAportes": 2,
+    "frecuenciaGrupos": 2,
+    "grupos": [],
+    "ideasAsociadas": [
+      "Tomarse la vida como un juego.",
+      "La paciencia es una gran virtud."
+    ],
+    "lecturaInterpretativa": "Permanecen aprendizajes personales asociados con el juego y la paciencia.",
+    "citaRepresentativa": "Tomarse la vida como un juego.",
+    "testimonios": [
+      {
+        "idAporte": "MT-05-12-01",
+        "mapa": 2,
+        "idMediador": 21,
+        "textoOriginal": "Tomarse la vida como un juego.",
+        "texto": "Tomarse la vida como un juego."
+      },
+      {
+        "idAporte": "MT-05-12-02",
+        "mapa": 2,
+        "idMediador": 28,
+        "textoOriginal": "La paciencia es una gran virtud.",
+        "texto": "La paciencia es una gran virtud."
+      }
+    ]
+  },
+  {
+    "tipo": "Trayectoria",
+    "ordenComponente": 5,
+    "componente": "Lo que permanece",
+    "hallazgo": "Conexiones y vínculos",
+    "frecuenciaAportes": 1,
+    "frecuenciaGrupos": 1,
+    "grupos": [],
+    "ideasAsociadas": [
+      "Es muy lindo cuando las energías se conectan."
+    ],
+    "lecturaInterpretativa": "La conexión entre personas se recuerda como una dimensión significativa de la experiencia.",
+    "citaRepresentativa": "Es muy lindo cuando las energías se conectan.",
+    "testimonios": [
+      {
+        "idAporte": "MT-05-13-01",
+        "mapa": 2,
+        "idMediador": 22,
+        "textoOriginal": "Es muy lindo cuando las energías se conectan.",
+        "texto": "Es muy lindo cuando las energías se conectan."
+      }
+    ]
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 6,
+    "componente": "Mantener",
+    "hallazgo": "Reconocimiento del trabajo de mediación",
+    "frecuenciaAportes": 2,
+    "frecuenciaGrupos": 2,
+    "grupos": [],
+    "ideasAsociadas": [
+      "La visión de que la mediación es un trabajo importante para la formación de públicos y en el sector cultural.",
+      "Pensar la mediación como un trabajo muy importante dentro de lo audiovisual → reconocimiento."
+    ],
+    "lecturaInterpretativa": "Se considera importante preservar el reconocimiento de la mediación como trabajo relevante para la formación de públicos y el campo audiovisual.",
+    "citaRepresentativa": "La visión de que la mediación es un trabajo importante para la formación de públicos y en el sector cultural.",
+    "testimonios": [
+      {
+        "idAporte": "MT-06-14-01",
+        "mapa": 1,
+        "idMediador": null,
+        "textoOriginal": "La visión de que la mediación es un trabajo importante para la formación de públicos y en el sector cultural.",
+        "texto": "La visión de que la mediación es un trabajo importante para la formación de públicos y en el sector cultural."
+      },
+      {
+        "idAporte": "MT-06-14-02",
+        "mapa": 2,
+        "idMediador": null,
+        "textoOriginal": "Pensar la mediación como un trabajo muy importante dentro de lo audiovisual → reconocimiento.",
+        "texto": "Pensar la mediación como un trabajo muy importante dentro de lo audiovisual → reconocimiento."
+      }
+    ]
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 6,
+    "componente": "Mantener",
+    "hallazgo": "Continuidad de los espacios y el proyecto",
+    "frecuenciaAportes": 2,
+    "frecuenciaGrupos": 2,
+    "grupos": [],
+    "ideasAsociadas": [
+      "El proyecto.",
+      "Los espacios."
+    ],
+    "lecturaInterpretativa": "Se expresa el interés por mantener el proyecto y los espacios en los que ocurre la mediación.",
+    "citaRepresentativa": "El proyecto.",
+    "testimonios": [
+      {
+        "idAporte": "MT-06-15-01",
+        "mapa": 2,
+        "idMediador": null,
+        "textoOriginal": "El proyecto.",
+        "texto": "El proyecto."
+      },
+      {
+        "idAporte": "MT-06-15-02",
+        "mapa": 2,
+        "idMediador": null,
+        "textoOriginal": "Los espacios.",
+        "texto": "Los espacios."
+      }
+    ]
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 6,
+    "componente": "Mantener",
+    "hallazgo": "Dinámicas de participación y expresión",
+    "frecuenciaAportes": 2,
+    "frecuenciaGrupos": 2,
+    "grupos": [],
+    "ideasAsociadas": [
+      "Mantener la dinámica lúdica.",
+      "Mantener la libertad de expresión."
+    ],
+    "lecturaInterpretativa": "Se valora conservar el carácter lúdico de las sesiones y la libertad de expresión.",
+    "citaRepresentativa": "Mantener la dinámica lúdica.",
+    "testimonios": [
+      {
+        "idAporte": "MT-06-16-01",
+        "mapa": 2,
+        "idMediador": null,
+        "textoOriginal": "Mantener la dinámica lúdica.",
+        "texto": "Mantener la dinámica lúdica."
+      },
+      {
+        "idAporte": "MT-06-16-02",
+        "mapa": 2,
+        "idMediador": null,
+        "textoOriginal": "Mantener la libertad de expresión.",
+        "texto": "Mantener la libertad de expresión."
+      }
+    ]
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 7,
+    "componente": "Transformar",
+    "hallazgo": "Revisión de contenidos y acompañamiento",
+    "frecuenciaAportes": 3,
+    "frecuenciaGrupos": 3,
+    "grupos": [],
+    "ideasAsociadas": [
+      "Ver las preguntas de los contenidos frente a puntuales.",
+      "Explorar el acompañamiento.",
+      "El catálogo de películas."
+    ],
+    "lecturaInterpretativa": "Se mencionan ajustes a contenidos, preguntas, catálogo y formas de acompañamiento; una formulación no permite precisar el cambio propuesto.",
+    "citaRepresentativa": "Explorar el acompañamiento.",
+    "testimonios": [
+      {
+        "idAporte": "MT-07-17-01",
+        "mapa": 1,
+        "idMediador": null,
+        "textoOriginal": "Ver las preguntas de los contenidos frente a puntuales.",
+        "texto": "Ver las preguntas de los contenidos frente a puntuales."
+      },
+      {
+        "idAporte": "MT-07-17-02",
+        "mapa": 1,
+        "idMediador": null,
+        "textoOriginal": "Explorar el acompañamiento.",
+        "texto": "Explorar el acompañamiento."
+      },
+      {
+        "idAporte": "MT-07-17-03",
+        "mapa": 2,
+        "idMediador": null,
+        "textoOriginal": "El catálogo de películas.",
+        "texto": "El catálogo de películas."
+      }
+    ]
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 7,
+    "componente": "Transformar",
+    "hallazgo": "Fortalecimiento de recursos y condiciones de trabajo",
+    "frecuenciaAportes": 1,
+    "frecuenciaGrupos": 1,
+    "grupos": [],
+    "ideasAsociadas": [
+      "Más presupuesto en equipos de mediación."
+    ],
+    "lecturaInterpretativa": "Se plantea aumentar el presupuesto destinado a los equipos de mediación.",
+    "citaRepresentativa": "Más presupuesto en equipos de mediación.",
+    "testimonios": [
+      {
+        "idAporte": "MT-07-18-01",
+        "mapa": 2,
+        "idMediador": null,
+        "textoOriginal": "Más presupuesto en equipos de mediación.",
+        "texto": "Más presupuesto en equipos de mediación."
+      }
+    ]
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 8,
+    "componente": "Explorar",
+    "hallazgo": "Cine comunitario y participación de los estudiantes",
+    "frecuenciaAportes": 2,
+    "frecuenciaGrupos": 2,
+    "grupos": [],
+    "ideasAsociadas": [
+      "Cine comunitario y más cercano a la forma y la experiencia.",
+      "Las pelis de los chicos."
+    ],
+    "lecturaInterpretativa": "Se propone explorar el cine comunitario y dar lugar a las películas vinculadas con los estudiantes, sin precisar si se trata de sus creaciones o elecciones.",
+    "citaRepresentativa": "Cine comunitario y más cercano a la forma y la experiencia.",
+    "testimonios": [
+      {
+        "idAporte": "MT-08-19-01",
+        "mapa": 1,
+        "idMediador": null,
+        "textoOriginal": "Cine comunitario y más cercano a la forma y la experiencia.",
+        "texto": "Cine comunitario y más cercano a la forma y la experiencia."
+      },
+      {
+        "idAporte": "MT-08-19-02",
+        "mapa": 2,
+        "idMediador": null,
+        "textoOriginal": "Las pelis de los chicos.",
+        "texto": "Las pelis de los chicos."
+      }
+    ]
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 8,
+    "componente": "Explorar",
+    "hallazgo": "Acompañamiento y recursos para colegios",
+    "frecuenciaAportes": 1,
+    "frecuenciaGrupos": 1,
+    "grupos": [],
+    "ideasAsociadas": [
+      "Acompañamiento + recursos para los colegios."
+    ],
+    "lecturaInterpretativa": "Se plantea explorar acompañamiento y recursos adicionales para los colegios.",
+    "citaRepresentativa": "Acompañamiento + recursos para los colegios.",
+    "testimonios": [
+      {
+        "idAporte": "MT-08-20-01",
+        "mapa": 1,
+        "idMediador": null,
+        "textoOriginal": "Acompañamiento + recursos para los colegios.",
+        "texto": "Acompañamiento + recursos para los colegios."
+      }
+    ]
+  },
+  {
+    "tipo": "Proyección",
+    "ordenComponente": 8,
+    "componente": "Explorar",
+    "hallazgo": "Nuevos contenidos y formatos",
+    "frecuenciaAportes": 2,
+    "frecuenciaGrupos": 2,
+    "grupos": [],
+    "ideasAsociadas": [
+      "Otras temáticas/formatos.",
+      "Dispositivos."
+    ],
+    "lecturaInterpretativa": "Se propone explorar otras temáticas, formatos y dispositivos.",
+    "citaRepresentativa": "Otras temáticas/formatos.",
+    "testimonios": [
+      {
+        "idAporte": "MT-08-21-01",
+        "mapa": 2,
+        "idMediador": null,
+        "textoOriginal": "Otras temáticas/formatos.",
+        "texto": "Otras temáticas/formatos."
+      },
+      {
+        "idAporte": "MT-08-21-02",
+        "mapa": 2,
+        "idMediador": null,
+        "textoOriginal": "Dispositivos.",
+        "texto": "Dispositivos."
+      }
+    ]
+  }
+]
