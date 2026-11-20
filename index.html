@@ -13,6 +13,7 @@
     <title>Clases de Película | Resultados cualitativos</title>
 
     <link rel="stylesheet" href="css/styles.css?v=2">
+    <link rel="stylesheet" href="css/mediadores.css">
 </head>
 
 <body>
@@ -96,6 +97,8 @@
                     </div>
                 
                 </div>
+
+                <button class="nav-link view-link" type="button" data-view="mediadores">Mediadores</button>
 
                 <button
                     class="nav-link view-link"
@@ -227,6 +230,23 @@
 
         </section>
 
+
+
+        <!-- VISTA MEDIADORES: independiente de Docentes -->
+        <section id="view-mediadores" class="app-view mediadores-view" data-view-panel="mediadores" hidden>
+          <div class="content-container">
+            <div class="page-heading docentes-heading">
+              <p class="section-label">Mediadores</p>
+              <h1>La experiencia desde la mediación cultural</h1>
+              <p>Explora las voces de quienes acompañan los encuentros de Clases de Película.</p>
+            </div>
+            <div class="medi-tabs" role="tablist" aria-label="Ejercicios de mediadores">
+              <button type="button" class="medi-tab is-active" data-medi-exercise="recorrido" role="tab" aria-selected="true">Cartografía de la mediación</button>
+              <button type="button" class="medi-tab" data-medi-exercise="trayectoria" role="tab" aria-selected="false">Mapa de trayectoria</button>
+            </div>
+            <div id="mediadores-content" aria-live="polite"><p>Cargando resultados de mediadores…</p></div>
+          </div>
+        </section>
 
         <!-- =================================================
              VISTA 02 · DOCENTES
@@ -873,6 +893,7 @@
          JAVASCRIPT
     ====================================================== -->
 
+    <script src="js/mediadores.js" defer></script>
     <script
         src="js/app.js"
         defer
@@ -881,3 +902,4 @@
 </body>
 
 </html>
+
