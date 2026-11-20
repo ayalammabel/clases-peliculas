@@ -228,7 +228,9 @@ button:focus-visible {
 
 .hero-container {
     width: min(calc(100% - 48px), var(--max-width));
-    min-height: 560px;
+    min-height: calc(100vh - 73px);
+    min-height: calc(100svh - 73px);
+    box-sizing: border-box;
 
     margin: 0 auto;
 
@@ -2656,4 +2658,5 @@ button:focus-visible {
         font-size: 13px;
     }
 }
+
 
